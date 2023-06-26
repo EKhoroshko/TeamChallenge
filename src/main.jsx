@@ -9,12 +9,24 @@ import LoginPage from './Pages/LoginPage/LoginPage';
 import ErrorPages from './Pages/ErrorPage/ErrorPages';
 import store from './redux/store';
 import './index.css';
+import Layout from './Components/Layout/Layout';
+import Catalog from './Pages/Catalog/Catalog';
 
 const router = createBrowserRouter([
   {
     path: AppRoute.ROOT,
-    element: <Home />,
+    element: <Layout />,
     errorElement: <ErrorPages />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: AppRoute.CATALOG,
+        element: <Catalog />,
+      },
+    ],
   },
   {
     path: AppRoute.LOGIN,
