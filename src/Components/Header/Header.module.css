@@ -1,13 +1,35 @@
 .header{
+    padding: 20px 0px;
     display: flex;
     justify-content: space-between;
-        align-items: center;
+    align-items: center;
     width: 80%;
 }
 
 .nav{
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.link{
+    text-decoration: none;
+    color: chocolate;
+}
+
+.input{
+    padding: 7px 15px;
+    margin-left: 25px;
+    border: 2px solid chocolate;
+    outline: none;
+    border-radius: 15px;
+    color: chocolate;
+}
+
+input:hover,
+input:focus{
+    border: 2px solid yellow;
 }
 
 .box{
