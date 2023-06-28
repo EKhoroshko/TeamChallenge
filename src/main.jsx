@@ -4,7 +4,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AppRoute } from './enum/app-route';
 import { Provider } from 'react-redux';
 import Home from './Pages/Home/Home';
-import Registration from './Pages/Registration/Registration';
 import LoginPage from './Pages/LoginPage/LoginPage';
 import ErrorPages from './Pages/ErrorPage/ErrorPages';
 import store from './redux/store';
@@ -31,11 +30,6 @@ const router = createBrowserRouter([
   {
     path: AppRoute.LOGIN,
     element: <LoginPage />,
-    errorElement: <ErrorPages />,
-  },
-  {
-    path: AppRoute.REGISTRATION,
-    element: <Registration />,
     errorElement: <ErrorPages />,
   },
 ]);
