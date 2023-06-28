@@ -1,0 +1,61 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.box {
+  position: relative;
+  padding: 30px;
+  max-width: 320px;
+  width: 100%;
+  z-index: 10;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #ddbb5d;
+  padding: 30px;
+  height: 220px;
+}
+
+.input {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+  border: 2px solid tomato;
+}
+
+.dog1 {
+  margin-left: 30px;
+  background-image: url('../../assets/husky.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 500px;
+  height: 400px;
+}
+
+.btn {
+  margin-top: 10px;
+  outline: none;
+  border-radius: 10px;
+  padding: 10px;
+  border: 2px solid tomato;
+  border-radius: 15px;
+}
+
+.btnBox {
+  position: absolute;
+  top: -5px;
+  z-index: -1;
+}
+
+.btnActive {
+  border: 2px solid tomato;
+}
