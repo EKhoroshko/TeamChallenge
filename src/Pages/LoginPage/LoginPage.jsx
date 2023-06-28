@@ -5,7 +5,7 @@ import { redirect } from 'react-router-dom';
 import css from './LoginPage.module.css';
 
 const LoginPage = () => {
-  const [value, setValue] = useState('Login');
+  const [value, setValue] = useState('login');
   const [form, setForm] = useState({
     mail: '',
     password: '',
