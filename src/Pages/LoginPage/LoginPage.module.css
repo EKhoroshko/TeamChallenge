@@ -18,8 +18,10 @@
 .form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   background-color: #ddbb5d;
   padding: 30px;
+  height: 220px;
 }
 
 .input {
