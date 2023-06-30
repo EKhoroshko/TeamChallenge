@@ -3,13 +3,13 @@ import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AppRoute } from './enum/app-route';
 import { Provider } from 'react-redux';
+import Layout from './Components/Layout/Layout';
 import Home from './Pages/Home/Home';
 import LoginPage from './Pages/LoginPage/LoginPage';
 import ErrorPages from './Pages/ErrorPage/ErrorPages';
+import Catalog from './Pages/Catalog/Catalog';
 import store from './redux/store';
 import './index.css';
-import Layout from './Components/Layout/Layout';
-import Catalog from './Pages/Catalog/Catalog';
 
 const router = createBrowserRouter([
   {

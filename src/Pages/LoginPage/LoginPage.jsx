@@ -1,18 +1,29 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 import { loginUser, registrationUser } from '../../redux/user/operation';
+import { AppRoute } from '../../enum/app-route';
+import { getLoginUser } from '../../redux/user/selectors';
 import css from './LoginPage.module.css';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [value, setValue] = useState('login');
+  const login = useSelector(getLoginUser);
   const [form, setForm] = useState({
     email: '',
     password: '',
     username: '',
   });
+
+  useEffect(() => {
+    if (login) {
+      navigate(AppRoute.ROOT);
+    }
+  }, [login, navigate]);
 
   const handleChange = e => {
     const { name, value } = e.target;
