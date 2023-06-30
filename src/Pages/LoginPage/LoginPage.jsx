@@ -1,15 +1,17 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
-import { redirect } from 'react-router-dom';
+import { loginUser, registrationUser } from '../../redux/user/operation';
 import css from './LoginPage.module.css';
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
   const [value, setValue] = useState('login');
   const [form, setForm] = useState({
-    mail: '',
+    email: '',
     password: '',
-    Doublepassword: '',
+    username: '',
   });
 
   const handleChange = e => {
@@ -22,13 +24,27 @@ const LoginPage = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(form);
+    submitUser(form);
     setForm({
-      mail: '',
+      email: '',
       password: '',
-      Doublepassword: '',
+      username: '',
     });
-    redirect('/');
+  };
+
+  const submitUser = async ({ email, username, password }) => {
+    switch (value) {
+      case 'login':
+        dispatch(loginUser({ email, password }));
+        break;
+      case 'reg':
+        dispatch(registrationUser({ email, username, password }));
+        break;
+
+      default:
+        ' Что-то пошло не так....';
+        break;
+    }
   };
 
   const handleValue = e => {
@@ -61,8 +77,8 @@ const LoginPage = () => {
               className={css.input}
               placeholder={'Введите email'}
               type={'text'}
-              name={'mail'}
-              value={form.mail}
+              name={'email'}
+              value={form.email}
               onChange={handleChange}
             />
             <Input
@@ -83,8 +99,16 @@ const LoginPage = () => {
               className={css.input}
               placeholder={'Введите email'}
               type={'text'}
-              name={'mail'}
-              value={form.mail}
+              name={'email'}
+              value={form.email}
+              onChange={handleChange}
+            />
+            <Input
+              className={css.input}
+              placeholder={'Имя'}
+              type={'text'}
+              name={'username'}
+              value={form.username}
               onChange={handleChange}
             />
             <Input
@@ -93,14 +117,6 @@ const LoginPage = () => {
               type={'password'}
               name={'password'}
               value={form.password}
-              onChange={handleChange}
-            />
-            <Input
-              className={css.input}
-              placeholder={'Повторите пароль'}
-              type={'password'}
-              name={'Doublepassword'}
-              value={form.Doublepassword}
               onChange={handleChange}
             />
             <button type="submit" className={css.btn}>
