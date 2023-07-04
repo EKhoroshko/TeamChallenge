@@ -1,0 +1,11 @@
+.footer {
+   width: 100%;
+}
+.footer_nav {
+   padding: 0 150px;
+}
+.footer_nav_item {
+   display: flex;
+   justify-content: space-between;
+   font-size: 20px;
+}
