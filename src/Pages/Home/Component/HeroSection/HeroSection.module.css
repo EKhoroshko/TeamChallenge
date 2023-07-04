@@ -1,0 +1,63 @@
+.heroSection {
+  width: 100%;
+  padding-top: 190px;
+  padding-bottom: 210px;
+  box-sizing: border-box;
+  background-color: var(--accentBgCOlor);
+  background-image: linear-gradient(
+      5deg,
+      rgba(114, 114, 114, 0.5) 0%,
+      rgba(61, 54, 54, 0.5) 35%,
+      rgba(110, 74, 49, 0.5) 100%
+    ),
+    url('../../../../assets/ham.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.container {
+  padding-left: 150px;
+}
+
+.box {
+  max-width: 550px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 44px;
+  margin-bottom: 20px;
+  color: var(--accentCOlor);
+}
+
+.description {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 20px;
+  color: var(--accentCOlor);
+}
+
+.link {
+  width: 185px;
+  padding: 14px 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--accentCOlor);
+  background-color: var(--backgroundButton);
+  border-radius: 15px;
+  outline: none;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  cursor: pointer;
+}
+
+.link:hover,
+.link:focus {
+  color: var(--hoverColor);
+}
