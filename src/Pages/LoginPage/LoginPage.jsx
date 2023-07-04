@@ -31,18 +31,12 @@ const LoginPage = () => {
     username: '',
   });
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (login) {
       navigate(AppRoute.ROOT);
       toast.success(`Welcome ${user.username}`, toastAction);
     }
-  }, [login, navigate, user.username]);
-
-  useEffect(() => {
-    if (err) {
-      toast.error(`${err}`, toastAction);
-    }
-  }, [err]);
+  }, [login, navigate, user.username]);*/
 
   const handleChange = e => {
     const { name, value } = e.target;
