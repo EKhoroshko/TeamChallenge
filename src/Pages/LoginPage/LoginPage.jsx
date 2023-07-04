@@ -1,16 +1,33 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
-import { redirect } from 'react-router-dom';
+import Spinner from '../../Components/Spinner/Spinner';
+import { loginUser, registrationUser } from '../../redux/user/operation';
+import { getLoadingUser, getUser } from '../../redux/user/selectors';
+import 'react-toastify/dist/ReactToastify.css';
 import css from './LoginPage.module.css';
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isLoading = useSelector(getLoadingUser);
+  const user = useSelector(getUser);
   const [value, setValue] = useState('login');
   const [form, setForm] = useState({
-    mail: '',
+    email: '',
     password: '',
-    Doublepassword: '',
+    username: '',
   });
+
+  useEffect(() => {
+    if (user.token) {
+      localStorage.setItem('token', user.token);
+      navigate(-1);
+    }
+  }, [navigate, user.token]);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -22,22 +39,44 @@ const LoginPage = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(form);
+    submitUser(form);
     setForm({
-      mail: '',
+      email: '',
       password: '',
-      Doublepassword: '',
+      username: '',
     });
-    redirect('/');
+  };
+
+  const submitUser = async ({ email, username, password }) => {
+    switch (value) {
+      case 'login':
+        dispatch(loginUser({ email, password }));
+        break;
+      case 'reg':
+        dispatch(registrationUser({ email, username, password }));
+        break;
+
+      default:
+        ' Что-то пошло не так....';
+        break;
+    }
   };
 
   const handleValue = e => {
     setValue(e.target.value);
   };
 
+  const loader = isLoading ? (
+    <div className={css.loader}>
+      <Spinner />
+    </div>
+  ) : (
+    <div className={css.dog1}></div>
+  );
+
   return (
     <div className={css.container}>
-      <div className={css.dog1}></div>
+      {loader}
       <div className={css.box}>
         <div className={css.btnBox}>
           <Button
@@ -61,8 +100,8 @@ const LoginPage = () => {
               className={css.input}
               placeholder={'Введите email'}
               type={'text'}
-              name={'mail'}
-              value={form.mail}
+              name={'email'}
+              value={form.email}
               onChange={handleChange}
             />
             <Input
@@ -83,8 +122,16 @@ const LoginPage = () => {
               className={css.input}
               placeholder={'Введите email'}
               type={'text'}
-              name={'mail'}
-              value={form.mail}
+              name={'email'}
+              value={form.email}
+              onChange={handleChange}
+            />
+            <Input
+              className={css.input}
+              placeholder={'Имя'}
+              type={'text'}
+              name={'username'}
+              value={form.username}
               onChange={handleChange}
             />
             <Input
@@ -95,20 +142,13 @@ const LoginPage = () => {
               value={form.password}
               onChange={handleChange}
             />
-            <Input
-              className={css.input}
-              placeholder={'Повторите пароль'}
-              type={'password'}
-              name={'Doublepassword'}
-              value={form.Doublepassword}
-              onChange={handleChange}
-            />
             <button type="submit" className={css.btn}>
               Регистрация
             </button>
           </form>
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 };

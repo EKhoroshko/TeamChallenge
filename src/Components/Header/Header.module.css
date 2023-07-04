@@ -1,39 +1,89 @@
-.header{
-    padding: 20px 0px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 80%;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
 }
 
-.nav{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 50%;
+.nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-.link{
-    text-decoration: none;
-    color: chocolate;
+.navBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 150px;
+  background-color: var(--accentBgCOlor);
 }
 
-.input{
-    padding: 7px 15px;
-    margin-left: 25px;
-    border: 2px solid chocolate;
-    outline: none;
-    border-radius: 15px;
-    color: chocolate;
+.boxList {
+  display: flex;
+}
+
+.listItem {
+  margin-left: 50px;
+}
+
+.link {
+  display: flex;
+  text-decoration: none;
+  color: var(--accentCOlor);
+  padding: 25px 0px;
+  cursor: pointer;
+}
+
+.link:hover,
+.link:focus {
+  color: var(--hoverColor);
+}
+/* свг стилизовать*/
+.img {
+}
+
+.navBox2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 150px;
+}
+
+.catalog {
+  padding: 14px 22px;
+  background-color: var(--backgroundButton);
+  border-radius: 15px;
+  outline: none;
+}
+
+.boxCall {
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  padding: 7px 15px;
+  margin-left: 25px;
+  border: 2px solid var(--accentCOlor);
+  outline: none;
+  border-radius: 15px;
+  color: chocolate;
 }
 
 input:hover,
-input:focus{
-    border: 2px solid yellow;
+input:focus {
+  border: 2px solid yellow;
 }
 
-.box{
-    display: flex;
-    flex-direction: column;
-    margin-left: 50px;
+.button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: chocolate;
 }

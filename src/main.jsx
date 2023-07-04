@@ -3,13 +3,17 @@ import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AppRoute } from './enum/app-route';
 import { Provider } from 'react-redux';
+import Layout from './Components/Layout/Layout';
 import Home from './Pages/Home/Home';
 import LoginPage from './Pages/LoginPage/LoginPage';
 import ErrorPages from './Pages/ErrorPage/ErrorPages';
+import Catalog from './Pages/Catalog/Catalog';
+import Basket from './Pages/Basket/Basket';
+import Profile from './Pages/Profile/Profile';
+import Delivery from './Pages/Delivery/Delivery';
+import Discount from './Pages/Discount/Discount';
 import store from './redux/store';
 import './index.css';
-import Layout from './Components/Layout/Layout';
-import Catalog from './Pages/Catalog/Catalog';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +29,24 @@ const router = createBrowserRouter([
         path: AppRoute.CATALOG,
         element: <Catalog />,
       },
+      {
+        path: AppRoute.PROFILE,
+        element: <Profile />,
+      },
+      {
+        path: AppRoute.DELIVERY,
+        element: <Delivery />,
+      },
+      {
+        path: AppRoute.DISCOUNT,
+        element: <Discount />,
+      },
     ],
+  },
+  {
+    path: AppRoute.BASKET,
+    element: <Basket />,
+    errorElement: <ErrorPages />,
   },
   {
     path: AppRoute.LOGIN,
