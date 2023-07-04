@@ -1,20 +1,28 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 import Spinner from '../../Components/Spinner/Spinner';
 import { loginUser, registrationUser } from '../../redux/user/operation';
 import { AppRoute } from '../../enum/app-route';
-import { getLoginUser, getLoadingUser } from '../../redux/user/selectors';
+import {
+  getLoginUser,
+  getLoadingUser,
+  getUser,
+} from '../../redux/user/selectors';
+import { toastAction } from '../../enum/toastAction';
+import 'react-toastify/dist/ReactToastify.css';
 import css from './LoginPage.module.css';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [value, setValue] = useState('login');
   const login = useSelector(getLoginUser);
   const isLoading = useSelector(getLoadingUser);
+  const user = useSelector(getUser);
+  const [value, setValue] = useState('login');
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -24,8 +32,9 @@ const LoginPage = () => {
   useEffect(() => {
     if (login) {
       navigate(AppRoute.ROOT);
+      toast.success(`Welcome ${user.username}`, toastAction);
     }
-  }, [login, navigate]);
+  }, [login, navigate, user.username]);
 
   const handleChange = e => {
     const { name, value } = e.target;

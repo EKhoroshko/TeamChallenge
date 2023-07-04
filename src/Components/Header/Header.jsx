@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { AppRoute } from '../../enum/app-route.js';
-import { getLoginUser } from '../../redux/user/selectors.js';
+import { getLoginUser, getUser } from '../../redux/user/selectors.js';
 import Input from '../Input/Input.jsx';
 import Call from '../../assets/call.svg';
 import Basket from '../../assets/basket.svg';
@@ -14,6 +14,7 @@ import css from './Header.module.css';
 const Header = () => {
   const [qwery, setQwery] = useState('');
   const login = useSelector(getLoginUser);
+  const { username } = useSelector(getUser);
 
   const handleChangeQwerty = e => {
     setQwery(e.target.value);
@@ -65,7 +66,7 @@ const Header = () => {
               {login ? (
                 <NavLink to={AppRoute.PROFILE} className={css.link}>
                   <img src={Person} alt="profile" />
-                  Account
+                  {username}
                 </NavLink>
               ) : (
                 <NavLink className={css.link} to={AppRoute.LOGIN}>
