@@ -1,29 +1,20 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 import Spinner from '../../Components/Spinner/Spinner';
 import { loginUser, registrationUser } from '../../redux/user/operation';
-import { AppRoute } from '../../enum/app-route';
-import {
-  getLoginUser,
-  getLoadingUser,
-  getUser,
-  getUserError,
-} from '../../redux/user/selectors';
-import { toastAction } from '../../enum/toastAction';
+import { getLoadingUser, getUser } from '../../redux/user/selectors';
 import 'react-toastify/dist/ReactToastify.css';
 import css from './LoginPage.module.css';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const login = useSelector(getLoginUser);
   const isLoading = useSelector(getLoadingUser);
   const user = useSelector(getUser);
-  const err = useSelector(getUserError);
   const [value, setValue] = useState('login');
   const [form, setForm] = useState({
     email: '',
@@ -31,12 +22,12 @@ const LoginPage = () => {
     username: '',
   });
 
-  /* useEffect(() => {
-    if (login) {
-      navigate(AppRoute.ROOT);
-      toast.success(`Welcome ${user.username}`, toastAction);
+  useEffect(() => {
+    if (user.token) {
+      localStorage.setItem('token', user.token);
+      navigate(-1);
     }
-  }, [login, navigate, user.username]);*/
+  }, [navigate, user.token]);
 
   const handleChange = e => {
     const { name, value } = e.target;

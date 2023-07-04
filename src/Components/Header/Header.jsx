@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { AppRoute } from '../../enum/app-route.js';
-import { getLoginUser, getUser } from '../../redux/user/selectors.js';
+import { toastAction } from '../../enum/toastAction.js';
+import { getUser } from '../../redux/user/selectors.js';
+import { toast } from 'react-toastify';
 import Input from '../Input/Input.jsx';
 import Call from '../../assets/call.svg';
 import Basket from '../../assets/basket.svg';
@@ -13,8 +15,13 @@ import css from './Header.module.css';
 
 const Header = () => {
   const [qwery, setQwery] = useState('');
-  const login = useSelector(getLoginUser);
-  const { username } = useSelector(getUser);
+  const { username, token } = useSelector(getUser);
+
+  useEffect(() => {
+    if (username) {
+      toast.success(`Welcome ${username}`, toastAction);
+    }
+  }, [username]);
 
   const handleChangeQwerty = e => {
     setQwery(e.target.value);
@@ -63,7 +70,7 @@ const Header = () => {
           </li>
           <li className={css.boxCall}>
             <div className={css.boxCall}>
-              {login ? (
+              {token ? (
                 <NavLink to={AppRoute.PROFILE} className={css.link}>
                   <img src={Person} alt="profile" />
                   {username}
