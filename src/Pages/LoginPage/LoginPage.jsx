@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
+import Spinner from '../../Components/Spinner/Spinner';
 import { loginUser, registrationUser } from '../../redux/user/operation';
 import { AppRoute } from '../../enum/app-route';
-import { getLoginUser } from '../../redux/user/selectors';
+import { getLoginUser, getLoadingUser } from '../../redux/user/selectors';
 import css from './LoginPage.module.css';
 
 const LoginPage = () => {
@@ -13,6 +14,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const [value, setValue] = useState('login');
   const login = useSelector(getLoginUser);
+  const isLoading = useSelector(getLoadingUser);
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -62,9 +64,17 @@ const LoginPage = () => {
     setValue(e.target.value);
   };
 
+  const loader = isLoading ? (
+    <div className={css.loader}>
+      <Spinner />
+    </div>
+  ) : (
+    <div className={css.dog1}></div>
+  );
+
   return (
     <div className={css.container}>
-      <div className={css.dog1}></div>
+      {loader}
       <div className={css.box}>
         <div className={css.btnBox}>
           <Button
