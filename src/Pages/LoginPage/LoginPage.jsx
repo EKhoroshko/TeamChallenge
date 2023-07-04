@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 import Spinner from '../../Components/Spinner/Spinner';
@@ -11,6 +11,7 @@ import {
   getLoginUser,
   getLoadingUser,
   getUser,
+  getUserError,
 } from '../../redux/user/selectors';
 import { toastAction } from '../../enum/toastAction';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,6 +23,7 @@ const LoginPage = () => {
   const login = useSelector(getLoginUser);
   const isLoading = useSelector(getLoadingUser);
   const user = useSelector(getUser);
+  const err = useSelector(getUserError);
   const [value, setValue] = useState('login');
   const [form, setForm] = useState({
     email: '',
@@ -35,6 +37,12 @@ const LoginPage = () => {
       toast.success(`Welcome ${user.username}`, toastAction);
     }
   }, [login, navigate, user.username]);
+
+  useEffect(() => {
+    if (err) {
+      toast.error(`${err}`, toastAction);
+    }
+  }, [err]);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -155,6 +163,7 @@ const LoginPage = () => {
           </form>
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 };
