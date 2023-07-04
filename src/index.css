@@ -2,16 +2,15 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  width: 100%;
 
-  color-scheme: green yellow;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: rgb(219, 157, 63);
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  --mainBgColor: rgb(255, 255, 255);
+  --accentBgCOlor: #d9d9d9;
+  --accentCOlor: rgb(210, 105, 30);
+  --hoverColor: #000;
+  --backgroundButton: #777777;
+  color: var(--accentCOlor);
+  background-color: var(--mainBgColor);
 }
 
 h1,
