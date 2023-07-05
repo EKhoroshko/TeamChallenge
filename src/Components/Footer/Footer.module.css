@@ -1,5 +1,6 @@
 .footer {
    width: 100%;
+   font-size: 20px;
 }
 .footer_nav {
    padding: 0 150px;
@@ -7,5 +8,29 @@
 .footer_nav_item {
    display: flex;
    justify-content: space-between;
-   font-size: 20px;
+   padding-bottom: 20px;
 }
+li {
+   color: var(--accentCOlor);
+}
+li:hover {
+   color: var(--hoverColor);
+}
+.footer_nav_item img {
+   width: 130px;
+}
+.footer_icons {
+   padding-top: 5px;
+}
+.footer_underground {
+   padding: 0 150px;
+   border-top: solid 1px #404146;
+}
+.footer_overline {
+   padding-top: 20px;
+   display: flex;
+   justify-content: space-between;
+}
+
+
+
