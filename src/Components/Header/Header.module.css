@@ -33,6 +33,9 @@
   text-decoration: none;
   color: var(--accentCOlor);
   padding: 25px 0px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
   cursor: pointer;
 }
 
@@ -55,6 +58,7 @@
   padding: 14px 22px;
   background-color: var(--backgroundButton);
   border-radius: 15px;
+  font-weight: 500;
   outline: none;
 }
 
@@ -63,18 +67,51 @@
   align-items: center;
 }
 
+.boxSearch {
+  display: flex;
+  position: relative;
+}
+
 .input {
+  display: block;
+  margin: 0;
   padding: 7px 15px;
   margin-left: 25px;
+  width: 580px;
+  background-clip: padding-box;
   border: 2px solid var(--accentCOlor);
   outline: none;
   border-radius: 15px;
-  color: chocolate;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--accentCOlor);
 }
 
 input:hover,
 input:focus {
   border: 2px solid yellow;
+}
+
+.textField {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 50px;
+  border: 2px solid var(--accentCOlor);
+  background-color: var(--backgroundButton);
+  color: currentColor;
+  transition: background-color 0.15s ease-in-out;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  cursor: pointer;
+}
+
+.textField:hover {
+  background-color: #e0e0e0;
 }
 
 .button {
@@ -85,5 +122,5 @@ input:focus {
   border: none;
   background-color: transparent;
   cursor: pointer;
-  color: chocolate;
+  color: var(--accentCOlor);
 }

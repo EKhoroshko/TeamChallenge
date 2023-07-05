@@ -1,5 +1,11 @@
+import HeroSection from './Component/HeroSection/HeroSection';
+
 const Home = () => {
-  return <div>Починаємо</div>;
+  return (
+    <>
+      <HeroSection />
+    </>
+  );
 };
 
 export default Home;
