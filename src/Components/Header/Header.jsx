@@ -32,14 +32,24 @@ const Header = () => {
       <nav className={css.nav}>
         <div className={css.navBox}>
           <ul className={css.boxList}>
-            <li>
-              <NavLink className={css.link} to={AppRoute.DISCOUNT}>
-                Promotions and discounts
+            <li className={css.listItem}>
+              <NavLink className={css.link} to={AppRoute.DELIVERY}>
+                Delivery and payment
               </NavLink>
             </li>
             <li className={css.listItem}>
-              <NavLink className={css.link} to={AppRoute.DELIVERY}>
-                Delivery
+              <a className={css.link} href="#">
+                About us
+              </a>
+            </li>
+            <li className={css.listItem}>
+              <NavLink className={css.link} to={AppRoute.BLOG}>
+                Blog
+              </NavLink>
+            </li>
+            <li className={css.listItem}>
+              <NavLink className={css.link} to={AppRoute.RETURN}>
+                Exchange and return
               </NavLink>
             </li>
           </ul>
@@ -51,7 +61,9 @@ const Header = () => {
 
         <ul className={css.navBox2}>
           <li>
-            <img src={Logo} alt="logo" />
+            <NavLink to={AppRoute.ROOT}>
+              <img src={Logo} alt="logo" />
+            </NavLink>
           </li>
           <li className={css.boxSearch}>
             <NavLink

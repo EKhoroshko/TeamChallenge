@@ -5,8 +5,9 @@ const AppRoute = {
   PROFILE: '/user',
   CATALOG: '/catalog',
   BASKET: '/basket',
-  DISCOUNT: '/discount',
+  BLOG: '/blog',
   DELIVERY: '/delivery',
+  RETURN: '/exchange',
 };
 
 export { AppRoute };
