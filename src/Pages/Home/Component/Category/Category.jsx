@@ -48,6 +48,8 @@ const Category = () => {
     setShowAll(!showAll);
   };
 
+  const show = showAll ? 'Hide categories' : 'All categories';
+
   const displayedCategories = showAll ? category : category.slice(0, 4);
 
   return (
@@ -56,7 +58,7 @@ const Category = () => {
         <div className={css.boxTitle}>
           <h3>Product categories</h3>
           <button className={css.link} onClick={toggleCategory}>
-            All categories
+            {show}
           </button>
         </div>
         <ul className={css.list}>

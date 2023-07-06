@@ -13,11 +13,17 @@
 }
 
 .navBox {
+  background-color: var(--accentBgCOlor);
+}
+
+.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1440px;
   padding: 0px 150px;
-  background-color: var(--accentBgCOlor);
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .boxList {
@@ -56,10 +62,7 @@
 }
 
 .navBox2 {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 30px 150px;
+  padding: 30px 0px;
 }
 
 .catalog {

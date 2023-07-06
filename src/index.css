@@ -13,6 +13,10 @@
   background-color: var(--mainBgColor);
 }
 
+body {
+  margin: 0px;
+}
+
 h1,
 h2,
 h3,

@@ -18,6 +18,8 @@
 
 .container {
   padding-left: 150px;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 .box {
@@ -41,7 +43,7 @@
 }
 
 .link {
-  width: 185px;
+  max-width: 185px;
   padding: 14px 54px;
   display: flex;
   align-items: center;
