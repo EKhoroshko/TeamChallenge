@@ -27,7 +27,9 @@ const AboutUs = () => {
         </div>
 
         <div className={css.promo}>
-          <p className={css.}>Subscribe and be aware of all promotions and offers</p>
+          <p className={css.promoText}>
+            Subscribe and be aware of all promotions and offers
+          </p>
           <Input />
           <button>Sign up</button>
         </div>
