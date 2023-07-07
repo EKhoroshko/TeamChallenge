@@ -1,0 +1,72 @@
+.section {
+  padding-bottom: 70px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1440px;
+  padding: 0px 150px;
+  margin: 0 auto;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 70px;
+}
+
+.img {
+  background-image: url('../../../../assets/petsShop.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 590px;
+  height: 280px;
+}
+
+.title {
+  margin-bottom: 30px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.text {
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 36px;
+}
+
+.description {
+  margin-bottom: 30px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.link {
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  background-color: var(--backgroundButton);
+  padding: 14px 54px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--accentCOlor);
+  cursor: pointer;
+}
+
+.link:hover,
+.link:focus {
+  color: var(--hoverColor);
+}
+
+.promo {
+  background-color: var(--accentBgCOlor);
+  border-radius: 15px;
+  box-sizing: border-box;
+  padding: 50px 0px 58px 34px;
+}

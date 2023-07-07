@@ -5,6 +5,7 @@ import { getAllProducts } from '../../redux/product/selector';
 import HeroSection from './Component/HeroSection/HeroSection';
 import Category from './Component/Category/Category';
 import Recomendation from './Component/Recomendation/Recomendation';
+import AboutUs from './Component/AboutUs/AboutUs';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const Home = () => {
       <HeroSection />
       <Category />
       <Recomendation product={prod} />
+      <AboutUs />
     </>
   );
 };

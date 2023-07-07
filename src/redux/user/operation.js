@@ -75,7 +75,6 @@ export const refreshToken = createAsyncThunk(
   'user/refresh',
   async (_, { rejectWithValue }) => {
     const token = localStorage.getItem('token');
-    console.log('token :>> ', token);
     const options = {
       method: 'POST',
       headers: {
