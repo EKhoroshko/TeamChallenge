@@ -51,3 +51,7 @@ button {
 ul {
   list-style: none;
 }
+
+.slick-arrow {
+  background-color: #d2691e;
+}
