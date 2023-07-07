@@ -66,8 +66,32 @@ export const registrationUser = createAsyncThunk(
         }
       });
     } catch (error) {
-      console.log(error.message);
       return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const refreshToken = createAsyncThunk(
+  'user/refresh',
+  async (_, { rejectWithValue }) => {
+    const token = localStorage.getItem('token');
+    console.log('token :>> ', token);
+    const options = {
+      method: 'POST',
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ token }),
+    };
+    try {
+      const response = await fetch(
+        'https://us-central1-teamchalangestore.cloudfunctions.net/getUserData',
+        options,
+      );
+      const user = response.json();
+      return user;
+    } catch (error) {
+      return rejectWithValue(error.response);
     }
   },
 );
