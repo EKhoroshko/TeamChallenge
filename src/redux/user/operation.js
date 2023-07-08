@@ -92,3 +92,23 @@ export const refreshToken = createAsyncThunk(
     }
   },
 );
+
+export const logOutUser = createAsyncThunk(
+  'user/logout',
+  async (token, { rejectWithValue }) => {
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({ token }),
+    };
+    try {
+      const response = await fetch(
+        'https://us-central1-teamchalangestore.cloudfunctions.net/logoutUser',
+        options,
+      );
+      const user = response.json();
+      return user;
+    } catch (error) {
+      return rejectWithValue(error.response);
+    }
+  },
+);
