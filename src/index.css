@@ -13,6 +13,10 @@
   background-color: var(--mainBgColor);
 }
 
+body {
+  margin: 0px;
+}
+
 h1,
 h2,
 h3,
@@ -46,4 +50,27 @@ button {
 
 ul {
   list-style: none;
+}
+
+.slick-dots {
+  bottom: -50px;
+}
+
+.slick-dots li {
+  width: 30px;
+}
+
+.slick-dots li button:before {
+  background-color: var(--accentCOlor);
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.slick-dots li.slick-active button:before {
+  background-color: var(--accentCOlor);
+  width: 32px;
+  border-radius: 12px;
 }

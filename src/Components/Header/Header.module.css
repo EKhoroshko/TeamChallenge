@@ -13,19 +13,30 @@
 }
 
 .navBox {
+  background-color: var(--accentBgCOlor);
+}
+
+.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1440px;
   padding: 0px 150px;
-  background-color: var(--accentBgCOlor);
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .boxList {
   display: flex;
+  align-items: center;
 }
 
 .listItem {
-  margin-left: 50px;
+  margin-right: 40px;
+}
+
+.listItem:last-child {
+  margin-right: 0px;
 }
 
 .link {
@@ -45,13 +56,13 @@
 }
 /* свг стилизовать*/
 .img {
+  width: 16px;
+  height: 16px;
+  fill: var(--accentCOlor);
 }
 
 .navBox2 {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 30px 150px;
+  padding: 30px 0px;
 }
 
 .catalog {
@@ -77,7 +88,8 @@
   margin: 0;
   padding: 7px 15px;
   margin-left: 25px;
-  width: 580px;
+  min-width: 320px;
+  max-width: 580px;
   background-clip: padding-box;
   border: 2px solid var(--accentCOlor);
   outline: none;

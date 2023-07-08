@@ -1,0 +1,62 @@
+.section {
+  padding-bottom: 110px;
+  width: 100%;
+}
+
+.container {
+  padding: 0px 150px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 55px;
+}
+
+.sliderBox {
+  max-width: 1440px;
+}
+
+.spiner {
+  width: 200px;
+  margin: 0 auto;
+}
+
+.title {
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.list {
+  display: flex;
+}
+
+.btn {
+  margin-right: 30px;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  color: var(--accentCOlor);
+  font-weight: 400px;
+  line-height: 19px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.active {
+  font-weight: 600;
+}
+
+.btn:last-child {
+  margin-right: 0px;
+}
+
+.cardWrapper {
+  margin-right: 20px;
+  box-sizing: border-box;
+  background-color: var(--accentBgCOlor);
+  max-width: 350px;
+  padding: 0px 32px 70px;
+}

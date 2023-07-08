@@ -1,0 +1,123 @@
+.section {
+  padding-bottom: 100px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1440px;
+  padding: 0px 150px;
+  margin: 0 auto;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 70px;
+}
+
+.img {
+  background-image: url('../../../../assets/petsShop.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 590px;
+  height: 280px;
+}
+
+.textContainer {
+  max-width: 530px;
+}
+
+.title {
+  margin-bottom: 30px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.text {
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 36px;
+}
+
+.description {
+  margin-bottom: 30px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.link {
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  background-color: var(--backgroundButton);
+  padding: 14px 54px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--accentCOlor);
+  cursor: pointer;
+}
+
+.link:hover,
+.link:focus {
+  color: var(--hoverColor);
+  border: 2px solid var(--accentCOlor);
+}
+
+.promo {
+  background-color: var(--accentBgCOlor);
+  border-radius: 15px;
+  box-sizing: border-box;
+  padding: 50px 0px 58px 34px;
+}
+
+.promoText {
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.input {
+  text-align: center;
+  width: 100%;
+  margin-right: 20px;
+  max-width: 265px;
+  padding: 14px 22px;
+  border-radius: 12px;
+  border: 1px solid var(--accentCOlor);
+  outline: none;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--backgroundButton);
+}
+
+.input:hover,
+.input:focus {
+  border: 1px solid var(--hoverColor);
+}
+
+.button {
+  width: 184px;
+  padding: 14px 22px;
+  outline: none;
+  background-color: var(--backgroundButton);
+  border: 2px solid var(--backgroundButton);
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--accentCOlor);
+}
+
+.button:hover,
+.button:focus {
+  border: 2px solid var(--accentCOlor);
+  color: var(--hoverColor);
+}
