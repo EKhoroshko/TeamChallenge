@@ -25,6 +25,10 @@
   height: 280px;
 }
 
+.textContainer {
+  max-width: 530px;
+}
+
 .title {
   margin-bottom: 30px;
   font-weight: 400;
@@ -62,6 +66,7 @@
 .link:hover,
 .link:focus {
   color: var(--hoverColor);
+  border: 2px solid var(--accentCOlor);
 }
 
 .promo {

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { AppRoute } from '../../../../enum/app-route';
 import Input from '../../../../Components/Input/Input';
@@ -7,7 +6,6 @@ import css from './AboutUs.module.css';
 
 const AboutUs = () => {
   const [value, setValue] = useState('');
-  const dispatch = useDispatch();
 
   const handleChangeValue = e => {
     setValue(e.target.value);
@@ -15,7 +13,6 @@ const AboutUs = () => {
 
   const handleSubmmit = () => {
     console.log(`отправляем на бек мейл ${value}`);
-    //dispatch();
     setValue('');
   };
 
@@ -24,7 +21,7 @@ const AboutUs = () => {
       <div className={css.container}>
         <div className={css.box}>
           <div className={css.img}></div>
-          <div>
+          <div className={css.textContainer}>
             <h3 className={css.title}>About us</h3>
             <p className={css.text}>
               That&prime;s why we offer a range of modern and functional pet

@@ -13,6 +13,15 @@
   margin-bottom: 55px;
 }
 
+.sliderBox {
+  max-width: 1440px;
+}
+
+.spiner {
+  width: 200px;
+  margin: 0 auto;
+}
+
 .title {
   margin-bottom: 10px;
   font-weight: 500;
