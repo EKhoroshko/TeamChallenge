@@ -75,8 +75,10 @@ export const refreshToken = createAsyncThunk(
   'user/refresh',
   async (token, { rejectWithValue }) => {
     const options = {
-      method: 'POST',
-      body: JSON.stringify({ token }),
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     };
     try {
       const response = await fetch(

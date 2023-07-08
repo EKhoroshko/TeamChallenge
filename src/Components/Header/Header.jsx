@@ -21,7 +21,8 @@ const Header = () => {
     if (username) {
       toast.success(`Welcome ${username}`, toastAction);
     }
-  }, [username]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleChangeQwerty = e => {
     setQwery(e.target.value);
