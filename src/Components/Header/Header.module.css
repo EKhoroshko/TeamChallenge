@@ -41,6 +41,7 @@
 
 .link {
   display: flex;
+  align-items: center;
   text-decoration: none;
   color: var(--accentCOlor);
   padding: 25px 0px;
@@ -50,14 +51,34 @@
   cursor: pointer;
 }
 
-.link:hover,
-.link:focus {
+.link:hover .call *,
+.link:focus .call *,
+.link:hover .basket *,
+.link:focus .basket *,
+.link:hover .favorite *,
+.link:focus .favorite *,
+.link:hover .person *,
+.link:focus .person * {
   color: var(--hoverColor);
+  fill: var(--hoverColor);
 }
-/* свг стилизовать*/
-.img {
+
+.call *,
+.person * {
   width: 16px;
   height: 16px;
+  fill: var(--accentCOlor);
+}
+
+.basket * {
+  width: 16px;
+  height: 20px;
+  fill: var(--accentCOlor);
+}
+
+.favorite * {
+  width: 20px;
+  height: 18px;
   fill: var(--accentCOlor);
 }
 

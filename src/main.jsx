@@ -13,6 +13,7 @@ import Profile from './Pages/Profile/Profile';
 import Delivery from './Pages/Delivery/Delivery';
 import Blog from './Pages/Blog/Blog';
 import Return from './Pages/Return/Return';
+import About from './Pages/About/About';
 import store from './redux/store';
 import './index.css';
 
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: AppRoute.RETURN,
         element: <Return />,
+      },
+      {
+        path: AppRoute.ABOUT,
+        element: <About />,
       },
     ],
   },

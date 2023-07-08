@@ -1,7 +1,11 @@
-//import { Suspense } from 'react';
+import Way from './Components/Way/Way';
 
 const Catalog = () => {
-  return <div>Catalog</div>;
+  return (
+    <>
+      <Way />
+    </>
+  );
 };
 
 export default Catalog;

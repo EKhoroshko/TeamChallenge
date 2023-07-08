@@ -1,0 +1,37 @@
+.section {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1440px;
+  padding: 0px 150px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  font-size: 14px;
+  line-height: 16px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.link:last-child {
+  margin-right: 0px;
+}
+
+.link:first-child {
+  margin-left: 0px;
+}
+
+.svg * {
+  width: 7px;
+  height: 12px;
+  fill: var(--accentCOlor);
+}

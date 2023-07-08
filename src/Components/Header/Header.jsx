@@ -5,11 +5,11 @@ import { AppRoute } from '../../enum/app-route.js';
 import { toastAction } from '../../enum/toastAction.js';
 import { getUser } from '../../redux/user/selectors.js';
 import { toast } from 'react-toastify';
+import { ReactComponent as Call } from '../../assets/call.svg';
+import { ReactComponent as Basket } from '../../assets/basket.svg';
+import { ReactComponent as Favorite } from '../../assets/favorite.svg';
+import { ReactComponent as Person } from '../../assets/person.svg';
 import Input from '../Input/Input.jsx';
-import Call from '../../assets/call.svg';
-import Basket from '../../assets/basket.svg';
-import Favorite from '../../assets/favorite.svg';
-import Person from '../../assets/person.svg';
 import Logo from '../../assets/logo.png';
 import css from './Header.module.css';
 
@@ -21,8 +21,7 @@ const Header = () => {
     if (username) {
       toast.success(`Welcome ${username}`, toastAction);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [username]);
 
   const handleChangeQwerty = e => {
     setQwery(e.target.value);
@@ -40,9 +39,9 @@ const Header = () => {
                 </NavLink>
               </li>
               <li className={css.listItem}>
-                <a className={css.link} href="#">
+                <NavLink className={css.link} to={AppRoute.ABOUT}>
                   About us
-                </a>
+                </NavLink>
               </li>
               <li className={css.listItem}>
                 <NavLink className={css.link} to={AppRoute.BLOG}>
@@ -56,7 +55,7 @@ const Header = () => {
               </li>
             </ul>
             <a className={css.link} href="tel:+380500000000">
-              <img className={css.img} src={Call} alt="phone" />
+              <Call className={css.call} />
               +38 (050) 000 00 00
             </a>
           </div>
@@ -99,21 +98,21 @@ const Header = () => {
               <div className={css.boxCall}>
                 {token ? (
                   <NavLink to={AppRoute.PROFILE} className={css.link}>
-                    <img src={Person} alt="profile" />
+                    <Person className={css.person} />
                     {username}
                   </NavLink>
                 ) : (
                   <NavLink className={css.link} to={AppRoute.LOGIN}>
-                    <img src={Person} alt="profile" />
+                    <Person className={css.person} />
                     Sign In
                   </NavLink>
                 )}
               </div>
-              <button className={css.button}>
-                <img src={Favorite} alt="heart" />
-              </button>
+              <NavLink className={css.link} to={AppRoute.PROFILE}>
+                <Favorite className={css.favorite} />
+              </NavLink>
               <NavLink className={css.link} to={AppRoute.BASKET}>
-                <img src={Basket} alt="basket" />
+                <Basket className={css.basket} />
               </NavLink>
             </li>
           </div>
