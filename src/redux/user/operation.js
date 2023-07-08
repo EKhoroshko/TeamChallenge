@@ -73,13 +73,9 @@ export const registrationUser = createAsyncThunk(
 
 export const refreshToken = createAsyncThunk(
   'user/refresh',
-  async (_, { rejectWithValue }) => {
-    const token = localStorage.getItem('token');
+  async (token, { rejectWithValue }) => {
     const options = {
       method: 'POST',
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
       body: JSON.stringify({ token }),
     };
     try {

@@ -13,11 +13,12 @@ const Recomendation = ({ product = [] }) => {
   };
 
   const settings = {
-    dots: false,
-    arrows: true,
+    dots: true,
+    arrows: false,
     infinite: true,
-    speed: 500,
-    slidesToShow: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    slidesToShow: 4,
     slidesToScroll: 1,
   };
 
@@ -30,7 +31,7 @@ const Recomendation = ({ product = [] }) => {
         </div>
         <div
           style={{
-            width: '500px',
+            width: '1400px',
           }}
         >
           <Slider {...settings}>

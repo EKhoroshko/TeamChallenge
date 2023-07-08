@@ -1,5 +1,5 @@
 .section {
-  padding-bottom: 70px;
+  padding-bottom: 110px;
   width: 100%;
 }
 
@@ -45,7 +45,9 @@
 }
 
 .cardWrapper {
+  margin-right: 20px;
+  box-sizing: border-box;
   background-color: var(--accentBgCOlor);
-  width: 350px;
+  max-width: 350px;
   padding: 0px 32px 70px;
 }

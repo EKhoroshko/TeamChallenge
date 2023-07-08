@@ -13,7 +13,7 @@ const Layout = () => {
 
   useEffect(() => {
     if (token) {
-      dispatch(refreshToken());
+      dispatch(refreshToken(token));
     }
   }, [dispatch, token]);
 
