@@ -32,6 +32,10 @@ const router = createBrowserRouter([
         element: <Catalog />,
       },
       {
+        path: AppRoute.SUBCATEGORY,
+        element: <Catalog />,
+      },
+      {
         path: AppRoute.PROFILE,
         element: <Profile />,
       },

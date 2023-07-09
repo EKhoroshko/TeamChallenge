@@ -1,25 +1,35 @@
-import { NavLink, useLocation, useMatches } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { ReactComponent as Right } from '../../../../assets/arrRight.svg';
 import { AppRoute } from '../../../../enum/app-route';
 import css from './Way.module.css';
 
-const Way = () => {
-  const location = useLocation();
-  const matches = useMatches();
-  console.log(matches);
-  console.log(location);
+// eslint-disable-next-line react/prop-types
+const Way = ({ params }) => {
+  // eslint-disable-next-line react/prop-types
+  const { id } = params;
 
   return (
     <section className={css.section}>
       <div className={css.container}>
         <nav className={css.nav}>
           <NavLink to={AppRoute.ROOT} className={css.link}>
-            Home
+            home
           </NavLink>
           <Right className={css.svg} />
           <NavLink to={AppRoute.CATALOG} className={css.link}>
-            Catalog
+            catalog
           </NavLink>
+          {Object.keys(params).length !== 0 && (
+            <>
+              <Right className={css.svg} />
+              <NavLink
+                to={{ pathname: `${AppRoute.CATALOG}/${params}` }}
+                className={css.link}
+              >
+                {id}
+              </NavLink>
+            </>
+          )}
         </nav>
       </div>
     </section>

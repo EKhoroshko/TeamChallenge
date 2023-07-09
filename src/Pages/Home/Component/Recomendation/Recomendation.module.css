@@ -57,7 +57,94 @@
 .cardWrapper {
   margin-right: 20px;
   box-sizing: border-box;
-  background-color: var(--accentBgCOlor);
+  background-color: #fff;
   max-width: 350px;
-  padding: 0px 32px 70px;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--accentBgCOlor);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 13px;
+  width: 100%;
+}
+
+.sale {
+  padding: 6px 12px;
+  border-radius: 12px;
+  background-color: #c8aaaa;
+  color: #fff;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.heart * {
+  width: 24px;
+  height: 22px;
+  fill: var(--accentCOlor);
+}
+
+.src {
+  width: 150px;
+  height: 190px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.descrBox {
+  width: 100%;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--accentCOlor);
+  margin-bottom: 5px;
+}
+
+.descriptionCard {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--accentCOlor);
+}
+
+.buy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 13px;
+}
+
+.price {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  color: var(--accentCOlor);
+}
+
+.svg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.basket * {
+  width: 13px;
+  height: 16px;
+  fill: var(--accentCOlor);
+}
+
+.svg:hover .basket *,
+.svg:hover .heart * {
+  fill: var(--hoverColor);
 }

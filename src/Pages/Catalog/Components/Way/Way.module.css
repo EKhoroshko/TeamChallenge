@@ -1,6 +1,7 @@
 .section {
   width: 100%;
   box-sizing: border-box;
+  margin-bottom: 22px;
 }
 
 .container {
@@ -20,6 +21,16 @@
   line-height: 16px;
   margin-right: 10px;
   margin-left: 10px;
+}
+
+.active {
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.link::first-letter,
+.active::first-letter {
+  text-transform: uppercase;
 }
 
 .link:last-child {

@@ -1,0 +1,9 @@
+.box {
+  max-width: 1440px;
+  width: 1440px;
+  padding: 0px 150px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}

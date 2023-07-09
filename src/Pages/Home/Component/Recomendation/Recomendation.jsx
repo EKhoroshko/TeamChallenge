@@ -30,8 +30,13 @@ const Recomendation = ({ product = [] }) => {
   const swiper = !isLoading ? (
     <Slider {...settings}>
       {product &&
-        product.map(({ itemId, name, price }) => (
-          <RecomCard key={itemId} name={name} price={price} />
+        product.map(({ itemId, name, price, description }) => (
+          <RecomCard
+            key={itemId}
+            name={name}
+            price={price}
+            description={description}
+          />
         ))}
     </Slider>
   ) : (

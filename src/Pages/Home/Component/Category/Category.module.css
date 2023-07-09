@@ -84,7 +84,7 @@
   padding: 20px;
 }
 
-.svg {
+.svg * {
   fill: var(--accentCOlor);
   width: 43px;
   height: 25px;

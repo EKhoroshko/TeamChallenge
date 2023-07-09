@@ -8,6 +8,7 @@ const AppRoute = {
   DELIVERY: '/delivery',
   RETURN: '/exchange',
   ABOUT: '/about',
+  SUBCATEGORY: '/catalog/:id',
 };
 
 export { AppRoute };
