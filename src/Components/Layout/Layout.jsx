@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { refreshToken } from '../../redux/user/operation';
+import { getAll } from '../../redux/product/operation';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import css from './Layout.module.css';
@@ -16,6 +17,10 @@ const Layout = () => {
       dispatch(refreshToken(token));
     }
   }, [dispatch, token]);
+
+  useEffect(() => {
+    dispatch(getAll());
+  }, [dispatch]);
 
   return (
     <main className={css.main}>

@@ -8,6 +8,7 @@
   max-width: 1440px;
   padding: 0px 150px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .boxTitle {
@@ -83,7 +84,7 @@
   padding: 20px;
 }
 
-.svg {
+.svg * {
   fill: var(--accentCOlor);
   width: 43px;
   height: 25px;

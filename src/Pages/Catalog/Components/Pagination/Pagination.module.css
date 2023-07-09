@@ -1,0 +1,19 @@
+.container {
+  width: 100%;
+}
+
+.buttonFilter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.listItem {
+  max-width: 220px;
+}
