@@ -5,8 +5,8 @@ import style from './Footer.module.css';
 
 const Footer = () => {
   return (
-      <div className={style.footer}>
-        <div className={style.footer_nav}>
+      <footer className={style.footer}>
+        <div>
           <div className={style.footer_nav_item}>
             <ul>
               <li><b>About</b></li>
@@ -77,7 +77,7 @@ const Footer = () => {
           </div>
         </div>
 
-      </div>
+      </footer>
   )
 };
 
