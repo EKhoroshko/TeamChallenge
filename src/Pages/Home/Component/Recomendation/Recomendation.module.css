@@ -23,7 +23,7 @@
   margin: 0 auto;
 }
 
-.title {
+.titleSection {
   margin-bottom: 10px;
   font-weight: 500;
   font-size: 24px;
@@ -55,10 +55,10 @@
 }
 
 .cardWrapper {
-  margin-right: 20px;
   box-sizing: border-box;
   background-color: #fff;
   max-width: 350px;
+  width: 265px;
   padding: 20px;
   border-radius: 12px;
   border: 1px solid var(--accentBgCOlor);

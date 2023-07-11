@@ -85,10 +85,10 @@ export const refreshToken = createAsyncThunk(
         'https://us-central1-teamchalangestore.cloudfunctions.net/getUserData',
         options,
       );
-      const user = response.json();
+      const user = await response.json();
       return user;
     } catch (error) {
-      return rejectWithValue(error.response);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -97,18 +97,42 @@ export const logOutUser = createAsyncThunk(
   'user/logout',
   async (token, { rejectWithValue }) => {
     const options = {
-      method: 'POST',
-      body: JSON.stringify({ token }),
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     };
     try {
       const response = await fetch(
         'https://us-central1-teamchalangestore.cloudfunctions.net/logoutUser',
         options,
       );
-      const user = response.json();
+      if (response.ok) {
+        const status = await response.status;
+        return status;
+      }
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const subscribeUser = createAsyncThunk(
+  'user/subscribe',
+  async ({ email }, { rejectWithValue }) => {
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({ email }),
+    };
+    try {
+      const response = await fetch(
+        'https://us-central1-teamchalangestore.cloudfunctions.net/addSubscription',
+        options,
+      );
+      const user = await response.json();
       return user;
     } catch (error) {
-      return rejectWithValue(error.response);
+      return rejectWithValue(error.message);
     }
   },
 );

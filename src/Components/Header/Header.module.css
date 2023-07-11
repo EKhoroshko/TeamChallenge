@@ -43,6 +43,7 @@
   display: flex;
   align-items: center;
   text-decoration: none;
+  margin-left: 10px;
   color: var(--accentCOlor);
   padding: 25px 0px;
   font-weight: 400;

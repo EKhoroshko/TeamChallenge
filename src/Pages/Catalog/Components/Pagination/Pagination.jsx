@@ -21,6 +21,7 @@ const Pagination = () => {
                 description={description}
                 name={name}
                 price={price}
+                margin={css.margin}
               />
             );
           })}

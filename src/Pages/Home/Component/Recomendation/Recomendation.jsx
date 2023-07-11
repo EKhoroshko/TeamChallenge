@@ -49,7 +49,7 @@ const Recomendation = ({ product = [] }) => {
     <section className={css.section}>
       <div className={css.container}>
         <div className={css.header}>
-          <h3 className={css.title}>Recommendations</h3>
+          <h3 className={css.titleSection}>Recommendations</h3>
           <Filter onFilterSelect={onFilterSelect} btnName={activeFilter} />
         </div>
         <div className={css.sliderBox}>{swiper}</div>

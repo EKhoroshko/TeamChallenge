@@ -18,10 +18,10 @@ const Header = () => {
   const { username, token } = useSelector(getUser);
 
   useEffect(() => {
-    if (username) {
+    if (token) {
       toast.success(`Welcome ${username}`, toastAction);
     }
-  }, [username]);
+  }, [token, username]);
 
   const handleChangeQwerty = e => {
     setQwery(e.target.value);

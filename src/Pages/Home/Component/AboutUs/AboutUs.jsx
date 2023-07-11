@@ -1,18 +1,29 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { AppRoute } from '../../../../enum/app-route';
+import { subscribeUser } from '../../../../redux/user/operation';
 import Input from '../../../../Components/Input/Input';
 import css from './AboutUs.module.css';
 
 const AboutUs = () => {
+  const dispatch = useDispatch();
   const [value, setValue] = useState('');
 
   const handleChangeValue = e => {
     setValue(e.target.value);
   };
 
+  const validateEmail = email => {
+    const emailRegex =
+      /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
+    return emailRegex.test(email);
+  };
+
   const handleSubmmit = () => {
-    console.log(`отправляем на бек мейл ${value}`);
+    if (validateEmail(value)) {
+      dispatch(subscribeUser(value));
+    }
     setValue('');
   };
 
