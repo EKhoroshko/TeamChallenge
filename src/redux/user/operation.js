@@ -119,7 +119,7 @@ export const logOutUser = createAsyncThunk(
 
 export const subscribeUser = createAsyncThunk(
   'user/subscribe',
-  async ({ email }, { rejectWithValue }) => {
+  async (email, { rejectWithValue }) => {
     const options = {
       method: 'POST',
       body: JSON.stringify({ email }),

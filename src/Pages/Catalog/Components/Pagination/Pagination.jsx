@@ -14,19 +14,22 @@ const Pagination = () => {
       </div>
       <ul className={css.list}>
         {product &&
-          product.map(({ itemId, description, name, price, category }) => {
-            return (
-              <RecomCard
-                key={itemId}
-                description={description}
-                name={name}
-                price={price}
-                margin={css.margin}
-                category={category}
-                itemId={itemId}
-              />
-            );
-          })}
+          product
+            .slice(0, 9)
+            .map(({ itemId, description, name, price, category, image }) => {
+              return (
+                <RecomCard
+                  key={itemId}
+                  description={description}
+                  name={name}
+                  price={price}
+                  margin={css.margin}
+                  category={category}
+                  itemId={itemId}
+                  image={image}
+                />
+              );
+            })}
       </ul>
     </div>
   );

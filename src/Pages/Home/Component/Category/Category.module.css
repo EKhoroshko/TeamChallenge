@@ -66,12 +66,14 @@
   background-size: cover;
   background-repeat: no-repeat;
   cursor: pointer;
+  filter: blur(2px);
   transition: transform 0.3s ease;
 }
 
 .wrapper:hover,
 .wrapper:focus {
   transform: scale(1.05);
+  filter: blur(0px);
 }
 
 .wrapper:nth-child(even) {

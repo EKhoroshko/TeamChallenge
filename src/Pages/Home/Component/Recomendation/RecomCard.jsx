@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../../enum/app-route';
 import Canin from '../../../../assets/Canin.jpg';
@@ -5,8 +6,15 @@ import { ReactComponent as Basket } from '../../../../assets/basket.svg';
 import { ReactComponent as Favorite } from '../../../../assets/favorite.svg';
 import css from './Recomendation.module.css';
 
-// eslint-disable-next-line react/prop-types
-const RecomCard = ({ name, price, description, margin, itemId, category }) => {
+const RecomCard = ({
+  name,
+  price,
+  description,
+  margin,
+  itemId,
+  category,
+  image = Canin,
+}) => {
   return (
     <li className={margin}>
       <Link
@@ -21,7 +29,7 @@ const RecomCard = ({ name, price, description, margin, itemId, category }) => {
               <Favorite className={css.heart} />
             </p>
           </div>
-          <img src={Canin} alt="canin" className={css.src} />
+          <img src={image} alt="canin" className={css.src} />
           <div className={css.descrBox}>
             <p className={css.title}>{name}</p>
             <p className={css.descriptionCard}>{description}</p>

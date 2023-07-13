@@ -23,6 +23,7 @@
 .margin {
   margin-right: 25px;
   margin-bottom: 25px;
+  flex-basis: calc(100% / 3 - 30px);
 }
 
 .margin:nth-child(3n) {
