@@ -17,28 +17,23 @@
 }
 
 .link {
+  display: flex;
+  flex-direction: row;
   font-size: 14px;
   line-height: 16px;
   margin-right: 10px;
-  margin-left: 10px;
 }
 
-.active {
-  font-weight: bold;
-  margin-left: 10px;
-}
-
-.link::first-letter,
-.active::first-letter {
+.label::first-letter {
   text-transform: uppercase;
-}
-
-.link:last-child {
-  margin-right: 0px;
 }
 
 .link:first-child {
   margin-left: 0px;
+}
+
+.svg {
+  margin-right: 10px;
 }
 
 .svg * {

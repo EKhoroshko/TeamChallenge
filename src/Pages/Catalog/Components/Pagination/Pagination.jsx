@@ -14,7 +14,7 @@ const Pagination = () => {
       </div>
       <ul className={css.list}>
         {product &&
-          product.map(({ itemId, description, name, price }) => {
+          product.map(({ itemId, description, name, price, category }) => {
             return (
               <RecomCard
                 key={itemId}
@@ -22,6 +22,8 @@ const Pagination = () => {
                 name={name}
                 price={price}
                 margin={css.margin}
+                category={category}
+                itemId={itemId}
               />
             );
           })}

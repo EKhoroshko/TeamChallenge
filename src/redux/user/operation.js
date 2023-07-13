@@ -85,7 +85,7 @@ export const refreshToken = createAsyncThunk(
         'https://us-central1-teamchalangestore.cloudfunctions.net/getUserData',
         options,
       );
-      const user = await response.json();
+      const user = response.json();
       return user;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -108,7 +108,7 @@ export const logOutUser = createAsyncThunk(
         options,
       );
       if (response.ok) {
-        const status = await response.status;
+        const status = response.status;
         return status;
       }
     } catch (error) {
@@ -129,7 +129,7 @@ export const subscribeUser = createAsyncThunk(
         'https://us-central1-teamchalangestore.cloudfunctions.net/addSubscription',
         options,
       );
-      const user = await response.json();
+      const user = response.json();
       return user;
     } catch (error) {
       return rejectWithValue(error.message);

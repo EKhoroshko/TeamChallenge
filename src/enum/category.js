@@ -8,32 +8,32 @@ import Reptilies from '../assets/reptiles.jpg';
 const Categorys = [
   {
     src: Cats,
-    title: 'Cats',
+    title: 'cats',
     id: 1,
   },
   {
     src: Dogs,
-    title: 'Dogs',
+    title: 'dogs',
     id: 2,
   },
   {
     src: Birds,
-    title: 'Birds',
+    title: 'birds',
     id: 3,
   },
   {
     src: Rodents,
-    title: 'Rodents',
+    title: 'rodents',
     id: 4,
   },
   {
     src: Fish,
-    title: 'Fishes',
+    title: 'fishes',
     id: 5,
   },
   {
     src: Reptilies,
-    title: 'Reptiles',
+    title: 'reptiles',
     id: 6,
   },
 ];

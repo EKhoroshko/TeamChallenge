@@ -8,7 +8,7 @@ const FilterCategory = () => {
 
   return (
     <>
-      {Categorys &&
+      {Object.keys(Categorys) !== undefined &&
         Categorys.map(({ id, title }) => {
           const active = params.id === title;
           const style = active ? css.link + ' ' + css.active : css.link;

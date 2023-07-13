@@ -25,6 +25,10 @@
   color: var(--accentCOlor);
 }
 
+.title::first-letter {
+  text-transform: uppercase;
+}
+
 .link {
   outline: none;
   border: none;
@@ -82,10 +86,4 @@
   justify-content: space-between;
   box-sizing: border-box;
   padding: 20px;
-}
-
-.svg * {
-  fill: var(--accentCOlor);
-  width: 43px;
-  height: 25px;
 }
