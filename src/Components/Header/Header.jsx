@@ -108,9 +108,11 @@ const Header = () => {
                   </NavLink>
                 )}
               </div>
-              <NavLink className={css.link} to={AppRoute.PROFILE}>
-                <Favorite className={css.favorite} />
-              </NavLink>
+              {token ? (
+                <NavLink className={css.link} to={AppRoute.PROFILE}>
+                  <Favorite className={css.favorite} />
+                </NavLink>
+              ) : null}
               <NavLink className={css.link} to={AppRoute.BASKET}>
                 <Basket className={css.basket} />
               </NavLink>
