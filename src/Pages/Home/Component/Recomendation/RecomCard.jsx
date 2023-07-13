@@ -8,12 +8,12 @@ import css from './Recomendation.module.css';
 // eslint-disable-next-line react/prop-types
 const RecomCard = ({ name, price, description, margin, itemId, category }) => {
   return (
-    <Link
-      to={{
-        pathname: `${AppRoute.CATALOG}/${category}/${itemId}`,
-      }}
-    >
-      <li className={margin}>
+    <li className={margin}>
+      <Link
+        to={{
+          pathname: `${AppRoute.CATALOG}/${category}/${itemId}`,
+        }}
+      >
         <div className={css.cardWrapper}>
           <div className={css.cardHeader}>
             <p className={css.sale}>-20%</p>
@@ -33,8 +33,8 @@ const RecomCard = ({ name, price, description, margin, itemId, category }) => {
             </div>
           </div>
         </div>
-      </li>
-    </Link>
+      </Link>
+    </li>
   );
 };
 
