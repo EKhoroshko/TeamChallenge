@@ -18,10 +18,10 @@ const Header = () => {
   const { username, token } = useSelector(getUser);
 
   useEffect(() => {
-    if (username) {
+    if (token) {
       toast.success(`Welcome ${username}`, toastAction);
     }
-  }, [username]);
+  }, [token, username]);
 
   const handleChangeQwerty = e => {
     setQwery(e.target.value);
@@ -108,9 +108,11 @@ const Header = () => {
                   </NavLink>
                 )}
               </div>
-              <NavLink className={css.link} to={AppRoute.PROFILE}>
-                <Favorite className={css.favorite} />
-              </NavLink>
+              {token ? (
+                <NavLink className={css.link} to={AppRoute.PROFILE}>
+                  <Favorite className={css.favorite} />
+                </NavLink>
+              ) : null}
               <NavLink className={css.link} to={AppRoute.BASKET}>
                 <Basket className={css.basket} />
               </NavLink>

@@ -4,11 +4,13 @@ import {
   registrationUser,
   refreshToken,
   logOutUser,
+  subscribeUser,
 } from './operation';
 
 const authSlice = createSlice({
   name: 'user',
   initialState: {
+    data: [],
     username: '',
     email: '',
     isLoading: false,
@@ -26,6 +28,7 @@ const authSlice = createSlice({
       }))
       .addCase(loginUser.fulfilled, (state, { payload }) => ({
         ...state,
+        data: payload,
         isLoading: false,
         username: payload.username,
         email: payload.email,
@@ -61,6 +64,7 @@ const authSlice = createSlice({
       .addCase(refreshToken.fulfilled, (state, { payload }) => ({
         ...state,
         isLoading: false,
+        data: payload,
         username: payload.username,
         email: payload.email,
         token: payload.token,
@@ -82,8 +86,22 @@ const authSlice = createSlice({
         history: [],
         token: null,
       }))
-      .addCase(logOutUser.rejected, (state, action) => ({
+      .addCase(logOutUser.rejected, (_, action) => ({
+        isLoading: false,
+        error: action.error.message,
+      }))
+      .addCase(subscribeUser.pending, state => ({
         ...state,
+        isLoading: true,
+      }))
+      .addCase(subscribeUser.fulfilled, (state, { payload }) => ({
+        ...state,
+        isLoading: false,
+        data: payload,
+      }))
+      .addCase(subscribeUser.rejected, (state, action) => ({
+        ...state,
+        isLoading: false,
         error: action.error.message,
       }));
   },

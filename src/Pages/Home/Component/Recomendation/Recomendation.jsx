@@ -11,11 +11,11 @@ import css from './Recomendation.module.css';
 const Recomendation = ({ product = [] }) => {
   const [activeFilter, setActiveFilter] = useState('news');
   const isLoading = useSelector(getIsLoadingProduct);
-
   const onFilterSelect = name => {
     setActiveFilter(name);
   };
 
+  // в дальнейшем вынести в хелперы или в enums
   const settings = {
     dots: true,
     arrows: false,
@@ -30,12 +30,16 @@ const Recomendation = ({ product = [] }) => {
   const swiper = !isLoading ? (
     <Slider {...settings}>
       {product &&
-        product.map(({ itemId, name, price, description }) => (
+        product.map(({ itemId, name, price, description, category, image }) => (
           <RecomCard
+            itemId={itemId}
+            image={image}
             key={itemId}
             name={name}
             price={price}
             description={description}
+            category={category}
+            margin={css.margin}
           />
         ))}
     </Slider>
@@ -48,8 +52,7 @@ const Recomendation = ({ product = [] }) => {
   return (
     <section className={css.section}>
       <div className={css.container}>
-        <div className={css.header}>
-          <h3 className={css.title}>Recommendations</h3>
+        <div>
           <Filter onFilterSelect={onFilterSelect} btnName={activeFilter} />
         </div>
         <div className={css.sliderBox}>{swiper}</div>

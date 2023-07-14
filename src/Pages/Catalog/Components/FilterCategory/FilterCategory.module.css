@@ -8,6 +8,10 @@
   line-height: 17px;
 }
 
+.link::first-letter {
+  text-transform: uppercase;
+}
+
 .active {
   background-color: var(--accentBgCOlor);
   border: 1px solid var(--hoverColor);

@@ -1,14 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { logOutUser } from '../../redux/user/operation';
 import { getUserToken } from '../../redux/user/selectors';
+import { AppRoute } from '../../enum/app-route';
 import css from './Profile.module.css';
 
 const Profile = () => {
   const dispatch = useDispatch();
   const token = useSelector(getUserToken);
+  const navigate = useNavigate();
 
   const handlelogOut = () => {
     dispatch(logOutUser(token));
+    localStorage.removeItem('token');
+    navigate(AppRoute.ROOT);
   };
 
   return (

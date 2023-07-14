@@ -1,5 +1,5 @@
 .aside {
-  max-width: 255px;
+  width: 255px;
   padding: 10px;
   border: 1px solid var(--accentBgCOlor);
   border-radius: 10px;
