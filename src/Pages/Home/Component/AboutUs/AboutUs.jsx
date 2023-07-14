@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppRoute } from '../../../../enum/app-route';
 import { subscribeUser } from '../../../../redux/user/operation';
+import { getUserSubscribe } from '../../../../redux/user/selectors';
 import Input from '../../../../Components/Input/Input';
 import css from './AboutUs.module.css';
 
 const AboutUs = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
+  const subscribe = useSelector(getUserSubscribe);
 
   const handleChangeValue = e => {
     setValue(e.target.value);
@@ -47,23 +49,31 @@ const AboutUs = () => {
             </NavLink>
           </div>
         </div>
-        <div className={css.promo}>
-          <p className={css.promoText}>
-            Subscribe and be aware of all promotions and offers
-          </p>
-          <Input
-            className={css.input}
-            placeholder={'Enter your email'}
-            type={'email'}
-            name={'subscribe'}
-            value={value}
-            onChange={handleChangeValue}
-            required
-          />
-          <button type="submit" className={css.button} onClick={handleSubmmit}>
-            Subscribe
-          </button>
-        </div>
+        {!subscribe ? (
+          <>
+            <div className={css.promo}>
+              <p className={css.promoText}>
+                Subscribe and be aware of all promotions and offers
+              </p>
+              <Input
+                className={css.input}
+                placeholder={'Enter your email'}
+                type={'email'}
+                name={'subscribe'}
+                value={value}
+                onChange={handleChangeValue}
+                required
+              />
+              <button
+                type="submit"
+                className={css.button}
+                onClick={handleSubmmit}
+              >
+                Subscribe
+              </button>
+            </div>
+          </>
+        ) : null}
       </div>
     </section>
   );

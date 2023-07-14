@@ -14,9 +14,16 @@ const Pagination = () => {
       </div>
       <ul className={css.list}>
         {product &&
-          product
-            .slice(0, 9)
-            .map(({ itemId, description, name, price, category, image }) => {
+          product.map(
+            ({
+              itemId,
+              description,
+              name,
+              price,
+              category,
+              image,
+              subcategory,
+            }) => {
               return (
                 <RecomCard
                   key={itemId}
@@ -26,10 +33,12 @@ const Pagination = () => {
                   margin={css.margin}
                   category={category}
                   itemId={itemId}
+                  subcategory={subcategory}
                   image={image}
                 />
               );
-            })}
+            },
+          )}
       </ul>
     </div>
   );
