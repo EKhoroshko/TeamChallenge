@@ -50,7 +50,8 @@
 
 .cardWrapper {
   box-sizing: border-box;
-  background-color: #fff;
+  height: 370px;
+  background-color: transparent;
   max-width: 265px;
   width: 100%;
   padding: 20px;
@@ -77,8 +78,8 @@
 .sale {
   padding: 6px 12px;
   border-radius: 12px;
-  background-color: #c8aaaa;
-  color: #fff;
+  background-color: var(--bacrgroundSale);
+  color: var(--mainBgColor);
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;

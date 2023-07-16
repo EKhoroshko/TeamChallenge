@@ -1,20 +1,25 @@
 import { useSelector } from 'react-redux';
 import FilterCategory from '../FilterCategory/FilterCategory';
-import { getAllProducts } from '../../../../redux/product/selector';
+import Spinner from '../../../../Components/Spinner/Spinner';
+import {
+  getAllProducts,
+  getIsLoadingProduct,
+} from '../../../../redux/product/selector';
 import RecomCard from '../../../Home/Component/Recomendation/RecomCard';
 import css from './Pagination.module.css';
 
 const Pagination = () => {
-  const product = useSelector(getAllProducts);
+  const products = useSelector(getAllProducts);
+  const isLoading = useSelector(getIsLoadingProduct);
 
-  return (
-    <div className={css.container}>
-      <div className={css.buttonFilter}>
-        <FilterCategory />
-      </div>
-      <ul className={css.list}>
-        {product &&
-          product.map(
+  const load = isLoading ? (
+    <Spinner />
+  ) : (
+    <>
+      {products &&
+        products
+          .slice(0, 9)
+          .map(
             ({
               itemId,
               description,
@@ -30,16 +35,24 @@ const Pagination = () => {
                   description={description}
                   name={name}
                   price={price}
-                  margin={css.margin}
                   category={category}
                   itemId={itemId}
                   subcategory={subcategory}
                   image={image}
+                  margin={css.margin}
                 />
               );
             },
           )}
-      </ul>
+    </>
+  );
+
+  return (
+    <div className={css.container}>
+      <div className={css.buttonFilter}>
+        <FilterCategory />
+      </div>
+      <ul className={css.list}>{load}</ul>
     </div>
   );
 };

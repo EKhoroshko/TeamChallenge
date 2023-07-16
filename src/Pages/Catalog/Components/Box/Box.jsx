@@ -4,10 +4,10 @@ import css from './Box.module.css';
 
 const Box = () => {
   return (
-    <div className={css.box}>
+    <section className={css.box}>
       <FilterPanel />
       <Pagination />
-    </div>
+    </section>
   );
 };
 

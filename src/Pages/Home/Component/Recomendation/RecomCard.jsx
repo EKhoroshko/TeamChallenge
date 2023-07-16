@@ -12,16 +12,60 @@ const RecomCard = ({
   name,
   price,
   description,
-  margin,
   itemId,
   category,
   subcategory,
   image = Canin,
+  margin,
 }) => {
   const token = useSelector(getUserToken);
 
+  const handleViewProduct = (
+    name,
+    price,
+    description,
+    margin,
+    itemId,
+    category,
+    subcategory,
+    image,
+  ) => {
+    let product = {
+      name,
+      price,
+      description,
+      itemId,
+      category,
+      subcategory,
+      image,
+    };
+    const viewedProducts =
+      JSON.parse(localStorage.getItem('viewedProducts')) || [];
+    if (!viewedProducts.find(item => item.itemId === product.itemId)) {
+      viewedProducts.unshift(product);
+      localStorage.setItem(
+        'viewedProducts',
+        JSON.stringify(viewedProducts.slice(0, 4)),
+      );
+    }
+  };
+
   return (
-    <li className={margin}>
+    <li
+      className={margin}
+      onClick={() =>
+        handleViewProduct(
+          name,
+          price,
+          description,
+          margin,
+          itemId,
+          category,
+          subcategory,
+          image,
+        )
+      }
+    >
       <Link
         to={{
           pathname: `${AppRoute.CATALOG}/${category}/${subcategory}/${itemId}`,

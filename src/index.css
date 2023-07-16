@@ -9,6 +9,7 @@
   --accentCOlor: #d2691e;
   --hoverColor: #000;
   --backgroundButton: #777777;
+  --bacrgroundSale: #c8aaaa;
   color: var(--accentCOlor);
   background-color: var(--mainBgColor);
 }
