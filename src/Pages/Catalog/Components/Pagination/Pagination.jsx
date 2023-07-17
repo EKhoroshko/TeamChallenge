@@ -23,6 +23,27 @@ const Pagination = ({ products = [] }) => {
   const { totalPages, currentPage } = useSelector(getAllProducts);
   const [current, setCurrent] = useState(currentPage || 1);
 
+  useEffect(() => {
+    // Сбрасываем текущую страницу на 1, когда меняется категория
+    if (params.id !== undefined) {
+      setCurrent(1);
+    }
+  }, [params.id]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (params.id !== undefined) {
+        await dispatch(
+          getSortetedCategory({ category: params.id, page: current }),
+        );
+      } else {
+        await dispatch(getAll(current));
+      }
+    };
+
+    fetchData();
+  }, [current, dispatch, params.id]);
+
   const previousPage = () => {
     if (currentPage !== 1) {
       setCurrent(currentPage - 1);
@@ -38,20 +59,6 @@ const Pagination = ({ products = [] }) => {
   const paginate = pageNumber => {
     setCurrent(pageNumber);
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (params.id !== undefined) {
-        await dispatch(
-          getSortetedCategory({ category: params.id, page: current }),
-        );
-      } else {
-        await dispatch(getAll(current));
-      }
-    };
-
-    fetchData();
-  }, [current, dispatch, params.id]);
 
   const load = isLoading ? (
     <Spinner />

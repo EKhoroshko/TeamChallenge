@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Outlet, useParams } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { refreshToken } from '../../redux/user/operation';
-import { getAll, getSortetedCategory } from '../../redux/product/operation';
+import { getAll } from '../../redux/product/operation';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import css from './Layout.module.css';
@@ -20,15 +20,13 @@ const Layout = () => {
   }, [dispatch, token]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (params.id !== undefined) {
-        await dispatch(getSortetedCategory({ category: params.id, page: 1 }));
-      } else {
-        await dispatch(getAll());
-      }
-    };
+    if (params.id === undefined) {
+      const fetchData = async () => {
+        await dispatch(getAll(1));
+      };
 
-    fetchData();
+      fetchData();
+    }
   }, [dispatch, params.id]);
 
   return (
