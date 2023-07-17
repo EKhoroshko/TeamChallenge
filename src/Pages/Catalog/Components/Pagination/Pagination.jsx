@@ -24,21 +24,30 @@ const Pagination = ({ products = [] }) => {
   const [current, setCurrent] = useState(currentPage || 1);
 
   useEffect(() => {
-    // Сбрасываем текущую страницу на 1, когда меняется категория
     if (params.id !== undefined) {
       setCurrent(1);
     }
   }, [params.id]);
 
   useEffect(() => {
-    if (params.id) {
-      dispatch(getSortetedCategory({ category: params.id, page: current }));
+    if (params.id !== undefined) {
+      const fetchData = async () => {
+        await dispatch(
+          getSortetedCategory({ category: params.id, page: current }),
+        );
+      };
+
+      fetchData();
     }
   }, [dispatch, params.id, current]);
 
   useEffect(() => {
-    if (!params.id) {
-      dispatch(getAll(current));
+    if (params.id === undefined) {
+      const fetchData = async () => {
+        await dispatch(getAll(current));
+      };
+
+      fetchData();
     }
   }, [dispatch, current, params.id]);
 
