@@ -37,7 +37,6 @@ export const getSortetedCategory = createAsyncThunk(
         options,
       );
       const sortCategory = response.json();
-      console.log(sortCategory);
       return sortCategory;
     } catch (error) {
       return rejectWithValue(error.resronse.message);

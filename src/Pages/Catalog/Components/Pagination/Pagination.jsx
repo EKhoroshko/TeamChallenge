@@ -47,7 +47,9 @@ const Pagination = ({ products = [] }) => {
       <div className={css.buttonFilter}>
         <FilterCategory />
       </div>
-      <ul className={css.list}>{load}</ul>
+      <ul className={css.list}>
+        {products.length === 0 ? <div>The products is out of stock</div> : load}
+      </ul>
     </div>
   );
 };

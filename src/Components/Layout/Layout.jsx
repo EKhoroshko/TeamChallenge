@@ -12,7 +12,6 @@ const Layout = () => {
   const dispatch = useDispatch();
   const token = localStorage.getItem('token');
   const params = useParams();
-  console.log(params.id);
 
   useEffect(() => {
     if (token) {
