@@ -10,14 +10,11 @@ import css from './Layout.module.css';
 
 const Layout = () => {
   const dispatch = useDispatch();
-  const token = localStorage.getItem('token');
   const params = useParams();
 
   useEffect(() => {
-    if (token) {
-      dispatch(refreshToken(token));
-    }
-  }, [dispatch, token]);
+    dispatch(refreshToken());
+  }, [dispatch]);
 
   useEffect(() => {
     if (params.id === undefined) {
