@@ -33,3 +33,46 @@
 .margin:nth-last-child(-n + 3) {
   margin-bottom: 0px;
 }
+
+.paginationContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 35px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+}
+
+.pageNumber {
+  display: flex;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  margin-right: 10px;
+  padding: 3px 8px;
+  cursor: pointer;
+}
+
+.active {
+  color: var(--hoverColor);
+  border: 1px solid var(--accentCOlor);
+  color: var(--accentCOlor);
+  border-radius: 50%;
+}
+
+.pageNumber:hover,
+.pageNumber:focus {
+  font-weight: 700;
+}
+
+.arrow * {
+  fill: var(--accentCOlor);
+  margin: 0px;
+}
+
+.arrow *:hover {
+  fill: var(--hoverColor);
+}
