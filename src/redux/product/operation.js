@@ -24,8 +24,7 @@ export const getAll = createAsyncThunk(
 
 export const getSortetedCategory = createAsyncThunk(
   'product/sortCategory',
-  async ({ category, page = 1 }, { rejectWithValue }) => {
-    console.log(category, page);
+  async ({ category, page }, { rejectWithValue }) => {
     const options = {
       method: 'GET',
       headers: {

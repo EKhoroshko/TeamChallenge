@@ -9,8 +9,10 @@ const Box = () => {
 
   return (
     <section className={css.box}>
-      <FilterPanel />
-      <Pagination products={products.items} />
+      <div className={css.container}>
+        <FilterPanel />
+        <Pagination products={products.items} />
+      </div>
     </section>
   );
 };

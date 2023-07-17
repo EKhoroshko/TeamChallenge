@@ -14,33 +14,31 @@ const Pagination = ({ products = [] }) => {
   ) : (
     <>
       {products &&
-        products
-          .slice(0, 9)
-          .map(
-            ({
-              itemId,
-              description,
-              name,
-              price,
-              category,
-              image,
-              subcategory,
-            }) => {
-              return (
-                <RecomCard
-                  key={itemId}
-                  description={description}
-                  name={name}
-                  price={price}
-                  category={category}
-                  itemId={itemId}
-                  subcategory={subcategory}
-                  image={image}
-                  margin={css.margin}
-                />
-              );
-            },
-          )}
+        products.map(
+          ({
+            itemId,
+            description,
+            name,
+            price,
+            category,
+            image,
+            subcategory,
+          }) => {
+            return (
+              <RecomCard
+                key={itemId}
+                description={description}
+                name={name}
+                price={price}
+                category={category}
+                itemId={itemId}
+                subcategory={subcategory}
+                image={image}
+                margin={css.margin}
+              />
+            );
+          },
+        )}
     </>
   );
 
