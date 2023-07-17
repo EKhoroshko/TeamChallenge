@@ -1,14 +1,12 @@
 .footer {
     width: 100%;
     font-size: 20px;
-}
-.footer_nav {
-    padding: 0 150px;
+    padding-bottom: 50px;
 }
 .footer_nav_item {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 20px;
+    padding: 0 150px 20px 150px;
 }
 li,
 a {
