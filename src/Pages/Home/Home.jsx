@@ -4,7 +4,7 @@ import HeroSection from './Component/HeroSection/HeroSection';
 import Category from './Component/Category/Category';
 import Recomendation from './Component/Recomendation/Recomendation';
 import AboutUs from './Component/AboutUs/AboutUs';
-import Reviews from "./Component/Reviews/Reviews.jsx";
+import Reviews from './Component/Reviews/Reviews.jsx';
 
 const Home = () => {
   const prod = useSelector(getAllProducts);
@@ -13,9 +13,9 @@ const Home = () => {
     <>
       <HeroSection />
       <Category />
-        <Recomendation product={prod} />
+      <Recomendation product={prod.items} />
       <AboutUs />
-        <Reviews/>
+      <Reviews />
     </>
   );
 };

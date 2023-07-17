@@ -122,6 +122,9 @@ export const subscribeUser = createAsyncThunk(
   async (email, { rejectWithValue }) => {
     const options = {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({ email }),
     };
     try {

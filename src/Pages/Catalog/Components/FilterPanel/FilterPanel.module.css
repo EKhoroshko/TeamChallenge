@@ -1,9 +1,10 @@
 .aside {
-  width: 255px;
+  max-width: 265px;
+  box-sizing: border-box;
+  margin-right: 40px;
   padding: 10px;
   border: 1px solid var(--accentBgCOlor);
   border-radius: 10px;
-  margin-right: 40px;
 }
 
 .form {

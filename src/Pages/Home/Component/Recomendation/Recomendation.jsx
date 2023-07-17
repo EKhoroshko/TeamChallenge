@@ -30,18 +30,29 @@ const Recomendation = ({ product = [] }) => {
   const swiper = !isLoading ? (
     <Slider {...settings}>
       {product &&
-        product.map(({ itemId, name, price, description, category, image }) => (
-          <RecomCard
-            itemId={itemId}
-            image={image}
-            key={itemId}
-            name={name}
-            price={price}
-            description={description}
-            category={category}
-            margin={css.margin}
-          />
-        ))}
+        product.map(
+          ({
+            itemId,
+            name,
+            price,
+            description,
+            category,
+            image,
+            subcategory,
+          }) => (
+            <RecomCard
+              itemId={itemId}
+              image={image}
+              key={itemId}
+              name={name}
+              price={price}
+              description={description}
+              category={category}
+              subcategory={subcategory}
+              margin={css.margin}
+            />
+          ),
+        )}
     </Slider>
   ) : (
     <div className={css.spiner}>

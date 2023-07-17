@@ -97,10 +97,15 @@ const Header = () => {
             <li className={css.boxCall}>
               <div className={css.boxCall}>
                 {token ? (
-                  <NavLink to={AppRoute.PROFILE} className={css.link}>
-                    <Person className={css.person} />
-                    {username}
-                  </NavLink>
+                  <>
+                    <NavLink to={AppRoute.PROFILE} className={css.link}>
+                      <Person className={css.person} />
+                      {username}
+                    </NavLink>
+                    <NavLink className={css.link} to={AppRoute.PROFILE}>
+                      <Favorite className={css.favorite} />
+                    </NavLink>
+                  </>
                 ) : (
                   <NavLink className={css.link} to={AppRoute.LOGIN}>
                     <Person className={css.person} />
@@ -108,11 +113,6 @@ const Header = () => {
                   </NavLink>
                 )}
               </div>
-              {token ? (
-                <NavLink className={css.link} to={AppRoute.PROFILE}>
-                  <Favorite className={css.favorite} />
-                </NavLink>
-              ) : null}
               <NavLink className={css.link} to={AppRoute.BASKET}>
                 <Basket className={css.basket} />
               </NavLink>

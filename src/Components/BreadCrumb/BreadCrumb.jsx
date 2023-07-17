@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { ReactComponent as Right } from '../../assets/arrRight.svg';
+import { ReactComponent as Slash } from '../../assets/slash.svg';
 import { AppRoute } from '../../enum/app-route';
 import css from './BreadCrumb.module.css';
 
@@ -26,7 +26,7 @@ const BreadCrumb = () => {
           </NavLink>
           {breadcrumbs.map((breadcrumb, index) => (
             <NavLink key={index} to={breadcrumb.url} className={css.link}>
-              <Right className={css.svg} />
+              <Slash className={css.svg} />
               <p className={css.label}>{breadcrumb.label}</p>
             </NavLink>
           ))}

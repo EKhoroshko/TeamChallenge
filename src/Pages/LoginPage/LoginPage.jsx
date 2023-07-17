@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -47,20 +47,22 @@ const LoginPage = () => {
     });
   };
 
-  const submitUser = async ({ email, username, password }) => {
-    switch (value) {
-      case 'login':
-        dispatch(loginUser({ email, password }));
-        break;
-      case 'reg':
-        dispatch(registrationUser({ email, username, password }));
-        break;
-
-      default:
-        ' Что-то пошло не так....';
-        break;
-    }
-  };
+  const submitUser = useCallback(
+    async ({ email, username, password }) => {
+      switch (value) {
+        case 'login':
+          dispatch(loginUser({ email, password }));
+          break;
+        case 'reg':
+          dispatch(registrationUser({ email, username, password }));
+          break;
+        default:
+          ' Что-то пошло не так....';
+          break;
+      }
+    },
+    [dispatch, value],
+  );
 
   const handleValue = e => {
     setValue(e.target.value);
