@@ -1,15 +1,12 @@
 import { useSelector } from 'react-redux';
 import FilterCategory from '../FilterCategory/FilterCategory';
 import Spinner from '../../../../Components/Spinner/Spinner';
-import {
-  getAllProducts,
-  getIsLoadingProduct,
-} from '../../../../redux/product/selector';
+import { getIsLoadingProduct } from '../../../../redux/product/selector';
 import RecomCard from '../../../Home/Component/Recomendation/RecomCard';
 import css from './Pagination.module.css';
 
-const Pagination = () => {
-  const products = useSelector(getAllProducts);
+// eslint-disable-next-line react/prop-types
+const Pagination = ({ products = [] }) => {
   const isLoading = useSelector(getIsLoadingProduct);
 
   const load = isLoading ? (

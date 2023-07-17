@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAll } from './operation';
+import { getAll, getSortetedCategory } from './operation';
 
 const productSlice = createSlice({
   name: 'product',
@@ -21,6 +21,20 @@ const productSlice = createSlice({
         isloading: false,
       }))
       .addCase(getAll.rejected, (state, { payload }) => ({
+        ...state,
+        error: payload,
+        isloading: false,
+      }))
+      .addCase(getSortetedCategory.pending, state => ({
+        ...state,
+        isloading: true,
+      }))
+      .addCase(getSortetedCategory.fulfilled, (state, { payload }) => ({
+        ...state,
+        allItem: payload,
+        isloading: false,
+      }))
+      .addCase(getSortetedCategory.rejected, (state, { payload }) => ({
         ...state,
         error: payload,
         isloading: false,

@@ -12,7 +12,7 @@ const Home = () => {
     <>
       <HeroSection />
       <Category />
-      <Recomendation product={prod} />
+      <Recomendation product={prod.items} />
       <AboutUs />
     </>
   );
