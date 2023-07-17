@@ -31,18 +31,16 @@ const Pagination = ({ products = [] }) => {
   }, [params.id]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (params.id !== undefined) {
-        await dispatch(
-          getSortetedCategory({ category: params.id, page: current }),
-        );
-      } else {
-        await dispatch(getAll(current));
-      }
-    };
+    if (params.id) {
+      dispatch(getSortetedCategory({ category: params.id, page: current }));
+    }
+  }, [dispatch, params.id, current]);
 
-    fetchData();
-  }, [current, dispatch, params.id]);
+  useEffect(() => {
+    if (!params.id) {
+      dispatch(getAll(current));
+    }
+  }, [dispatch, current, params.id]);
 
   const previousPage = () => {
     if (currentPage !== 1) {
