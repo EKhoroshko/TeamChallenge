@@ -14,7 +14,7 @@ export const getAll = createAsyncThunk(
         `https://us-central1-teamchalangestore.cloudfunctions.net/getAllItems?page=${page}`,
         options,
       );
-      const allproduct = resronse.json();
+      const allproduct = await resronse.json();
       return allproduct;
     } catch (error) {
       return rejectWithValue(error.resronse.message);
@@ -36,10 +36,10 @@ export const getSortetedCategory = createAsyncThunk(
         `https://us-central1-teamchalangestore.cloudfunctions.net/getAllItems?category=${category}&page=${page}`,
         options,
       );
-      const sortCategory = response.json();
+      const sortCategory = await response.json();
       return sortCategory;
     } catch (error) {
-      return rejectWithValue(error.resronse.message);
+      return rejectWithValue(error.response.message);
     }
   },
 );

@@ -33,11 +33,15 @@ const router = createBrowserRouter([
         element: <Catalog />,
       },
       {
-        path: AppRoute.SUBCATEGORY,
+        path: AppRoute.CATEGORY,
         element: <Catalog />,
       },
       {
-        path: `${AppRoute.CATALOG}/:category/:subcategory/:itemId`,
+        path: `${AppRoute.CATEGORY}/:subcategory`,
+        element: <Catalog />,
+      },
+      {
+        path: AppRoute.PRODUCT,
         element: <Product />,
       },
       {

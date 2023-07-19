@@ -73,7 +73,7 @@ const Header = () => {
                 className={css.link + ' ' + css.catalog}
                 to={AppRoute.CATALOG}
               >
-                Каталог
+                Catalog
               </NavLink>
               <Input
                 className={css.input}

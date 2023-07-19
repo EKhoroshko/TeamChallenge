@@ -73,7 +73,8 @@ export const registrationUser = createAsyncThunk(
 
 export const refreshToken = createAsyncThunk(
   'user/refresh',
-  async (token, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
+    const token = localStorage.getItem('token');
     const options = {
       method: 'GET',
       headers: {
