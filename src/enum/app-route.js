@@ -9,7 +9,8 @@ const AppRoute = {
   RETURN: '/exchange',
   ABOUT: '/about',
   CATEGORY: '/catalog/:id',
-  PRODUCT: 'catalog/:category/:subcategory/:itemId',
+  PRODUCT: '/catalog/:category/:subcategory/:itemId',
+  FAVORITE: '/user/favorite',
 };
 
 export { AppRoute };

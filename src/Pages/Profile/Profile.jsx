@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { logOutUser } from '../../redux/user/operation';
 import { getUser } from '../../redux/user/selectors';
 import { AppRoute } from '../../enum/app-route';
@@ -19,12 +19,29 @@ const Profile = () => {
   };
 
   return (
-    <>
-      <aside>тут будет менюшка</aside>
-      <button className={css.button} onClick={handlelogOut}>
-        logOut
-      </button>
-    </>
+    <section className={css.profile}>
+      <div className={css.container}>
+        <aside className={css.menu}>
+          <ul>
+            <NavLink>
+              <li>Info profile</li>
+            </NavLink>
+            <NavLink to={AppRoute.FAVORITE}>
+              <li>Favorite</li>
+            </NavLink>
+            <NavLink>
+              <li>History</li>
+            </NavLink>
+          </ul>
+        </aside>
+        <div>
+          <button className={css.button} onClick={handlelogOut}>
+            logOut
+          </button>
+          <Outlet />
+        </div>
+      </div>
+    </section>
   );
 };
 

@@ -15,6 +15,7 @@ import Blog from './Pages/Blog/Blog';
 import Return from './Pages/Return/Return';
 import About from './Pages/About/About';
 import Product from './Pages/Product/Product';
+import Favorite from './Pages/Profile/Components/Favorite/Favorite';
 import store from './redux/store';
 import './index.css';
 
@@ -47,6 +48,12 @@ const router = createBrowserRouter([
       {
         path: AppRoute.PROFILE,
         element: <Profile />,
+        children: [
+          {
+            path: AppRoute.FAVORITE,
+            element: <Favorite />,
+          },
+        ],
       },
       {
         path: AppRoute.DELIVERY,
