@@ -1,10 +1,14 @@
-/* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
+import propTypes from 'prop-types';
 import { AppRoute } from '../../../../enum/app-route';
+import { useSelector } from 'react-redux';
+import { getUserToken } from '../../../../redux/user/selectors';
 import Canin from '../../../../assets/Canin.jpg';
-import css from './Recomendation.module.css';
+import { ReactComponent as Basket } from '../../../../assets/basket.svg';
+import { ReactComponent as Favorite } from '../../../../assets/favorite.svg';
+import css from './CatalogCard.module.css';
 
-const RecomCard = ({
+const CatalogCard = ({
   name,
   price,
   description,
@@ -13,8 +17,9 @@ const RecomCard = ({
   subcategory,
   image = Canin,
   margin,
-  addToCart,
 }) => {
+  const token = useSelector(getUserToken);
+
   const handleViewProduct = (
     name,
     price,
@@ -45,11 +50,6 @@ const RecomCard = ({
     }
   };
 
-  const handleAddToCart = event => {
-    event.preventDefault();
-    addToCart({ name, price, itemId });
-  };
-
   return (
     <li
       className={margin}
@@ -72,14 +72,24 @@ const RecomCard = ({
         }}
       >
         <div className={css.cardWrapper}>
+          <div className={css.cardHeader}>
+            <p className={css.sale}>-20%</p>
+            {token ? (
+              <p className={css.svg}>
+                <Favorite className={css.heart} />
+              </p>
+            ) : null}
+          </div>
           <img src={image} alt="canin" className={css.src} />
           <div className={css.descrBox}>
             <p className={css.title}>{name}</p>
             <p className={css.descriptionCard}>{description}</p>
-            <p className={css.price}>${price}</p>
-            <button className={css.btnBuy} onClick={handleAddToCart}>
-              Add to cart
-            </button>
+            <div className={css.buy}>
+              <p className={css.price}>${price}</p>
+              <p className={css.svg}>
+                <Basket className={css.basket} />
+              </p>
+            </div>
           </div>
         </div>
       </Link>
@@ -87,4 +97,15 @@ const RecomCard = ({
   );
 };
 
-export default RecomCard;
+CatalogCard.propTypes = {
+  name: propTypes.string,
+  price: propTypes.string,
+  description: propTypes.string,
+  itemId: propTypes.string,
+  category: propTypes.string,
+  subcategory: propTypes.string,
+  image: propTypes.string,
+  margin: propTypes.string,
+};
+
+export default CatalogCard;

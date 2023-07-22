@@ -44,17 +44,17 @@
 }
 
 .margin {
-  margin-right: 20px;
-  margin-left: 5px;
+  margin-right: 15px;
+  margin-left: 15px;
 }
 
 .cardWrapper {
   box-sizing: border-box;
-  height: 370px;
+  height: 350px;
   background-color: transparent;
   max-width: 265px;
   width: 100%;
-  padding: 20px;
+  padding: 20px 30px;
   border-radius: 12px;
   border: 1px solid var(--accentBgCOlor);
   display: flex;
@@ -64,42 +64,26 @@
 }
 
 .cardWrapper:hover {
-  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  transform: scale(1.1);
+  height: auto;
 }
 
-.cardHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 13px;
-  width: 100%;
-}
-
-.sale {
-  padding: 6px 12px;
-  border-radius: 12px;
-  background-color: var(--bacrgroundSale);
-  color: var(--mainBgColor);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-}
-
-.heart * {
-  width: 24px;
-  height: 22px;
-  fill: var(--accentCOlor);
+.cardWrapper:hover .btnBuy {
+  display: block;
 }
 
 .src {
   width: auto;
-  height: 180px;
+  height: 150px;
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .descrBox {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
@@ -108,7 +92,8 @@
   font-size: 14px;
   line-height: 17px;
   color: var(--accentCOlor);
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .descriptionCard {
@@ -116,36 +101,31 @@
   font-size: 12px;
   line-height: 14px;
   color: var(--accentCOlor);
-}
-
-.buy {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 13px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .price {
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 19px;
   color: var(--accentCOlor);
 }
 
-.svg {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.btnBuy {
+  display: none;
+  margin-top: 20px;
+  padding: 10px 16px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--backgroundButton);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
 }
 
-.basket * {
-  width: 13px;
-  height: 16px;
-  fill: var(--accentCOlor);
-}
-
-.svg:hover .basket *,
-.svg:hover .heart * {
-  fill: var(--hoverColor);
+.btnBuy:hover {
+  color: var(--accentCOlor);
+  border: 1px solid var(--accentCOlor);
 }

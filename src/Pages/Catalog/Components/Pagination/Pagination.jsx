@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import propTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {
@@ -11,7 +12,7 @@ import {
 } from '../../../../redux/product/operation';
 import FilterCategory from '../FilterCategory/FilterCategory';
 import Spinner from '../../../../Components/Spinner/Spinner';
-import RecomCard from '../../../Home/Component/Recomendation/RecomCard';
+import CatalogCard from '../CatalogCard/CatalogCard';
 import Paginate from './Paginate';
 import css from './Pagination.module.css';
 
@@ -85,7 +86,7 @@ const Pagination = ({ products = [] }) => {
             subcategory,
           }) => {
             return (
-              <RecomCard
+              <CatalogCard
                 key={itemId}
                 description={description}
                 name={name}
@@ -119,6 +120,10 @@ const Pagination = ({ products = [] }) => {
       />
     </div>
   );
+};
+
+CatalogCard.propTypes = {
+  products: propTypes.array,
 };
 
 export default Pagination;

@@ -10,9 +10,16 @@ import css from './Recomendation.module.css';
 // eslint-disable-next-line react/prop-types
 const Recomendation = ({ product = [] }) => {
   const [activeFilter, setActiveFilter] = useState('news');
+  const [cartItems, setCartItems] = useState([]);
   const isLoading = useSelector(getIsLoadingProduct);
   const onFilterSelect = name => {
     setActiveFilter(name);
+  };
+
+  console.log(cartItems);
+
+  const addToCart = item => {
+    setCartItems(prevItems => [...prevItems, item]);
   };
 
   // в дальнейшем вынести в хелперы или в enums
@@ -50,6 +57,7 @@ const Recomendation = ({ product = [] }) => {
               category={category}
               subcategory={subcategory}
               margin={css.margin}
+              addToCart={addToCart}
             />
           ),
         )}
