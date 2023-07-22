@@ -35,7 +35,7 @@ const Recomendation = ({ product = [] }) => {
   };
 
   const swiper = !isLoading ? (
-    <Slider {...settings}>
+    <Slider className="slider" {...settings}>
       {product &&
         product.map(
           ({

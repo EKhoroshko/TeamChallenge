@@ -102,7 +102,7 @@ const Header = () => {
                       <Person className={css.person} />
                       {username}
                     </NavLink>
-                    <NavLink className={css.link} to={AppRoute.PROFILE}>
+                    <NavLink className={css.link} to={AppRoute.FAVORITE}>
                       <Favorite className={css.favorite} />
                     </NavLink>
                   </>

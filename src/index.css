@@ -54,10 +54,6 @@ ul {
   list-style: none;
 }
 
-.slick-list {
-  padding: 30px 0px;
-}
-
 .slick-dots {
   bottom: -50px;
 }
@@ -79,4 +75,31 @@ ul {
   background-color: var(--accentCOlor);
   width: 32px;
   border-radius: 12px;
+}
+
+.slider {
+  height: 420px;
+  padding: 40px 0px 30px;
+}
+
+.slider .slick-track {
+  display: flex;
+  align-items: center;
+  transition: height 1s ease;
+  height: 420px;
+}
+
+.slider .slick-list {
+  display: flex;
+  align-items: center;
+  transition: height 1s ease;
+  height: 420px;
+}
+
+.slider .slick-slide {
+  height: auto;
+}
+
+.slider .slick-dots {
+  bottom: -60px;
 }

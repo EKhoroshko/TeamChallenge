@@ -50,22 +50,24 @@
 
 .cardWrapper {
   box-sizing: border-box;
-  height: 350px;
+  height: 320px;
   background-color: transparent;
   max-width: 265px;
   width: 100%;
-  padding: 20px 30px;
+  padding: 20px 20px 30px;
   border-radius: 12px;
   border: 1px solid var(--accentBgCOlor);
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.3s ease;
+  box-shadow: 0 0 0 transparent;
+  transition: transform 0.8s ease, box-shadow 0.8s ease, height 0.8s ease;
 }
 
 .cardWrapper:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   height: auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 .cardWrapper:hover .btnBuy {
@@ -123,9 +125,20 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
+  animation: fadeIn 0.8s ease;
+  cursor: pointer;
 }
 
 .btnBuy:hover {
   color: var(--accentCOlor);
   border: 1px solid var(--accentCOlor);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
