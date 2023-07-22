@@ -68,7 +68,9 @@ const Pagination = ({ products = [] }) => {
   };
 
   const load = isLoading ? (
-    <Spinner />
+    <div className={css.load}>
+      <Spinner />
+    </div>
   ) : (
     <>
       {products &&
