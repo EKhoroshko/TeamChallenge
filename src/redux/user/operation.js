@@ -140,3 +140,26 @@ export const subscribeUser = createAsyncThunk(
     }
   },
 );
+
+export const addToFavoriteProduct = createAsyncThunk(
+  'user/AddFavorite',
+  async ({ email, id }, { rejectWithValue }) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(email, id),
+    };
+    try {
+      const response = await fetch(
+        `https://us-central1-teamchalangestore.cloudfunctions.net/addToFavorites?email=${email}&itemId=${id}`,
+        options,
+      );
+      const favorite = await response.json();
+      return favorite;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);

@@ -56,6 +56,10 @@ const router = createBrowserRouter([
         ],
       },
       {
+        path: AppRoute.BASKET,
+        element: <Basket />,
+      },
+      {
         path: AppRoute.DELIVERY,
         element: <Delivery />,
       },
@@ -72,11 +76,6 @@ const router = createBrowserRouter([
         element: <About />,
       },
     ],
-  },
-  {
-    path: AppRoute.BASKET,
-    element: <Basket />,
-    errorElement: <ErrorPages />,
   },
   {
     path: AppRoute.LOGIN,

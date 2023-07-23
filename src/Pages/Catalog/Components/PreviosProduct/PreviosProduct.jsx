@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import RecomCard from '../../../Home/Component/Recomendation/RecomCard';
+import propTypes from 'prop-types';
+import CatalogCard from '../CatalogCard/CatalogCard';
 import css from './PreviosProduct.module.css';
 
 // eslint-disable-next-line react/prop-types
-const PreviosProduct = ({ viewedProducts }) => {
+const PreviosProduct = ({ viewedProducts, addToCart }) => {
   const [products] = useState(viewedProducts);
 
   return (
@@ -21,7 +22,7 @@ const PreviosProduct = ({ viewedProducts }) => {
               image,
               subcategory,
             }) => (
-              <RecomCard
+              <CatalogCard
                 itemId={itemId}
                 image={image}
                 key={itemId}
@@ -31,6 +32,7 @@ const PreviosProduct = ({ viewedProducts }) => {
                 category={category}
                 subcategory={subcategory}
                 margin={css.margin}
+                addToCart={addToCart}
               />
             ),
           )}
@@ -38,6 +40,11 @@ const PreviosProduct = ({ viewedProducts }) => {
       </div>
     </section>
   );
+};
+
+PreviosProduct.propTypes = {
+  viewedProducts: propTypes.array,
+  addToCart: propTypes.func,
 };
 
 export default PreviosProduct;

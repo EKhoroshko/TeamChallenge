@@ -10,6 +10,7 @@ import {
   getSortetedCategory,
   getAll,
 } from '../../../../redux/product/operation';
+//import { addToFavoriteProduct } from '../../../../redux/user/operation';
 import FilterCategory from '../FilterCategory/FilterCategory';
 import Spinner from '../../../../Components/Spinner/Spinner';
 import CatalogCard from '../CatalogCard/CatalogCard';
@@ -17,7 +18,7 @@ import Paginate from './Paginate';
 import css from './Pagination.module.css';
 
 // eslint-disable-next-line react/prop-types
-const Pagination = ({ products = [] }) => {
+const Pagination = ({ products = [], addToCart }) => {
   const params = useParams();
   const dispatch = useDispatch();
   const isLoading = useSelector(getIsLoadingProduct);
@@ -96,6 +97,7 @@ const Pagination = ({ products = [] }) => {
                 subcategory={subcategory}
                 image={image}
                 margin={css.margin}
+                addToCart={addToCart}
               />
             );
           },
@@ -124,6 +126,7 @@ const Pagination = ({ products = [] }) => {
 
 CatalogCard.propTypes = {
   products: propTypes.array,
+  addToCart: propTypes.func,
 };
 
 export default Pagination;

@@ -5,21 +5,15 @@ import { useSelector } from 'react-redux';
 import Spinner from '../../../../Components/Spinner/Spinner';
 import RecomCard from './RecomCard';
 import Filter from './Filter';
+import { addToCart } from '../../../../helpers/addToCart';
 import css from './Recomendation.module.css';
 
 // eslint-disable-next-line react/prop-types
 const Recomendation = ({ product = [] }) => {
   const [activeFilter, setActiveFilter] = useState('news');
-  const [cartItems, setCartItems] = useState([]);
   const isLoading = useSelector(getIsLoadingProduct);
   const onFilterSelect = name => {
     setActiveFilter(name);
-  };
-
-  console.log(cartItems);
-
-  const addToCart = item => {
-    setCartItems(prevItems => [...prevItems, item]);
   };
 
   // в дальнейшем вынести в хелперы или в enums

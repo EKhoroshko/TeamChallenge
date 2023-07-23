@@ -1,6 +1,7 @@
 import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb';
 import Box from './Components/Box/Box';
 import PreviosProduct from './Components/PreviosProduct/PreviosProduct';
+import { addToCart } from '../../helpers/addToCart';
 
 const Catalog = () => {
   const viewedProducts =
@@ -9,8 +10,8 @@ const Catalog = () => {
   return (
     <>
       <BreadCrumb />
-      <Box />
-      <PreviosProduct viewedProducts={viewedProducts} />
+      <Box addToCart={addToCart} />
+      <PreviosProduct viewedProducts={viewedProducts} addToCart={addToCart} />
     </>
   );
 };

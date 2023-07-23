@@ -17,6 +17,7 @@ const CatalogCard = ({
   subcategory,
   image = Canin,
   margin,
+  addToCart,
 }) => {
   const token = useSelector(getUserToken);
 
@@ -50,6 +51,11 @@ const CatalogCard = ({
     }
   };
 
+  const handleAddToCart = event => {
+    event.preventDefault();
+    addToCart({ name, price, itemId });
+  };
+
   return (
     <li
       className={margin}
@@ -73,7 +79,6 @@ const CatalogCard = ({
       >
         <div className={css.cardWrapper}>
           <div className={css.cardHeader}>
-            <p className={css.sale}>-20%</p>
             {token ? (
               <p className={css.svg}>
                 <Favorite className={css.heart} />
@@ -86,7 +91,7 @@ const CatalogCard = ({
             <p className={css.descriptionCard}>{description}</p>
             <div className={css.buy}>
               <p className={css.price}>${price}</p>
-              <p className={css.svg}>
+              <p className={css.svg} onClick={handleAddToCart}>
                 <Basket className={css.basket} />
               </p>
             </div>
@@ -106,6 +111,7 @@ CatalogCard.propTypes = {
   subcategory: propTypes.string,
   image: propTypes.string,
   margin: propTypes.string,
+  addToCart: propTypes.func,
 };
 
 export default CatalogCard;

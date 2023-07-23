@@ -5,6 +5,7 @@ import {
   refreshToken,
   logOutUser,
   subscribeUser,
+  addToFavoriteProduct,
 } from './operation';
 
 const authSlice = createSlice({
@@ -19,6 +20,7 @@ const authSlice = createSlice({
     error: null,
     token: null,
     subscription: false,
+    favorite: [],
   },
   reducers: {},
   extraReducers(builder) {
@@ -36,6 +38,7 @@ const authSlice = createSlice({
         history: payload.history,
         token: payload.token,
         subscription: payload.subscription,
+        favorite: payload.favorite,
         error: null,
       }))
       .addCase(loginUser.rejected, (state, { payload }) => ({
@@ -72,6 +75,7 @@ const authSlice = createSlice({
         email: payload.email,
         token: payload.token,
         subscription: payload.subscription,
+        favorite: payload.favorite,
       }))
       .addCase(refreshToken.rejected, (state, action) => ({
         ...state,
@@ -107,6 +111,15 @@ const authSlice = createSlice({
         ...state,
         isLoading: false,
         error: action.error.message,
+      }))
+      .addCase(addToFavoriteProduct.pending, state => ({
+        ...state,
+        isLoading: true,
+      }))
+      .addCase(addToFavoriteProduct.fulfilled, (state, { payload }) => ({
+        ...state,
+        isLoading: false,
+        favorite: state.favorite.push(payload),
       }));
   },
 });

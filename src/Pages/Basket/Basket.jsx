@@ -1,5 +1,11 @@
+import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb';
+
 const Basket = () => {
-  return <div>Basket</div>;
+  return (
+    <>
+      <BreadCrumb />
+    </>
+  );
 };
 
 export default Basket;

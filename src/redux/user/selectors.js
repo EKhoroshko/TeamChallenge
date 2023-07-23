@@ -7,3 +7,5 @@ export const getLoadingUser = store => store.user.isLoading;
 export const getUserToken = store => store.user.token;
 
 export const getUserSubscribe = store => store.user.subscription;
+
+export const getUserFavoriteList = store => store.user.favorite;
