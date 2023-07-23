@@ -66,7 +66,76 @@ export const registrationUser = createAsyncThunk(
         }
       });
     } catch (error) {
-      console.log(error.message);
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const refreshToken = createAsyncThunk(
+  'user/refresh',
+  async (_, { rejectWithValue }) => {
+    const token = localStorage.getItem('token');
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const response = await fetch(
+        'https://us-central1-teamchalangestore.cloudfunctions.net/getUserData',
+        options,
+      );
+      const user = response.json();
+      return user;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const logOutUser = createAsyncThunk(
+  'user/logout',
+  async (token, { rejectWithValue }) => {
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const response = await fetch(
+        'https://us-central1-teamchalangestore.cloudfunctions.net/logoutUser',
+        options,
+      );
+      if (response.ok) {
+        const status = response.status;
+        return status;
+      }
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const subscribeUser = createAsyncThunk(
+  'user/subscribe',
+  async (email, { rejectWithValue }) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+    };
+    try {
+      const response = await fetch(
+        'https://us-central1-teamchalangestore.cloudfunctions.net/addSubscription',
+        options,
+      );
+      const user = response.json();
+      return user;
+    } catch (error) {
       return rejectWithValue(error.message);
     }
   },

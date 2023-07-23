@@ -1,12 +1,15 @@
 const AppRoute = {
   ROOT: '/',
   LOGIN: '/login',
-  REGISTRATION: '/registration',
   PROFILE: '/user',
   CATALOG: '/catalog',
   BASKET: '/basket',
-  DISCOUNT: '/discount',
+  BLOG: '/blog',
   DELIVERY: '/delivery',
+  RETURN: '/exchange',
+  ABOUT: '/about',
+  CATEGORY: '/catalog/:id',
+  PRODUCT: 'catalog/:category/:subcategory/:itemId',
 };
 
 export { AppRoute };

@@ -1,0 +1,25 @@
+.link {
+  padding: 6px 12px;
+  margin-right: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--accentCOlor);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.link::first-letter {
+  text-transform: uppercase;
+}
+
+.active {
+  background-color: var(--accentBgCOlor);
+  border: 1px solid var(--hoverColor);
+  color: var(--hoverColor);
+}
+
+.link:hover,
+.link:focus {
+  border: 1px solid var(--hoverColor);
+  color: var(--hoverColor);
+}

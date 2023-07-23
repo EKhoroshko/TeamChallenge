@@ -18,6 +18,9 @@
 
 .container {
   padding-left: 150px;
+  max-width: 1440px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .box {
@@ -41,7 +44,7 @@
 }
 
 .link {
-  width: 185px;
+  max-width: 185px;
   padding: 14px 54px;
   display: flex;
   align-items: center;
@@ -49,7 +52,8 @@
   text-decoration: none;
   color: var(--accentCOlor);
   background-color: var(--backgroundButton);
-  border-radius: 15px;
+  border: 2px solid var(--backgroundButton);
+  border-radius: 12px;
   outline: none;
   font-weight: 500;
   font-size: 16px;
@@ -60,4 +64,5 @@
 .link:hover,
 .link:focus {
   color: var(--hoverColor);
+  border: 2px solid var(--accentCOlor);
 }

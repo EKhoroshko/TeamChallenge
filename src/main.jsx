@@ -11,7 +11,10 @@ import Catalog from './Pages/Catalog/Catalog';
 import Basket from './Pages/Basket/Basket';
 import Profile from './Pages/Profile/Profile';
 import Delivery from './Pages/Delivery/Delivery';
-import Discount from './Pages/Discount/Discount';
+import Blog from './Pages/Blog/Blog';
+import Return from './Pages/Return/Return';
+import About from './Pages/About/About';
+import Product from './Pages/Product/Product';
 import store from './redux/store';
 import './index.css';
 
@@ -30,6 +33,18 @@ const router = createBrowserRouter([
         element: <Catalog />,
       },
       {
+        path: AppRoute.CATEGORY,
+        element: <Catalog />,
+      },
+      {
+        path: `${AppRoute.CATEGORY}/:subcategory`,
+        element: <Catalog />,
+      },
+      {
+        path: AppRoute.PRODUCT,
+        element: <Product />,
+      },
+      {
         path: AppRoute.PROFILE,
         element: <Profile />,
       },
@@ -38,8 +53,16 @@ const router = createBrowserRouter([
         element: <Delivery />,
       },
       {
-        path: AppRoute.DISCOUNT,
-        element: <Discount />,
+        path: AppRoute.BLOG,
+        element: <Blog />,
+      },
+      {
+        path: AppRoute.RETURN,
+        element: <Return />,
+      },
+      {
+        path: AppRoute.ABOUT,
+        element: <About />,
       },
     ],
   },
