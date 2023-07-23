@@ -142,22 +142,51 @@ export const subscribeUser = createAsyncThunk(
 );
 
 export const addToFavoriteProduct = createAsyncThunk(
-  'user/AddFavorite',
-  async ({ email, id }, { rejectWithValue }) => {
+  'user/addFavorite',
+  async (itemId, { rejectWithValue, getState }) => {
+    const {
+      user: { email },
+    } = getState();
     const options = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(email, id),
+      body: JSON.stringify({ email, itemId }),
     };
     try {
       const response = await fetch(
-        `https://us-central1-teamchalangestore.cloudfunctions.net/addToFavorites?email=${email}&itemId=${id}`,
+        `https://us-central1-teamchalangestore.cloudfunctions.net/addToFavorites?email=${email}&itemId=${itemId}`,
         options,
       );
-      const favorite = await response.json();
+      const favorite = await response.text();
+      if (favorite) {
+        toast.success(`${favorite}`, toastAction);
+      }
       return favorite;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const getAddFavoriteProduct = createAsyncThunk(
+  'user/getFavoriteList',
+  async (_, { getState, rejectWithValue }) => {
+    const {
+      user: { email },
+    } = getState();
+    const options = {
+      method: 'GET',
+      body: JSON.stringify({ email }),
+    };
+    try {
+      const response = await fetch(
+        `https://us-central1-teamchalangestore.cloudfunctions.net/getFavorites?email=${email}`,
+        options,
+      );
+      const favoriteList = response.json();
+      return favoriteList;
     } catch (error) {
       return rejectWithValue(error.message);
     }

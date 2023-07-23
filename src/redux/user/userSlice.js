@@ -6,6 +6,7 @@ import {
   logOutUser,
   subscribeUser,
   addToFavoriteProduct,
+  getAddFavoriteProduct,
 } from './operation';
 
 const authSlice = createSlice({
@@ -21,6 +22,7 @@ const authSlice = createSlice({
     token: null,
     subscription: false,
     favorite: [],
+    addFavorite: '',
   },
   reducers: {},
   extraReducers(builder) {
@@ -39,6 +41,7 @@ const authSlice = createSlice({
         token: payload.token,
         subscription: payload.subscription,
         favorite: payload.favorite,
+        addFavorite: '',
         error: null,
       }))
       .addCase(loginUser.rejected, (state, { payload }) => ({
@@ -76,6 +79,7 @@ const authSlice = createSlice({
         token: payload.token,
         subscription: payload.subscription,
         favorite: payload.favorite,
+        addFavorite: '',
       }))
       .addCase(refreshToken.rejected, (state, action) => ({
         ...state,
@@ -119,7 +123,25 @@ const authSlice = createSlice({
       .addCase(addToFavoriteProduct.fulfilled, (state, { payload }) => ({
         ...state,
         isLoading: false,
-        favorite: state.favorite.push(payload),
+        addFavorite: payload,
+      }))
+      .addCase(addToFavoriteProduct.rejected, (state, action) => ({
+        ...state,
+        isLoading: false,
+        error: action.error.message,
+      }))
+      .addCase(getAddFavoriteProduct.pending, state => ({
+        ...state,
+        isLoading: true,
+      }))
+      .addCase(getAddFavoriteProduct.fulfilled, (state, { payload }) => ({
+        ...state,
+        favorite: payload,
+      }))
+      .addCase(getAddFavoriteProduct.rejected, (state, action) => ({
+        ...state,
+        isLoading: false,
+        error: action.error.message,
       }));
   },
 });

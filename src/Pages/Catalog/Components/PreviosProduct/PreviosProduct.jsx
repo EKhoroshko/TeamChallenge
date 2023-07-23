@@ -4,7 +4,7 @@ import CatalogCard from '../CatalogCard/CatalogCard';
 import css from './PreviosProduct.module.css';
 
 // eslint-disable-next-line react/prop-types
-const PreviosProduct = ({ viewedProducts, addToCart }) => {
+const PreviosProduct = ({ viewedProducts, addToCart, handleAddFavorite }) => {
   const [products] = useState(viewedProducts);
 
   return (
@@ -33,6 +33,7 @@ const PreviosProduct = ({ viewedProducts, addToCart }) => {
                 subcategory={subcategory}
                 margin={css.margin}
                 addToCart={addToCart}
+                handleAddFavorite={handleAddFavorite}
               />
             ),
           )}
@@ -45,6 +46,7 @@ const PreviosProduct = ({ viewedProducts, addToCart }) => {
 PreviosProduct.propTypes = {
   viewedProducts: propTypes.array,
   addToCart: propTypes.func,
+  handleAddFavorite: propTypes.func,
 };
 
 export default PreviosProduct;

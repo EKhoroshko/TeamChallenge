@@ -18,6 +18,7 @@ const CatalogCard = ({
   image = Canin,
   margin,
   addToCart,
+  handleAddFavorite,
 }) => {
   const token = useSelector(getUserToken);
 
@@ -51,9 +52,14 @@ const CatalogCard = ({
     }
   };
 
-  const handleAddToCart = event => {
-    event.preventDefault();
+  const handleAddToCart = e => {
+    e.preventDefault();
     addToCart({ name, price, itemId });
+  };
+
+  const onAddToFavorite = e => {
+    e.preventDefault();
+    handleAddFavorite(itemId);
   };
 
   return (
@@ -80,7 +86,7 @@ const CatalogCard = ({
         <div className={css.cardWrapper}>
           <div className={css.cardHeader}>
             {token ? (
-              <p className={css.svg}>
+              <p className={css.svg} onClick={onAddToFavorite}>
                 <Favorite className={css.heart} />
               </p>
             ) : null}
@@ -112,6 +118,7 @@ CatalogCard.propTypes = {
   image: propTypes.string,
   margin: propTypes.string,
   addToCart: propTypes.func,
+  handleAddFavorite: propTypes.func,
 };
 
 export default CatalogCard;

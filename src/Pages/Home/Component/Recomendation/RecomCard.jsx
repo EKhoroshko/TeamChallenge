@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../../enum/app-route';
 import Canin from '../../../../assets/Canin.jpg';
@@ -85,6 +86,18 @@ const RecomCard = ({
       </Link>
     </li>
   );
+};
+
+RecomCard.propTypes = {
+  name: propTypes.string,
+  price: propTypes.string,
+  description: propTypes.string,
+  itemId: propTypes.string,
+  category: propTypes.string,
+  subcategory: propTypes.string,
+  image: propTypes.string,
+  margin: propTypes.string,
+  addToCart: propTypes.func,
 };
 
 export default RecomCard;

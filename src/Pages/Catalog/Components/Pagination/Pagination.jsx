@@ -1,73 +1,24 @@
-import { useState, useEffect } from 'react';
+/* eslint-disable react/prop-types */
 import propTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import {
-  getIsLoadingProduct,
-  getAllProducts,
-} from '../../../../redux/product/selector';
-import {
-  getSortetedCategory,
-  getAll,
-} from '../../../../redux/product/operation';
-//import { addToFavoriteProduct } from '../../../../redux/user/operation';
+import { useSelector } from 'react-redux';
+import { getIsLoadingProduct } from '../../../../redux/product/selector';
 import FilterCategory from '../FilterCategory/FilterCategory';
 import Spinner from '../../../../Components/Spinner/Spinner';
 import CatalogCard from '../CatalogCard/CatalogCard';
 import Paginate from './Paginate';
 import css from './Pagination.module.css';
 
-// eslint-disable-next-line react/prop-types
-const Pagination = ({ products = [], addToCart }) => {
-  const params = useParams();
-  const dispatch = useDispatch();
+const Pagination = ({
+  products = [],
+  addToCart,
+  totalPages,
+  currentPage,
+  paginate,
+  nextPage,
+  previousPage,
+  handleAddFavorite,
+}) => {
   const isLoading = useSelector(getIsLoadingProduct);
-  const { totalPages, currentPage } = useSelector(getAllProducts);
-  const [current, setCurrent] = useState(currentPage || 1);
-
-  useEffect(() => {
-    if (params.id !== undefined) {
-      setCurrent(1);
-    }
-  }, [params.id]);
-
-  useEffect(() => {
-    if (params.id !== undefined) {
-      const fetchData = async () => {
-        await dispatch(
-          getSortetedCategory({ category: params.id, page: current }),
-        );
-      };
-
-      fetchData();
-    }
-  }, [dispatch, params.id, current]);
-
-  useEffect(() => {
-    if (params.id === undefined) {
-      const fetchData = async () => {
-        await dispatch(getAll(current));
-      };
-
-      fetchData();
-    }
-  }, [dispatch, current, params.id]);
-
-  const previousPage = () => {
-    if (currentPage !== 1) {
-      setCurrent(currentPage - 1);
-    }
-  };
-
-  const nextPage = () => {
-    if (currentPage !== totalPages) {
-      setCurrent(currentPage + 1);
-    }
-  };
-
-  const paginate = pageNumber => {
-    setCurrent(pageNumber);
-  };
 
   const load = isLoading ? (
     <div className={css.load}>
@@ -98,6 +49,7 @@ const Pagination = ({ products = [], addToCart }) => {
                 image={image}
                 margin={css.margin}
                 addToCart={addToCart}
+                handleAddFavorite={handleAddFavorite}
               />
             );
           },
@@ -113,13 +65,15 @@ const Pagination = ({ products = [], addToCart }) => {
       <ul className={css.list}>
         {products.length === 0 ? <div>The products is out of stock</div> : load}
       </ul>
-      <Paginate
-        paginate={paginate}
-        previousPage={previousPage}
-        nextPage={nextPage}
-        totalPages={totalPages}
-        currentPage={currentPage}
-      />
+      {totalPages > 1 ? (
+        <Paginate
+          paginate={paginate}
+          previousPage={previousPage}
+          nextPage={nextPage}
+          totalPages={totalPages}
+          currentPage={currentPage}
+        />
+      ) : null}
     </div>
   );
 };
@@ -127,6 +81,12 @@ const Pagination = ({ products = [], addToCart }) => {
 CatalogCard.propTypes = {
   products: propTypes.array,
   addToCart: propTypes.func,
+  totalPages: propTypes.number,
+  currentPage: propTypes.number,
+  paginate: propTypes.func,
+  nextPage: propTypes.func,
+  previousPage: propTypes.func,
+  handleAddFavorite: propTypes.func,
 };
 
 export default Pagination;
