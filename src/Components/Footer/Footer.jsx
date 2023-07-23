@@ -55,7 +55,6 @@ const Footer = () => {
                 </NavLink>
               </span>
             </ul>
-          </div>
         </div>
       </div>
 
