@@ -1,7 +1,7 @@
 .footer {
     width: 100%;
     font-size: 20px;
-    padding-bottom: 50px;
+    padding: 50px 0;
 }
 .footer_nav_item {
     display: flex;
