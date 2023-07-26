@@ -69,10 +69,7 @@ const Header = () => {
               </NavLink>
             </li>
             <li className={css.boxSearch}>
-              <NavLink
-                className={css.link + ' ' + css.catalog}
-                to={AppRoute.CATALOG}
-              >
+              <NavLink className={css.link + ' ' + css.catalog}>
                 Catalog
               </NavLink>
               <Input

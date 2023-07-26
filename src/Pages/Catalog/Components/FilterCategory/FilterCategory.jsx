@@ -1,5 +1,4 @@
 import { useParams, Link } from 'react-router-dom';
-import { AppRoute } from '../../../../enum/app-route';
 import { Categorys } from '../../../../enum/category';
 import css from './FilterCategory.module.css';
 
@@ -16,7 +15,7 @@ const FilterCategory = () => {
             <Link
               className={style}
               to={{
-                pathname: `${AppRoute.CATALOG}/${title}`,
+                pathname: `/${title}`,
               }}
               key={id}
             >

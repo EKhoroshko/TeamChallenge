@@ -143,20 +143,19 @@ export const subscribeUser = createAsyncThunk(
 
 export const addToFavoriteProduct = createAsyncThunk(
   'user/addFavorite',
-  async (itemId, { rejectWithValue, getState }) => {
-    const {
-      user: { email },
-    } = getState();
+  async (itemId, { rejectWithValue }) => {
+    const token = localStorage.getItem('token');
     const options = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ email, itemId }),
+      body: JSON.stringify({ itemId }),
     };
     try {
       const response = await fetch(
-        `https://us-central1-teamchalangestore.cloudfunctions.net/addToFavorites?email=${email}&itemId=${itemId}`,
+        `https://us-central1-teamchalangestore.cloudfunctions.net/addToFavorites`,
         options,
       );
       const favorite = await response.text();
@@ -170,23 +169,52 @@ export const addToFavoriteProduct = createAsyncThunk(
   },
 );
 
-export const getAddFavoriteProduct = createAsyncThunk(
+export const getFavoriteProduct = createAsyncThunk(
   'user/getFavoriteList',
-  async (_, { getState, rejectWithValue }) => {
-    const {
-      user: { email },
-    } = getState();
+  async (_, { rejectWithValue }) => {
+    const token = localStorage.getItem('token');
     const options = {
       method: 'GET',
-      body: JSON.stringify({ email }),
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
     };
     try {
       const response = await fetch(
-        `https://us-central1-teamchalangestore.cloudfunctions.net/getFavorites?email=${email}`,
+        `https://us-central1-teamchalangestore.cloudfunctions.net/getFavorites`,
         options,
       );
       const favoriteList = response.json();
       return favoriteList;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const deleteFavoriteProduct = createAsyncThunk(
+  'user/deleteFavoriteProduct',
+  async (itemId, { rejectWithValue }) => {
+    const token = localStorage.getItem('token');
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ itemId }),
+    };
+    try {
+      const response = await fetch(
+        `https://us-central1-teamchalangestore.cloudfunctions.net/removeFromFavorites`,
+        options,
+      );
+      const favorite = await response.text();
+      if (favorite) {
+        toast.success(`${favorite}`, toastAction);
+      }
+      return favorite;
     } catch (error) {
       return rejectWithValue(error.message);
     }

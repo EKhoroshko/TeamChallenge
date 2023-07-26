@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { logOutUser } from '../../redux/user/operation';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { logOutUser, getFavoriteProduct } from '../../redux/user/operation';
 import { getUser } from '../../redux/user/selectors';
 import { AppRoute } from '../../enum/app-route';
+import UserMenu from './Components/UserMenu/UserMenu';
 import css from './Profile.module.css';
 
 const Profile = () => {
@@ -18,23 +20,17 @@ const Profile = () => {
     }
   };
 
+  useEffect(() => {
+    dispatch(getFavoriteProduct());
+  }, [dispatch]);
+
   return (
     <section className={css.profile}>
       <div className={css.container}>
         <aside className={css.menu}>
-          <ul>
-            <NavLink>
-              <li>Info profile</li>
-            </NavLink>
-            <NavLink to={AppRoute.FAVORITE}>
-              <li>Favorite</li>
-            </NavLink>
-            <NavLink>
-              <li>History</li>
-            </NavLink>
-          </ul>
+          <UserMenu />
         </aside>
-        <div>
+        <div className={css.favoriteList}>
           <button className={css.button} onClick={handlelogOut}>
             logOut
           </button>

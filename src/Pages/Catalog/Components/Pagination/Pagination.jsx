@@ -17,6 +17,7 @@ const Pagination = ({
   nextPage,
   previousPage,
   handleAddFavorite,
+  handleDeletProduct,
 }) => {
   const isLoading = useSelector(getIsLoadingProduct);
 
@@ -50,6 +51,7 @@ const Pagination = ({
                 margin={css.margin}
                 addToCart={addToCart}
                 handleAddFavorite={handleAddFavorite}
+                handleDeletProduct={handleDeletProduct}
               />
             );
           },
@@ -87,6 +89,7 @@ CatalogCard.propTypes = {
   nextPage: propTypes.func,
   previousPage: propTypes.func,
   handleAddFavorite: propTypes.func,
+  handleDeletProduct: propTypes.func,
 };
 
 export default Pagination;

@@ -38,4 +38,183 @@ const Categorys = [
   },
 ];
 
-export { Categorys };
+const subcategoryList = {
+  cats: [
+    {
+      url: 'dryFeed',
+      label: 'Dry feed',
+    },
+    {
+      url: 'weetFeed',
+      label: 'Wet feed',
+    },
+    {
+      url: 'treats',
+      label: 'Treats',
+    },
+    {
+      url: 'vitamins',
+      label: 'Vitamins',
+    },
+    {
+      url: 'accessories',
+      label: 'Accessories',
+    },
+    {
+      url: 'clothes',
+      label: 'Clothes',
+    },
+    {
+      url: 'toys',
+      label: 'Toys',
+    },
+    {
+      url: 'hygiene',
+      label: 'Hygiene',
+    },
+    {
+      url: 'medicine',
+      label: 'Medicine',
+    },
+  ],
+  dogs: [
+    {
+      url: 'dryFeed',
+      label: 'Dry feed',
+    },
+    {
+      url: 'weetFeed',
+      label: 'Wet feed',
+    },
+    {
+      url: 'treats',
+      label: 'Treats',
+    },
+    {
+      url: 'vitamins',
+      label: 'Vitamins',
+    },
+    {
+      url: 'accessories',
+      label: 'Accessories',
+    },
+    {
+      url: 'clothes',
+      label: 'Clothes',
+    },
+    {
+      url: 'toys',
+      label: 'Toys',
+    },
+    {
+      url: 'hygiene',
+      label: 'Hygiene',
+    },
+    {
+      url: 'medicine',
+      label: 'Medicine',
+    },
+  ],
+  birds: [
+    {
+      url: 'feed',
+      label: 'Feed',
+    },
+    {
+      url: 'treats',
+      label: 'Treats',
+    },
+    {
+      url: 'vitamins',
+      label: 'Vitamins',
+    },
+    {
+      url: 'accessories',
+      label: 'Accessories',
+    },
+    {
+      url: 'toys',
+      label: 'Toys',
+    },
+    {
+      url: 'hygiene',
+      label: 'Hygiene',
+    },
+    {
+      url: 'medicine',
+      label: 'Medicine',
+    },
+  ],
+  rodents: [
+    {
+      url: 'feed',
+      label: 'Feed',
+    },
+    {
+      url: 'treats',
+      label: 'Treats',
+    },
+    {
+      url: 'vitamins',
+      label: 'Vitamins',
+    },
+    {
+      url: 'accessories',
+      label: 'Accessories',
+    },
+    {
+      url: 'toys',
+      label: 'Toys',
+    },
+    {
+      url: 'hygiene',
+      label: 'Hygiene',
+    },
+    {
+      url: 'medicine',
+      label: 'Medicine',
+    },
+  ],
+  fishes: [
+    {
+      url: 'feed',
+      label: 'Feed',
+    },
+    {
+      url: 'accessories',
+      label: 'Accessories',
+    },
+    {
+      url: 'hygiene',
+      label: 'Hygiene',
+    },
+    {
+      url: 'medicine',
+      label: 'Medicine',
+    },
+  ],
+  reptiles: [
+    {
+      url: 'feed',
+      label: 'Feed',
+    },
+    {
+      url: 'vitamins',
+      label: 'Vitamins',
+    },
+    {
+      url: 'accessories',
+      label: 'Accessories',
+    },
+    {
+      url: 'hygiene',
+      label: 'Hygiene',
+    },
+    {
+      url: 'medicine',
+      label: 'Medicine',
+    },
+  ],
+};
+
+export { Categorys, subcategoryList };

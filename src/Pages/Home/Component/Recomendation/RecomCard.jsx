@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../../../enum/app-route';
 import Canin from '../../../../assets/Canin.jpg';
 import css from './Recomendation.module.css';
 
@@ -69,7 +68,7 @@ const RecomCard = ({
     >
       <Link
         to={{
-          pathname: `${AppRoute.CATALOG}/${category}/${subcategory}/${itemId}`,
+          pathname: `/${category}/${subcategory}/${itemId}`,
         }}
       >
         <div className={css.cardWrapper}>
