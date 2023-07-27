@@ -14,11 +14,15 @@ import {
   refreshToken,
   deleteFavoriteProduct,
 } from '../../redux/user/operation';
+import { getUserToken, getLoadingUser } from '../../redux/user/selectors';
 import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb';
 import Box from './Components/Box/Box';
 import PreviosProduct from './Components/PreviosProduct/PreviosProduct';
 
 const Catalog = () => {
+  const token = useSelector(getUserToken);
+  const isLoading = useSelector(getLoadingUser);
+
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const pageParam = searchParams.get('page' || 1);
@@ -109,18 +113,22 @@ const Catalog = () => {
         handleAddFavorite={handleAddFavorite}
         products={items}
         totalPages={totalPages}
-        currentPage={pageParam}
+        currentPage={parseInt(pageParam)}
         paginate={paginate}
         nextPage={nextPage}
         previousPage={previousPage}
         params={params}
         handleDeletProduct={handleDeletProduct}
+        token={token}
+        isLoading={isLoading}
       />
       <PreviosProduct
         viewedProducts={viewedProducts}
         addToCart={addToCart}
         handleAddFavorite={handleAddFavorite}
         handleDeletProduct={handleDeletProduct}
+        token={token}
+        isLoading={isLoading}
       />
     </>
   );

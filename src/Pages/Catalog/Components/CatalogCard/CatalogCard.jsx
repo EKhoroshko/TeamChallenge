@@ -1,11 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import propTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import {
-  getUserToken,
-  getLoadingUser,
-  getUserFavoritListID,
-} from '../../../../redux/user/selectors';
+import { getUserFavoritListID } from '../../../../redux/user/selectors';
 import Canin from '../../../../assets/Canin.jpg';
 import { ReactComponent as Basket } from '../../../../assets/basket.svg';
 import { ReactComponent as Favorite } from '../../../../assets/favorite.svg';
@@ -26,12 +22,12 @@ const CatalogCard = ({
   addToCart,
   handleAddFavorite,
   handleDeletProduct,
+  token,
+  isLoading,
 }) => {
-  const token = useSelector(getUserToken);
-  const isLoading = useSelector(getLoadingUser);
-  const favoritID = useSelector(getUserFavoritListID);
   const params = useLocation();
   const location = params.pathname.split('/').includes('favorite');
+  const favoritID = useSelector(getUserFavoritListID);
   const isFavorite = favoritID.includes(itemId);
 
   const handleViewProduct = (
@@ -53,6 +49,7 @@ const CatalogCard = ({
       subcategory,
       image,
     };
+
     const viewedProducts =
       JSON.parse(localStorage.getItem('viewedProducts')) || [];
     if (!viewedProducts.find(item => item.itemId === product.itemId)) {
@@ -163,6 +160,8 @@ CatalogCard.propTypes = {
   addToCart: propTypes.func,
   handleAddFavorite: propTypes.func,
   handleDeletProduct: propTypes.func,
+  token: propTypes.string,
+  isLoading: propTypes.bool,
 };
 
 export default CatalogCard;

@@ -18,10 +18,12 @@ const Pagination = ({
   previousPage,
   handleAddFavorite,
   handleDeletProduct,
+  token,
+  isLoading,
 }) => {
-  const isLoading = useSelector(getIsLoadingProduct);
+  const isLoadingProduct = useSelector(getIsLoadingProduct);
 
-  const load = isLoading ? (
+  const load = isLoadingProduct ? (
     <div className={css.load}>
       <Spinner />
     </div>
@@ -52,6 +54,8 @@ const Pagination = ({
                 addToCart={addToCart}
                 handleAddFavorite={handleAddFavorite}
                 handleDeletProduct={handleDeletProduct}
+                token={token}
+                isLoading={isLoading}
               />
             );
           },
@@ -84,12 +88,14 @@ CatalogCard.propTypes = {
   products: propTypes.array,
   addToCart: propTypes.func,
   totalPages: propTypes.number,
-  currentPage: propTypes.string,
+  currentPage: propTypes.number,
   paginate: propTypes.func,
   nextPage: propTypes.func,
   previousPage: propTypes.func,
   handleAddFavorite: propTypes.func,
   handleDeletProduct: propTypes.func,
+  token: propTypes.string,
+  isLoading: propTypes.bool,
 };
 
 export default Pagination;

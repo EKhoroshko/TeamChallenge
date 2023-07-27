@@ -14,6 +14,8 @@ const Box = ({
   previousPage,
   handleAddFavorite,
   params,
+  token,
+  isLoading,
 }) => {
   return (
     <section className={css.box}>
@@ -29,6 +31,8 @@ const Box = ({
           previousPage={previousPage}
           handleAddFavorite={handleAddFavorite}
           handleDeletProduct={handleDeletProduct}
+          token={token}
+          isLoading={isLoading}
         />
       </div>
     </section>
@@ -40,12 +44,14 @@ Box.propTypes = {
   handleDeletProduct: propTypes.func,
   products: propTypes.array,
   totalPages: propTypes.number,
-  currentPage: propTypes.string,
+  currentPage: propTypes.number,
   paginate: propTypes.func,
   nextPage: propTypes.func,
   previousPage: propTypes.func,
   handleAddFavorite: propTypes.func,
   params: propTypes.object,
+  token: propTypes.string,
+  isLoading: propTypes.bool,
 };
 
 export default Box;
