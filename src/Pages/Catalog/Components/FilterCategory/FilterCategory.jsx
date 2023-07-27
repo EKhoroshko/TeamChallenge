@@ -16,6 +16,7 @@ const FilterCategory = () => {
               className={style}
               to={{
                 pathname: `/${title}`,
+                search: `?page=1`,
               }}
               key={id}
             >

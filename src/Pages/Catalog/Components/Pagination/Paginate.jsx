@@ -25,7 +25,7 @@ const Paginate = ({
             <ArrLeft className={css.arrow} />
           </li>
           {pageNumbers.map(number => {
-            const active = currentPage === number;
+            const active = Number(currentPage) === number;
             const style = active
               ? css.pageNumber + ' ' + css.active
               : css.pageNumber;
@@ -50,7 +50,7 @@ const Paginate = ({
 
 Paginate.propTypes = {
   totalPages: propTypes.number,
-  currentPage: propTypes.number,
+  currentPage: propTypes.string,
   paginate: propTypes.func,
   nextPage: propTypes.func,
   previousPage: propTypes.func,

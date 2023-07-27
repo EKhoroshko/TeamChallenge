@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import {
+  useParams,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from 'react-router-dom';
 import { addToCart } from '../../helpers/addToCart';
 import { getAllProducts } from '../../redux/product/selector';
 import { getSortetedCategory } from '../../redux/product/operation';
@@ -14,19 +19,28 @@ import Box from './Components/Box/Box';
 import PreviosProduct from './Components/PreviosProduct/PreviosProduct';
 
 const Catalog = () => {
+  const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const pageParam = searchParams.get('page');
+
+  console.log(pageParam);
+
   const params = useParams();
   const dispatch = useDispatch();
-  const { items, totalPages, currentPage } = useSelector(getAllProducts);
-  const [current, setCurrent] = useState(currentPage || 1);
+  const { items, totalPages } = useSelector(getAllProducts);
+  const [current, setCurrent] = useState(pageParam);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (pageParam) {
+      setCurrent(parseInt(pageParam));
+    } else {
+      setCurrent(1);
+    }
+  }, [location, pageParam]);
 
   useEffect(() => {
     if (params.id !== undefined) {
-      setCurrent(1);
-    }
-  }, [params.id]);
-
-  useEffect(() => {
-    if (params.id) {
       const fetchData = async () => {
         return await dispatch(
           getSortetedCategory({ category: params.id, page: current }),
@@ -38,19 +52,22 @@ const Catalog = () => {
   }, [dispatch, params.id, current]);
 
   const previousPage = () => {
-    if (currentPage !== 1) {
-      setCurrent(currentPage - 1);
+    if (Number(pageParam) !== 1) {
+      setCurrent(Number(pageParam) - 1);
+      navigate(`/${params.id}?page=${Number(pageParam) - 1}`);
     }
   };
 
   const nextPage = () => {
-    if (currentPage !== totalPages) {
-      setCurrent(currentPage + 1);
+    if (Number(pageParam) !== totalPages) {
+      setCurrent(Number(pageParam) + 1);
+      navigate(`/${params.id}?page=${Number(pageParam) + 1}`);
     }
   };
 
   const paginate = pageNumber => {
     setCurrent(pageNumber);
+    navigate(`/${params.id}?page=${pageNumber}`);
   };
 
   const handleAddFavorite = async id => {
@@ -74,7 +91,7 @@ const Catalog = () => {
         handleAddFavorite={handleAddFavorite}
         products={items}
         totalPages={totalPages}
-        currentPage={currentPage}
+        currentPage={pageParam}
         paginate={paginate}
         nextPage={nextPage}
         previousPage={previousPage}

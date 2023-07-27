@@ -40,7 +40,7 @@ Box.propTypes = {
   handleDeletProduct: propTypes.func,
   products: propTypes.array,
   totalPages: propTypes.number,
-  currentPage: propTypes.number,
+  currentPage: propTypes.string,
   paginate: propTypes.func,
   nextPage: propTypes.func,
   previousPage: propTypes.func,

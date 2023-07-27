@@ -84,7 +84,7 @@ CatalogCard.propTypes = {
   products: propTypes.array,
   addToCart: propTypes.func,
   totalPages: propTypes.number,
-  currentPage: propTypes.number,
+  currentPage: propTypes.string,
   paginate: propTypes.func,
   nextPage: propTypes.func,
   previousPage: propTypes.func,

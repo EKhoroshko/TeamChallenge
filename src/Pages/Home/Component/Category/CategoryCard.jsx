@@ -14,6 +14,7 @@ const CategoryCard = ({ title, bg }) => {
         className={css.navigate}
         to={{
           pathname: `/${title}`,
+          search: `?page=1`,
         }}
       >
         <h4 className={css.title}>{title}</h4>

@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 const FilterItem = ({ item, params }) => {
   const { url, label } = item;
   return (
-    <Link to={`/${params}/${url}`}>
+    <Link to={{ pathname: `/${params}/${url}`, search: '?page=1' }}>
       <li>{label}</li>
     </Link>
   );
