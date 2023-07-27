@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   useParams,
@@ -21,9 +21,7 @@ import PreviosProduct from './Components/PreviosProduct/PreviosProduct';
 const Catalog = () => {
   const location = useLocation();
   const [searchParams] = useSearchParams();
-  const pageParam = searchParams.get('page');
-
-  console.log(pageParam);
+  const pageParam = searchParams.get('page' || 1);
 
   const params = useParams();
   const dispatch = useDispatch();
@@ -51,37 +49,57 @@ const Catalog = () => {
     }
   }, [dispatch, params.id, current]);
 
-  const previousPage = () => {
-    if (Number(pageParam) !== 1) {
-      setCurrent(Number(pageParam) - 1);
-      navigate(`/${params.id}?page=${Number(pageParam) - 1}`);
+  const navigateToPage = useCallback(
+    pageNumber => {
+      navigate(`/${params.id}?page=${pageNumber}`);
+    },
+    [navigate, params.id],
+  );
+
+  const previousPage = useCallback(() => {
+    const prevPage = parseInt(pageParam);
+    if (prevPage > 1) {
+      setCurrent(prevPage - 1);
+      navigateToPage(prevPage - 1);
     }
-  };
+  }, [pageParam, setCurrent, navigateToPage]);
 
-  const nextPage = () => {
-    if (Number(pageParam) !== totalPages) {
-      setCurrent(Number(pageParam) + 1);
-      navigate(`/${params.id}?page=${Number(pageParam) + 1}`);
+  const nextPage = useCallback(() => {
+    const nextPageNum = parseInt(pageParam);
+    if (nextPageNum < totalPages) {
+      setCurrent(nextPageNum + 1);
+      navigateToPage(nextPageNum + 1);
     }
-  };
+  }, [pageParam, totalPages, setCurrent, navigateToPage]);
 
-  const paginate = pageNumber => {
-    setCurrent(pageNumber);
-    navigate(`/${params.id}?page=${pageNumber}`);
-  };
+  const paginate = useCallback(
+    pageNumber => {
+      setCurrent(pageNumber);
+      navigateToPage(pageNumber);
+    },
+    [setCurrent, navigateToPage],
+  );
 
-  const handleAddFavorite = async id => {
-    await dispatch(addToFavoriteProduct(id));
-    await dispatch(refreshToken());
-  };
+  const handleAddFavorite = useCallback(
+    async id => {
+      await dispatch(addToFavoriteProduct(id));
+      await dispatch(refreshToken());
+    },
+    [dispatch],
+  );
 
-  const handleDeletProduct = async id => {
-    await dispatch(deleteFavoriteProduct(id));
-    await dispatch(refreshToken());
-  };
+  const handleDeletProduct = useCallback(
+    async id => {
+      await dispatch(deleteFavoriteProduct(id));
+      await dispatch(refreshToken());
+    },
+    [dispatch],
+  );
 
-  const viewedProducts =
-    JSON.parse(localStorage.getItem('viewedProducts')) || [];
+  const viewedProducts = useMemo(
+    () => JSON.parse(localStorage.getItem('viewedProducts')) || [],
+    [],
+  );
 
   return (
     <>
