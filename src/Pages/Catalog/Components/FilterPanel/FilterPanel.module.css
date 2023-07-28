@@ -1,5 +1,6 @@
 .aside {
-  max-width: 265px;
+  width: 265px;
+  height: 100%;
   box-sizing: border-box;
   margin-right: 40px;
   padding: 10px;

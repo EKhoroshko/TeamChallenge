@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import propTypes from 'prop-types';
 import Slider from 'react-slick';
 import { getIsLoadingProduct } from '../../../../redux/product/selector';
 import { useSelector } from 'react-redux';
+import { addToCart } from '../../../../helpers/addToCart';
+import { recomendationSlider } from '../../../../enum/optionSlider';
 import Spinner from '../../../../Components/Spinner/Spinner';
 import RecomCard from './RecomCard';
 import Filter from './Filter';
@@ -15,20 +18,8 @@ const Recomendation = ({ product = [] }) => {
     setActiveFilter(name);
   };
 
-  // в дальнейшем вынести в хелперы или в enums
-  const settings = {
-    dots: true,
-    arrows: false,
-    infinite: true,
-    autoplay: true,
-    speed: 1500,
-    autoplaySpeed: 3000,
-    slidesToShow: 4,
-    slidesToScroll: 2,
-  };
-
   const swiper = !isLoading ? (
-    <Slider {...settings}>
+    <Slider className="slider" {...recomendationSlider}>
       {product &&
         product.map(
           ({
@@ -50,6 +41,7 @@ const Recomendation = ({ product = [] }) => {
               category={category}
               subcategory={subcategory}
               margin={css.margin}
+              addToCart={addToCart}
             />
           ),
         )}
@@ -70,6 +62,10 @@ const Recomendation = ({ product = [] }) => {
       </div>
     </section>
   );
+};
+
+Recomendation.propTypes = {
+  products: propTypes.array,
 };
 
 export default Recomendation;

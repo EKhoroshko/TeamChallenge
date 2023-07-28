@@ -15,6 +15,9 @@ import Blog from './Pages/Blog/Blog';
 import Return from './Pages/Return/Return';
 import About from './Pages/About/About';
 import Product from './Pages/Product/Product';
+import Favorite from './Pages/Profile/Components/Favorite/Favorite';
+import User from './Pages/Profile/Components/User/User';
+import History from './Pages/Profile/Components/History/History';
 import store from './redux/store';
 import './index.css';
 
@@ -27,10 +30,6 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
-      },
-      {
-        path: AppRoute.CATALOG,
-        element: <Catalog />,
       },
       {
         path: AppRoute.CATEGORY,
@@ -47,6 +46,24 @@ const router = createBrowserRouter([
       {
         path: AppRoute.PROFILE,
         element: <Profile />,
+        children: [
+          {
+            index: true,
+            element: <User />,
+          },
+          {
+            path: AppRoute.FAVORITE,
+            element: <Favorite />,
+          },
+          {
+            path: AppRoute.HISTORY,
+            element: <History />,
+          },
+        ],
+      },
+      {
+        path: AppRoute.BASKET,
+        element: <Basket />,
       },
       {
         path: AppRoute.DELIVERY,
@@ -65,11 +82,6 @@ const router = createBrowserRouter([
         element: <About />,
       },
     ],
-  },
-  {
-    path: AppRoute.BASKET,
-    element: <Basket />,
-    errorElement: <ErrorPages />,
   },
   {
     path: AppRoute.LOGIN,

@@ -1,0 +1,47 @@
+.profile {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  max-width: 1440px;
+  padding: 0px 150px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.menu {
+  width: 265px;
+  height: 100%;
+  box-sizing: border-box;
+  margin-right: 40px;
+  padding: 10px;
+  border: 1px solid var(--accentBgCOlor);
+  border-radius: 10px;
+}
+
+.button {
+  margin-left: auto;
+  padding: 10px 16px;
+  outline: none;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background-color: var(--backgroundButton);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  animation: fadeIn 0.8s ease;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: var(--accentCOlor);
+  border: 1px solid var(--accentCOlor);
+}
+
+.favoriteList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}

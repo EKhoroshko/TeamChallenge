@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../../../enum/app-route';
 import css from './Category.module.css';
 
 // eslint-disable-next-line react/prop-types
@@ -14,7 +13,8 @@ const CategoryCard = ({ title, bg }) => {
       <Link
         className={css.navigate}
         to={{
-          pathname: `${AppRoute.CATALOG}/${title}`,
+          pathname: `/${title}`,
+          search: `?page=1`,
         }}
       >
         <h4 className={css.title}>{title}</h4>

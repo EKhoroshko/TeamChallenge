@@ -25,7 +25,11 @@ const BreadCrumb = () => {
             <p className={css.label}>home</p>
           </NavLink>
           {breadcrumbs.map((breadcrumb, index) => (
-            <NavLink key={index} to={breadcrumb.url} className={css.link}>
+            <NavLink
+              key={index}
+              to={{ pathname: breadcrumb.url, search: '?page=1' }}
+              className={css.link}
+            >
               <Slash className={css.svg} />
               <p className={css.label}>{breadcrumb.label}</p>
             </NavLink>

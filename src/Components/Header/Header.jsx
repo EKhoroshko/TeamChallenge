@@ -69,10 +69,7 @@ const Header = () => {
               </NavLink>
             </li>
             <li className={css.boxSearch}>
-              <NavLink
-                className={css.link + ' ' + css.catalog}
-                to={AppRoute.CATALOG}
-              >
+              <NavLink className={css.link + ' ' + css.catalog}>
                 Catalog
               </NavLink>
               <Input
@@ -102,7 +99,7 @@ const Header = () => {
                       <Person className={css.person} />
                       {username}
                     </NavLink>
-                    <NavLink className={css.link} to={AppRoute.PROFILE}>
+                    <NavLink className={css.link} to={AppRoute.FAVORITE}>
                       <Favorite className={css.favorite} />
                     </NavLink>
                   </>

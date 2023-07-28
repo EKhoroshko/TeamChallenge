@@ -5,6 +5,9 @@ import {
   refreshToken,
   logOutUser,
   subscribeUser,
+  addToFavoriteProduct,
+  getFavoriteProduct,
+  deleteFavoriteProduct,
 } from './operation';
 
 const authSlice = createSlice({
@@ -14,11 +17,13 @@ const authSlice = createSlice({
     username: '',
     email: '',
     isLoading: false,
-    isLogin: false,
     history: [],
     error: null,
     token: null,
     subscription: false,
+    favorite: [],
+    favorites: [],
+    addFavorite: '',
   },
   reducers: {},
   extraReducers(builder) {
@@ -36,6 +41,9 @@ const authSlice = createSlice({
         history: payload.history,
         token: payload.token,
         subscription: payload.subscription,
+        favorite: payload.favorite,
+        favorites: payload.favorites,
+        addFavorite: '',
         error: null,
       }))
       .addCase(loginUser.rejected, (state, { payload }) => ({
@@ -72,6 +80,8 @@ const authSlice = createSlice({
         email: payload.email,
         token: payload.token,
         subscription: payload.subscription,
+        favorites: payload.favorites,
+        addFavorite: '',
       }))
       .addCase(refreshToken.rejected, (state, action) => ({
         ...state,
@@ -104,6 +114,49 @@ const authSlice = createSlice({
         data: payload,
       }))
       .addCase(subscribeUser.rejected, (state, action) => ({
+        ...state,
+        isLoading: false,
+        error: action.error.message,
+      }))
+      .addCase(addToFavoriteProduct.pending, state => ({
+        ...state,
+        isLoading: true,
+      }))
+      .addCase(addToFavoriteProduct.fulfilled, (state, { payload }) => ({
+        ...state,
+        isLoading: false,
+        addFavorite: payload,
+      }))
+      .addCase(addToFavoriteProduct.rejected, (state, action) => ({
+        ...state,
+        isLoading: false,
+        error: action.error.message,
+      }))
+      .addCase(getFavoriteProduct.pending, state => ({
+        ...state,
+        isLoading: true,
+      }))
+      .addCase(getFavoriteProduct.fulfilled, (state, { payload }) => ({
+        ...state,
+        isLoading: false,
+        favorite: payload,
+      }))
+      .addCase(getFavoriteProduct.rejected, (state, action) => ({
+        ...state,
+        isLoading: false,
+        error: action.error.message,
+      }))
+      .addCase(deleteFavoriteProduct.pending, state => ({
+        ...state,
+        isLoading: true,
+      }))
+      .addCase(deleteFavoriteProduct.fulfilled, (state, { meta, payload }) => ({
+        ...state,
+        favorite: state.favorite.filter(product => product.id !== meta.arg),
+        addFavorite: payload,
+        isLoading: false,
+      }))
+      .addCase(deleteFavoriteProduct.rejected, (state, action) => ({
         ...state,
         isLoading: false,
         error: action.error.message,

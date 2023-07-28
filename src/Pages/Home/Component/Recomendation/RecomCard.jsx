@@ -1,11 +1,7 @@
 /* eslint-disable react/prop-types */
+import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../../../enum/app-route';
-import { useSelector } from 'react-redux';
-import { getUserToken } from '../../../../redux/user/selectors';
 import Canin from '../../../../assets/Canin.jpg';
-import { ReactComponent as Basket } from '../../../../assets/basket.svg';
-import { ReactComponent as Favorite } from '../../../../assets/favorite.svg';
 import css from './Recomendation.module.css';
 
 const RecomCard = ({
@@ -17,9 +13,8 @@ const RecomCard = ({
   subcategory,
   image = Canin,
   margin,
+  addToCart,
 }) => {
-  const token = useSelector(getUserToken);
-
   const handleViewProduct = (
     name,
     price,
@@ -50,6 +45,11 @@ const RecomCard = ({
     }
   };
 
+  const handleAddToCart = event => {
+    event.preventDefault();
+    addToCart({ name, price, itemId });
+  };
+
   return (
     <li
       className={margin}
@@ -68,33 +68,35 @@ const RecomCard = ({
     >
       <Link
         to={{
-          pathname: `${AppRoute.CATALOG}/${category}/${subcategory}/${itemId}`,
+          pathname: `/${category}/${subcategory}/${itemId}`,
         }}
       >
         <div className={css.cardWrapper}>
-          <div className={css.cardHeader}>
-            <p className={css.sale}>-20%</p>
-            {token ? (
-              <p className={css.svg}>
-                <Favorite className={css.heart} />
-              </p>
-            ) : null}
-          </div>
           <img src={image} alt="canin" className={css.src} />
           <div className={css.descrBox}>
             <p className={css.title}>{name}</p>
             <p className={css.descriptionCard}>{description}</p>
-            <div className={css.buy}>
-              <p className={css.price}>${price}</p>
-              <p className={css.svg}>
-                <Basket className={css.basket} />
-              </p>
-            </div>
+            <p className={css.price}>${price}</p>
+            <button className={css.btnBuy} onClick={handleAddToCart}>
+              Add to cart
+            </button>
           </div>
         </div>
       </Link>
     </li>
   );
+};
+
+RecomCard.propTypes = {
+  name: propTypes.string,
+  price: propTypes.string,
+  description: propTypes.string,
+  itemId: propTypes.string,
+  category: propTypes.string,
+  subcategory: propTypes.string,
+  image: propTypes.string,
+  margin: propTypes.string,
+  addToCart: propTypes.func,
 };
 
 export default RecomCard;

@@ -1,9 +1,17 @@
 import { useState } from 'react';
-import RecomCard from '../../../Home/Component/Recomendation/RecomCard';
+import propTypes from 'prop-types';
+import CatalogCard from '../CatalogCard/CatalogCard';
 import css from './PreviosProduct.module.css';
 
 // eslint-disable-next-line react/prop-types
-const PreviosProduct = ({ viewedProducts }) => {
+const PreviosProduct = ({
+  viewedProducts,
+  addToCart,
+  handleAddFavorite,
+  handleDeletProduct,
+  token,
+  isLoading,
+}) => {
   const [products] = useState(viewedProducts);
 
   return (
@@ -21,7 +29,7 @@ const PreviosProduct = ({ viewedProducts }) => {
               image,
               subcategory,
             }) => (
-              <RecomCard
+              <CatalogCard
                 itemId={itemId}
                 image={image}
                 key={itemId}
@@ -31,6 +39,11 @@ const PreviosProduct = ({ viewedProducts }) => {
                 category={category}
                 subcategory={subcategory}
                 margin={css.margin}
+                addToCart={addToCart}
+                handleAddFavorite={handleAddFavorite}
+                handleDeletProduct={handleDeletProduct}
+                token={token}
+                isLoading={isLoading}
               />
             ),
           )}
@@ -38,6 +51,15 @@ const PreviosProduct = ({ viewedProducts }) => {
       </div>
     </section>
   );
+};
+
+PreviosProduct.propTypes = {
+  viewedProducts: propTypes.array,
+  addToCart: propTypes.func,
+  handleAddFavorite: propTypes.func,
+  handleDeletProduct: propTypes.func,
+  token: propTypes.string,
+  isLoading: propTypes.bool,
 };
 
 export default PreviosProduct;
