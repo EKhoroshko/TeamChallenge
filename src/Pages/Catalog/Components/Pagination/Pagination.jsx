@@ -20,6 +20,8 @@ const Pagination = ({
   handleDeletProduct,
   token,
   isLoading,
+  select,
+  handleChangeSelect,
 }) => {
   const isLoadingProduct = useSelector(getIsLoadingProduct);
 
@@ -66,7 +68,10 @@ const Pagination = ({
   return (
     <div className={css.container}>
       <div className={css.buttonFilter}>
-        <FilterCategory />
+        <FilterCategory
+          select={select}
+          handleChangeSelect={handleChangeSelect}
+        />
       </div>
       <ul className={css.list}>
         {products.length === 0 ? <div>The products is out of stock</div> : load}
@@ -96,6 +101,8 @@ CatalogCard.propTypes = {
   handleDeletProduct: propTypes.func,
   token: propTypes.string,
   isLoading: propTypes.bool,
+  select: propTypes.string,
+  handleChangeSelect: propTypes.func,
 };
 
 export default Pagination;

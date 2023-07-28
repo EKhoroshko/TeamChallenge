@@ -4,9 +4,9 @@
 
 .buttonFilter {
   display: flex;
-  flex-direction: row;
-  align-items: center;
   margin-bottom: 40px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .list {

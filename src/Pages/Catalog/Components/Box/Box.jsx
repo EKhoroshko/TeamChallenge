@@ -16,6 +16,8 @@ const Box = ({
   params,
   token,
   isLoading,
+  select,
+  handleChangeSelect,
 }) => {
   return (
     <section className={css.box}>
@@ -33,6 +35,8 @@ const Box = ({
           handleDeletProduct={handleDeletProduct}
           token={token}
           isLoading={isLoading}
+          select={select}
+          handleChangeSelect={handleChangeSelect}
         />
       </div>
     </section>
@@ -52,6 +56,8 @@ Box.propTypes = {
   params: propTypes.object,
   token: propTypes.string,
   isLoading: propTypes.bool,
+  select: propTypes.string,
+  handleChangeSelect: propTypes.func,
 };
 
 export default Box;

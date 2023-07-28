@@ -22,16 +22,18 @@ import PreviosProduct from './Components/PreviosProduct/PreviosProduct';
 const Catalog = () => {
   const token = useSelector(getUserToken);
   const isLoading = useSelector(getLoadingUser);
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const location = useLocation();
+
   const [searchParams] = useSearchParams();
   const pageParam = searchParams.get('page' || 1);
+  const sortParam = searchParams.get('sort');
 
   const params = useParams();
-  const dispatch = useDispatch();
+  const [select, setSelect] = useState('Popular');
   const { items, totalPages } = useSelector(getAllProducts);
-  const [current, setCurrent] = useState(pageParam);
-  const navigate = useNavigate();
+  const [current, setCurrent] = useState(pageParam || 1);
 
   useEffect(() => {
     if (pageParam) {
@@ -40,6 +42,14 @@ const Catalog = () => {
       setCurrent(1);
     }
   }, [location, pageParam]);
+
+  useEffect(() => {
+    if (sortParam) {
+      setSelect(sortParam);
+    } else {
+      setSelect('Popular');
+    }
+  }, [sortParam]);
 
   useEffect(() => {
     if (params.id !== undefined) {
@@ -54,8 +64,8 @@ const Catalog = () => {
   }, [dispatch, params.id, current]);
 
   const navigateToPage = useCallback(
-    pageNumber => {
-      navigate(`/${params.id}?page=${pageNumber}`);
+    updatedSearch => {
+      navigate(`/${params.id}?${updatedSearch}`);
     },
     [navigate, params.id],
   );
@@ -64,24 +74,30 @@ const Catalog = () => {
     const prevPage = parseInt(pageParam);
     if (prevPage > 1) {
       setCurrent(prevPage - 1);
-      navigateToPage(prevPage - 1);
+      searchParams.set('page', prevPage - 1);
+      const updatedSearch = searchParams.toString();
+      navigateToPage(updatedSearch);
     }
-  }, [pageParam, setCurrent, navigateToPage]);
+  }, [pageParam, searchParams, navigateToPage]);
 
   const nextPage = useCallback(() => {
     const nextPageNum = parseInt(pageParam);
     if (nextPageNum < totalPages) {
       setCurrent(nextPageNum + 1);
-      navigateToPage(nextPageNum + 1);
+      searchParams.set('page', nextPageNum + 1);
+      const updatedSearch = searchParams.toString();
+      navigateToPage(updatedSearch);
     }
-  }, [pageParam, totalPages, setCurrent, navigateToPage]);
+  }, [pageParam, totalPages, searchParams, navigateToPage]);
 
   const paginate = useCallback(
     pageNumber => {
       setCurrent(pageNumber);
-      navigateToPage(pageNumber);
+      searchParams.set('page', pageNumber);
+      const updatedSearch = searchParams.toString();
+      navigateToPage(updatedSearch);
     },
-    [setCurrent, navigateToPage],
+    [searchParams, navigateToPage],
   );
 
   const handleAddFavorite = useCallback(
@@ -99,6 +115,14 @@ const Catalog = () => {
     },
     [dispatch],
   );
+
+  const handleChangeSelect = e => {
+    const selectedSort = e.target.value;
+    setSelect(selectedSort);
+    searchParams.set('sort', selectedSort);
+    const updatedSearch = searchParams.toString();
+    navigateToPage(updatedSearch);
+  };
 
   const viewedProducts = useMemo(
     () => JSON.parse(localStorage.getItem('viewedProducts')) || [],
@@ -121,6 +145,8 @@ const Catalog = () => {
         handleDeletProduct={handleDeletProduct}
         token={token}
         isLoading={isLoading}
+        select={select}
+        handleChangeSelect={handleChangeSelect}
       />
       <PreviosProduct
         viewedProducts={viewedProducts}
