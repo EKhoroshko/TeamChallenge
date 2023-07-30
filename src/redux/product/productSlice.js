@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAll, getSortetedCategory } from './operation';
+import { getAll, getSortetedCategory, getProductByID } from './operation';
 
 const productSlice = createSlice({
   name: 'product',
   initialState: {
     allItem: [],
+    productById: null,
     error: null,
     isloading: false,
   },
@@ -35,6 +36,20 @@ const productSlice = createSlice({
         isloading: false,
       }))
       .addCase(getSortetedCategory.rejected, (state, { payload }) => ({
+        ...state,
+        error: payload,
+        isloading: false,
+      }))
+      .addCase(getProductByID.pending, state => ({
+        ...state,
+        isloading: true,
+      }))
+      .addCase(getProductByID.fulfilled, (state, { payload }) => ({
+        ...state,
+        productById: payload,
+        isloading: false,
+      }))
+      .addCase(getProductByID.rejected, (state, { payload }) => ({
         ...state,
         error: payload,
         isloading: false,

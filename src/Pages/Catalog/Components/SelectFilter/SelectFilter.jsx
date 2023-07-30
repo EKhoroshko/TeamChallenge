@@ -11,9 +11,9 @@ const SelectFilter = ({ select, handleChangeSelect }) => {
       onChange={handleChangeSelect}
     >
       <option value="name">By name</option>
-      <option value="cheap">Сheap at first</option>
-      <option value="expensive">Expensive at first</option>
-      <option value="new">New ones</option>
+      <option value="desc">Сheap at first</option>
+      <option value="asc">Expensive at first</option>
+      <option value="created_at">New ones</option>
     </select>
   );
 };

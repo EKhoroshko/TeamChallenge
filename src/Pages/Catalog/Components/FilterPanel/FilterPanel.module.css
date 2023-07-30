@@ -1,4 +1,5 @@
 .aside {
+  position: relative;
   min-width: 265px;
   height: 100%;
   margin-right: 30px;
@@ -8,42 +9,21 @@
   box-sizing: border-box;
 }
 
-.form {
-  position: relative;
+.boxReset {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
 }
 
-.label {
+.title {
+  margin-bottom: 10px;
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
   color: var(--accentCOlor);
 }
 
-.select {
-  margin-top: 10px;
-  width: 100%;
-  padding: 12px 13px;
-  border-radius: 12px;
-  border: 1px solid var(--backgroundButton);
-  outline: none;
-  background-color: transparent;
-  box-sizing: border-box;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  cursor: pointer;
-  color: var(--accentCOlor);
-}
-
-.select:hover,
-.select:focus {
-  border: 1px solid var(--accentCOlor);
-}
-
 .btnReset {
-  position: absolute;
-  top: 0;
-  right: 0;
   border: none;
   font-weight: 400;
   line-height: 17px;
@@ -51,4 +31,9 @@
   color: var(--accentCOlor);
   background-color: transparent;
   padding: 5px;
+}
+
+.btnReset:hover,
+.btnReset:focus {
+  color: var(--hoverColor);
 }

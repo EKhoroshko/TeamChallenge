@@ -1,11 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  useParams,
-  useLocation,
-  useNavigate,
-  useSearchParams,
-} from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { addToCart } from '../../helpers/addToCart';
 import { getAllProducts } from '../../redux/product/selector';
 import { getSortetedCategory } from '../../redux/product/operation';
@@ -24,7 +19,6 @@ const Catalog = () => {
   const isLoading = useSelector(getLoadingUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
   const params = useParams();
 
   const [searchParams] = useSearchParams();
@@ -42,7 +36,7 @@ const Catalog = () => {
     } else {
       setCurrent(1);
     }
-  }, [location, pageParam]);
+  }, [pageParam]);
 
   useEffect(() => {
     if (sortParam) {
@@ -60,13 +54,14 @@ const Catalog = () => {
             category: params.id,
             page: current,
             sort: select,
+            subcategory: params.subcategory,
           }),
         );
       };
 
       fetchData();
     }
-  }, [dispatch, params.id, current, select]);
+  }, [dispatch, params.id, current, select, params.subcategory]);
 
   const navigateToPage = useCallback(
     updatedSearch => {
