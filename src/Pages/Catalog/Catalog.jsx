@@ -25,15 +25,16 @@ const Catalog = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const params = useParams();
 
   const [searchParams] = useSearchParams();
   const pageParam = searchParams.get('page' || 1);
   const sortParam = searchParams.get('sort');
 
-  const params = useParams();
-  const [select, setSelect] = useState('Popular');
+  const [select, setSelect] = useState('name');
   const { items, totalPages } = useSelector(getAllProducts);
   const [current, setCurrent] = useState(pageParam || 1);
+  const subcategoryParam = params.subcategory;
 
   useEffect(() => {
     if (pageParam) {
@@ -47,21 +48,25 @@ const Catalog = () => {
     if (sortParam) {
       setSelect(sortParam);
     } else {
-      setSelect('Popular');
+      setSelect('name');
     }
-  }, [sortParam]);
+  }, [searchParams, select, sortParam]);
 
   useEffect(() => {
     if (params.id !== undefined) {
       const fetchData = async () => {
         return await dispatch(
-          getSortetedCategory({ category: params.id, page: current }),
+          getSortetedCategory({
+            category: params.id,
+            page: current,
+            sort: select,
+          }),
         );
       };
 
       fetchData();
     }
-  }, [dispatch, params.id, current]);
+  }, [dispatch, params.id, current, select]);
 
   const navigateToPage = useCallback(
     updatedSearch => {
@@ -70,15 +75,30 @@ const Catalog = () => {
     [navigate, params.id],
   );
 
+  const navigateToPageSubcategory = useCallback(
+    updatedSearch => {
+      navigate(`/${params.id}/${params.subcategory}?${updatedSearch}`);
+    },
+    [navigate, params.id, params.subcategory],
+  );
+
   const previousPage = useCallback(() => {
     const prevPage = parseInt(pageParam);
     if (prevPage > 1) {
       setCurrent(prevPage - 1);
       searchParams.set('page', prevPage - 1);
       const updatedSearch = searchParams.toString();
-      navigateToPage(updatedSearch);
+      subcategoryParam
+        ? navigateToPageSubcategory(updatedSearch)
+        : navigateToPage(updatedSearch);
     }
-  }, [pageParam, searchParams, navigateToPage]);
+  }, [
+    pageParam,
+    searchParams,
+    subcategoryParam,
+    navigateToPageSubcategory,
+    navigateToPage,
+  ]);
 
   const nextPage = useCallback(() => {
     const nextPageNum = parseInt(pageParam);
@@ -86,18 +106,29 @@ const Catalog = () => {
       setCurrent(nextPageNum + 1);
       searchParams.set('page', nextPageNum + 1);
       const updatedSearch = searchParams.toString();
-      navigateToPage(updatedSearch);
+      subcategoryParam
+        ? navigateToPageSubcategory(updatedSearch)
+        : navigateToPage(updatedSearch);
     }
-  }, [pageParam, totalPages, searchParams, navigateToPage]);
+  }, [
+    pageParam,
+    totalPages,
+    searchParams,
+    subcategoryParam,
+    navigateToPageSubcategory,
+    navigateToPage,
+  ]);
 
   const paginate = useCallback(
     pageNumber => {
       setCurrent(pageNumber);
       searchParams.set('page', pageNumber);
       const updatedSearch = searchParams.toString();
-      navigateToPage(updatedSearch);
+      subcategoryParam
+        ? navigateToPageSubcategory(updatedSearch)
+        : navigateToPage(updatedSearch);
     },
-    [searchParams, navigateToPage],
+    [searchParams, subcategoryParam, navigateToPageSubcategory, navigateToPage],
   );
 
   const handleAddFavorite = useCallback(
@@ -120,8 +151,11 @@ const Catalog = () => {
     const selectedSort = e.target.value;
     setSelect(selectedSort);
     searchParams.set('sort', selectedSort);
+    searchParams.set('page', 1);
     const updatedSearch = searchParams.toString();
-    navigateToPage(updatedSearch);
+    subcategoryParam
+      ? navigateToPageSubcategory(updatedSearch)
+      : navigateToPage(updatedSearch);
   };
 
   const viewedProducts = useMemo(

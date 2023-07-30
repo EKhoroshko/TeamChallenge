@@ -20,7 +20,7 @@ const Layout = () => {
   useEffect(() => {
     if (params.id === undefined) {
       const fetchData = async () => {
-        await dispatch(getAll(1));
+        await dispatch(getAll({ page: 1, sort: 'name' }));
       };
 
       fetchData();

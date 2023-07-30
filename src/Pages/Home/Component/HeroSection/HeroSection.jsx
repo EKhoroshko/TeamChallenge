@@ -1,5 +1,4 @@
-import { NavLink } from 'react-router-dom';
-import { AppRoute } from '../../../../enum/app-route';
+import { Link } from 'react-scroll';
 import css from './HeroSection.module.css';
 
 const HeroSection = () => {
@@ -12,9 +11,9 @@ const HeroSection = () => {
             Online store for the sale of products for pets with delivery
             throughout Ukraine!
           </p>
-          <NavLink className={css.link} to={AppRoute.CATALOG}>
+          <Link className={css.link} to="catalog" smooth={true} duration={500}>
             Shop now
-          </NavLink>
+          </Link>
         </div>
       </div>
     </section>

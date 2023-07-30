@@ -1,7 +1,7 @@
 import propTypes from 'prop-types';
 import { useParams, Link } from 'react-router-dom';
 import { Categorys } from '../../../../enum/category';
-import DropdownFilter from '../DropdownFilter/DropdownFilter';
+import SelectFilter from '../SelectFilter/SelectFilter';
 import css from './FilterCategory.module.css';
 
 const FilterCategory = ({ select, handleChangeSelect }) => {
@@ -28,7 +28,7 @@ const FilterCategory = ({ select, handleChangeSelect }) => {
             );
           })}
       </div>
-      <DropdownFilter select={select} handleChangeSelect={handleChangeSelect} />
+      <SelectFilter select={select} handleChangeSelect={handleChangeSelect} />
     </>
   );
 };

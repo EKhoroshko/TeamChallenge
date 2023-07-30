@@ -2,7 +2,7 @@
   box-sizing: border-box;
   height: 370px;
   background-color: transparent;
-  max-width: 265px;
+  min-width: 265px;
   width: 100%;
   padding: 20px;
   border-radius: 12px;

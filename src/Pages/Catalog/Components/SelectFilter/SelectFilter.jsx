@@ -1,7 +1,7 @@
 import propTypes from 'prop-types';
-import css from './DropdownFilter.module.css';
+import css from './SelectFilter.module.css';
 
-const DropdownFilter = ({ select, handleChangeSelect }) => {
+const SelectFilter = ({ select, handleChangeSelect }) => {
   return (
     <select
       name="sorted"
@@ -10,18 +10,17 @@ const DropdownFilter = ({ select, handleChangeSelect }) => {
       className={css.select}
       onChange={handleChangeSelect}
     >
-      <option value="popular">Popular</option>
+      <option value="name">By name</option>
       <option value="cheap">Сheap at first</option>
       <option value="expensive">Expensive at first</option>
-      <option value="name">By name</option>
       <option value="new">New ones</option>
     </select>
   );
 };
 
-DropdownFilter.propTypes = {
+SelectFilter.propTypes = {
   select: propTypes.string,
   handleChangeSelect: propTypes.func,
 };
 
-export default DropdownFilter;
+export default SelectFilter;

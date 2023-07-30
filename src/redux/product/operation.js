@@ -2,7 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const getAll = createAsyncThunk(
   'product/getAll',
-  async (page = 1, { rejectWithValue }) => {
+  async ({ page, sort }, { rejectWithValue }) => {
+    console.log(page, sort);
     const options = {
       method: 'GET',
       headers: {
@@ -24,7 +25,8 @@ export const getAll = createAsyncThunk(
 
 export const getSortetedCategory = createAsyncThunk(
   'product/sortCategory',
-  async ({ category, page }, { rejectWithValue }) => {
+  async ({ category, page, sort }, { rejectWithValue }) => {
+    console.log(category, page, sort);
     const options = {
       method: 'GET',
       headers: {
