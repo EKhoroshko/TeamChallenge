@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { ReactComponent as Up } from '../../assets/dropdownArrow/up.svg';
 import { ReactComponent as Down } from '../../assets/dropdownArrow/down.svg';
 import CheckBox from '../CheckBox/CheckBox';
-import css from './DropDawn.module.css';
+import css from './DropDown.module.css';
 
 const DropDawn = ({ title }) => {
   const [openDropDown, setOpenDropDown] = useState(true);
