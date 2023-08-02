@@ -24,36 +24,30 @@ const LoginPage = () => {
     password: '',
     username: '',
   });
+  const [errors, setErrors] = useState([]);
 
-
-  { /* Начало валидации формы. Функция срабатывает по нажатию на кнопку */ }
 
   const schema = Joi.object().keys({
     password: Joi.string()
-        .min(5)
-        .max(100)
+        .min(8)
+        .max(25)
+        .pattern(new RegExp("[A-Z]{1,2}"))
         .required(),
     email: Joi.string()
         .min(5)
-        .max(200)
+        .max(25)
         .required()
   });
 
-  const [errors, setErrors] = useState([]);
-
   function validationField(schema, value, field) {
     const err = JSON.parse(JSON.stringify(errors));
-    console.log(err)
     const res = schema.validate(value);
-    console.log(res)
-    console.log(value)
     console.log(res)
     let errorsList = {};
     if (res.error) {
       res.error.details.forEach((error) => {
         errorsList[field] = error.message;
         console.log(error.message);
-        setTimeout(() => alert('Email and Password must be at least 5 characters long'), 0);
       });
       setErrors({
         ...errors,
@@ -66,27 +60,19 @@ const LoginPage = () => {
     }
   }
 
-  function handleChange1(email, password) {
+  function validationPayload(email, password) {
     const payload = {
       email,
       password
     };
-    validationField(schema, payload);
-    console.log(schema)
-  }
-
-
-  function validationPaylod(payload) {
-  handleChange1();
     const res = schema.validate(payload);
     if (res.error) {
       console.log(errors)
     } else {
       console.log('ok!')
     }
+    return payload;
   }
-
-  { /* Конец валидации формы */ }
 
 
   useEffect(() => {
@@ -102,16 +88,7 @@ const LoginPage = () => {
       ...prevForm,
       [name]: value,
     }));
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    submitUser(form);
-    setForm({
-      email: '',
-      password: '',
-      username: '',
-    });
+    validationField(schema, { [name]: value }, name);
   };
 
   const submitUser = useCallback(
@@ -129,7 +106,17 @@ const LoginPage = () => {
       }
     },
     [dispatch, value],
-  );
+  )
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    submitUser(validationPayload(form));
+    setForm({
+      email: '',
+      password: '',
+      username: '',
+    });
+  };
 
   const handleValue = e => {
     setValue(e.target.value);
@@ -182,7 +169,7 @@ const LoginPage = () => {
               value={form.password}
               onChange={handleChange}
             />
-            <button type="submit" className={css.btn} onClick={validationPaylod}>
+            <button type="submit" className={css.btn}>
               Логин
             </button>
           </form>
@@ -212,7 +199,7 @@ const LoginPage = () => {
               value={form.password}
               onChange={handleChange}
             />
-            <button type="submit" className={css.btn} onClick={validationPaylod}>
+            <button type="submit" className={css.btn}>
               Регистрация
             </button>
           </form>
