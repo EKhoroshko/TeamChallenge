@@ -76,7 +76,13 @@ const RecomCard = ({
           <div className={css.descrBox}>
             <p className={css.title}>{name}</p>
             <p className={css.descriptionCard}>{description}</p>
-            <p className={css.price}>${price}</p>
+            <p className={css.price}>
+              {' '}
+              {new Intl.NumberFormat('de-DE', {
+                style: 'currency',
+                currency: 'USD',
+              }).format(price)}
+            </p>
             <button className={css.btnBuy} onClick={handleAddToCart}>
               Add to cart
             </button>

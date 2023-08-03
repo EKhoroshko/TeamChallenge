@@ -83,6 +83,7 @@ const LoginPage = () => {
         <div className={css.btnBox}>
           <Button
             active={css.btnActive}
+            style={css.color}
             onClick={e => handleValue(e)}
             text="Логин"
             value="login"
@@ -90,6 +91,7 @@ const LoginPage = () => {
           />
           <Button
             active={css.btnActive}
+            style={css.color}
             onClick={e => handleValue(e)}
             text="Регистрация"
             value="reg"

@@ -2,13 +2,9 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { addToCart } from '../../helpers/addToCart';
+import { useFavoriteProduct } from '../../helpers/favoritproduct.js';
 import { getAllProducts } from '../../redux/product/selector';
 import { getSortetedCategory } from '../../redux/product/operation';
-import {
-  addToFavoriteProduct,
-  refreshToken,
-  deleteFavoriteProduct,
-} from '../../redux/user/operation';
 import { getUserToken, getLoadingUser } from '../../redux/user/selectors';
 import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb';
 import Box from './Components/Box/Box';
@@ -20,6 +16,7 @@ const Catalog = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
+  const { handleAddFavorite, handleDeletProduct } = useFavoriteProduct();
 
   const [searchParams] = useSearchParams();
   const pageParam = searchParams.get('page' || 1);
@@ -124,22 +121,6 @@ const Catalog = () => {
         : navigateToPage(updatedSearch);
     },
     [searchParams, subcategoryParam, navigateToPageSubcategory, navigateToPage],
-  );
-
-  const handleAddFavorite = useCallback(
-    async id => {
-      await dispatch(addToFavoriteProduct(id));
-      await dispatch(refreshToken());
-    },
-    [dispatch],
-  );
-
-  const handleDeletProduct = useCallback(
-    async id => {
-      await dispatch(deleteFavoriteProduct(id));
-      await dispatch(refreshToken());
-    },
-    [dispatch],
   );
 
   const handleChangeSelect = e => {
