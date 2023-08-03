@@ -17,7 +17,7 @@ const Category = () => {
   const displayedCategories = showAll ? category : category.slice(0, 4);
 
   return (
-    <section className={css.section}>
+    <section id="catalog" className={css.section}>
       <div className={css.container}>
         <div className={css.boxTitle}>
           <h3>Product categories</h3>

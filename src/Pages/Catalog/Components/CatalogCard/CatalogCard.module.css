@@ -3,6 +3,7 @@
   height: 370px;
   background-color: transparent;
   max-width: 265px;
+  min-width: 200px;
   width: 100%;
   padding: 20px;
   border-radius: 12px;

@@ -1,0 +1,21 @@
+.select {
+  position: relative;
+  display: inline-block;
+  border: 1px solid var(--accentCOlor);
+  padding: 10px 30px 10px 10px;
+  background-color: #fff;
+  border-radius: 12px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  background: url('../../../../assets/arrowDawn.svg');
+  background-repeat: no-repeat;
+  background-position: 90% 50%;
+  background-size: 12px;
+  cursor: pointer;
+}

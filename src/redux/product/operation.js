@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const getAll = createAsyncThunk(
   'product/getAll',
-  async (page = 1, { rejectWithValue }) => {
+  async ({ page }, { rejectWithValue }) => {
     const options = {
       method: 'GET',
       headers: {
@@ -22,9 +22,9 @@ export const getAll = createAsyncThunk(
   },
 );
 
-export const getSortetedCategory = createAsyncThunk(
-  'product/sortCategory',
-  async ({ category, page }, { rejectWithValue }) => {
+export const getProductByID = createAsyncThunk(
+  'product/getByID',
+  async (itemId, { rejectWithValue }) => {
     const options = {
       method: 'GET',
       headers: {
@@ -33,7 +33,29 @@ export const getSortetedCategory = createAsyncThunk(
     };
     try {
       const response = await fetch(
-        `https://us-central1-teamchalangestore.cloudfunctions.net/getAllItems?category=${category}&page=${page}`,
+        `https://us-central1-teamchalangestore.cloudfunctions.net/getItemById?itemId=${itemId}`,
+        options,
+      );
+      const sortCategory = await response.json();
+      return sortCategory;
+    } catch (error) {
+      return rejectWithValue(error.response.message);
+    }
+  },
+);
+
+export const getSortetedCategory = createAsyncThunk(
+  'product/sortCategory',
+  async ({ category, page, subcategory = '' }, { rejectWithValue }) => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    try {
+      const response = await fetch(
+        `https://us-central1-teamchalangestore.cloudfunctions.net/getAllItems?page=${page}&category=${category}&subcategory=${subcategory}`,
         options,
       );
       const sortCategory = await response.json();
