@@ -8,11 +8,17 @@ import css from './FilterPanel.module.css';
 const FilterPanel = ({ params }) => {
   console.log(params);
 
-  const fill = params.subcategory ? (
+  const filter = params.subcategory ? (
     <ul>
-      <DropDawn sub={params.subcategory} title="Brand" />
-      <InputRange maxPrice="5000" />
-      <DropDawn sub={params.subcategory} title="Type" />
+      <li className={css.item}>
+        <DropDawn sub={params.subcategory} title="Brand" />
+      </li>
+      <li className={css.itemRange}>
+        <InputRange maxPrice="5000" />
+      </li>
+      <li className={css.item}>
+        <DropDawn sub={params.subcategory} title="Type" />
+      </li>
     </ul>
   ) : (
     <>
@@ -30,7 +36,7 @@ const FilterPanel = ({ params }) => {
           Reset
         </button>
       </div>
-      <ul>{fill}</ul>
+      <ul>{filter}</ul>
     </aside>
   );
 };

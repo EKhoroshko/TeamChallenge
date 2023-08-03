@@ -9,7 +9,7 @@ const InputRange = ({ maxPrice }) => {
   const handleChange = e => setValue(e.target.value);
 
   return (
-    <li className={css.item}>
+    <>
       <label className={css.label} htmlFor="price">
         <datalist id="values" className={css.datalist}>
           <option className={css.optionZero} value="0" label="Price"></option>
@@ -33,7 +33,7 @@ const InputRange = ({ maxPrice }) => {
         />
       </label>
       <p className={css.current}>Current price: {value}</p>
-    </li>
+    </>
   );
 };
 

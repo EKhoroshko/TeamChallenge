@@ -37,3 +37,12 @@
 .btnReset:focus {
   color: var(--hoverColor);
 }
+
+.item {
+  width: 100%;
+}
+
+.itemRange {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}

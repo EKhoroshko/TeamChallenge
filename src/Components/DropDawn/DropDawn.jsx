@@ -12,10 +12,10 @@ const DropDawn = ({ title }) => {
     setOpenDropDown(!openDropDown);
   };
 
-  let type = 'Pounce';
+  let type = ['Pounce'];
 
   return (
-    <li className={css.item}>
+    <>
       <button type="button" onClick={toggleDropDown} className={css.btn}>
         <p className={css.title}>{title}</p>
         {openDropDown ? (
@@ -24,8 +24,14 @@ const DropDawn = ({ title }) => {
           <Down className={css.svg} />
         )}
       </button>
-      {openDropDown ? <CheckBox type={type} /> : null}
-    </li>
+      {openDropDown ? (
+        <ul>
+          {type.map(item => (
+            <CheckBox key={item} type={item} />
+          ))}
+        </ul>
+      ) : null}
+    </>
   );
 };
 

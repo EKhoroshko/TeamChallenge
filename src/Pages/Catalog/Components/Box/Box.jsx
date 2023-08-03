@@ -22,7 +22,7 @@ const Box = ({
   return (
     <section className={css.box}>
       <div className={css.container}>
-        <FilterPanel params={params} />
+        <FilterPanel params={params} select={select} />
         <Pagination
           products={products}
           addToCart={addToCart}

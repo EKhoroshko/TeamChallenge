@@ -28,7 +28,9 @@ const FilterCategory = ({ select, handleChangeSelect }) => {
             );
           })}
       </div>
-      <SelectFilter select={select} handleChangeSelect={handleChangeSelect} />
+      {params.subcategory ? (
+        <SelectFilter select={select} handleChangeSelect={handleChangeSelect} />
+      ) : null}
     </>
   );
 };

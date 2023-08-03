@@ -46,8 +46,7 @@ export const getProductByID = createAsyncThunk(
 
 export const getSortetedCategory = createAsyncThunk(
   'product/sortCategory',
-  async ({ category, page, sort }, { rejectWithValue }) => {
-    console.log(category, page, sort);
+  async ({ category, page, subcategory = '' }, { rejectWithValue }) => {
     const options = {
       method: 'GET',
       headers: {
@@ -56,7 +55,7 @@ export const getSortetedCategory = createAsyncThunk(
     };
     try {
       const response = await fetch(
-        `https://us-central1-teamchalangestore.cloudfunctions.net/getAllItems?page=${page}&sortBy=${sort}&category=${category}`,
+        `https://us-central1-teamchalangestore.cloudfunctions.net/getAllItems?page=${page}&category=${category}&subcategory=${subcategory}`,
         options,
       );
       const sortCategory = await response.json();
