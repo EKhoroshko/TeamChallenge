@@ -2,8 +2,6 @@ import propTypes from 'prop-types';
 import css from './HeroSection.module.css';
 
 const HeroSection = ({ product, itemId, addToCart }) => {
-  console.log(product);
-
   return (
     <section className={css.section}>
       <div className={css.container}>

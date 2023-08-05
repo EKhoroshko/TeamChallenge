@@ -137,7 +137,6 @@ const CatalogCard = ({
             <p className={css.descriptionCard}>{description}</p>
             <div className={css.buy}>
               <p className={css.price}>
-                {' '}
                 {new Intl.NumberFormat('de-DE', {
                   style: 'currency',
                   currency: 'USD',

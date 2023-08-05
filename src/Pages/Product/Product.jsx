@@ -2,7 +2,11 @@ import { useState, useEffect, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductByID } from '../../redux/product/operation';
-import { getIsLoadingProduct } from '../../redux/product/selector';
+import {
+  getIsLoadingProduct,
+  getProductById,
+} from '../../redux/product/selector';
+import { getLoadingUser } from '../../redux/user/selectors';
 import { addToCart } from '../../helpers/addToCart';
 import { useFavoriteProduct } from '../../helpers/favoritproduct';
 import { getUserToken } from '../../redux/user/selectors';
@@ -17,9 +21,11 @@ const Product = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const isLoading = useSelector(getIsLoadingProduct);
+  const isLoadingFavorite = useSelector(getLoadingUser);
   const token = useSelector(getUserToken);
+  const data = useSelector(getProductById);
   const { handleAddFavorite, handleDeletProduct } = useFavoriteProduct();
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState(data);
 
   useEffect(() => {
     if (params.itemId !== undefined) {
@@ -35,28 +41,25 @@ const Product = () => {
     <div>
       <BreadCrumb />
       <Suspense fallback={<Spinner />}>
-        {isLoading ? (
+        {isLoading || product === null ? (
           <div className={css.container}>
             <Spinner />
           </div>
         ) : (
           <>
             <HeroSection
-              product={product}
+              product={product.item}
               itemId={params.itemId}
               addToCart={addToCart}
             />
-            <DescriptionSection product={product} />
+            <DescriptionSection product={product.item} />
             <SimilarProduct
-              itemId={params.itemId}
-              category={params.category}
-              subcategory={params.subcategory}
               addToCart={addToCart}
               handleAddFavorite={handleAddFavorite}
               handleDeletProduct={handleDeletProduct}
-              isLoading={isLoading}
+              isLoading={isLoadingFavorite}
               token={token}
-              product={product}
+              product={product.similarItems}
             />
           </>
         )}

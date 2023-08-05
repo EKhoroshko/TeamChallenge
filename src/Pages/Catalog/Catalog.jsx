@@ -23,7 +23,8 @@ const Catalog = () => {
   const sortParam = searchParams.get('sort');
 
   const [select, setSelect] = useState('name');
-  const { items, totalPages } = useSelector(getAllProducts);
+  const { items, totalPages, maxPrice, availableTypes } =
+    useSelector(getAllProducts);
   const [current, setCurrent] = useState(pageParam || 1);
   const subcategoryParam = params.subcategory;
 
@@ -157,15 +158,19 @@ const Catalog = () => {
         isLoading={isLoading}
         select={select}
         handleChangeSelect={handleChangeSelect}
+        maxPrice={maxPrice}
+        availableTypes={availableTypes}
       />
-      <PreviosProduct
-        viewedProducts={viewedProducts}
-        addToCart={addToCart}
-        handleAddFavorite={handleAddFavorite}
-        handleDeletProduct={handleDeletProduct}
-        token={token}
-        isLoading={isLoading}
-      />
+      {viewedProducts.length !== 0 ? (
+        <PreviosProduct
+          viewedProducts={viewedProducts}
+          addToCart={addToCart}
+          handleAddFavorite={handleAddFavorite}
+          handleDeletProduct={handleDeletProduct}
+          token={token}
+          isLoading={isLoading}
+        />
+      ) : null}
     </>
   );
 };

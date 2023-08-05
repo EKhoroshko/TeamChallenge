@@ -19,3 +19,7 @@
   line-height: 19px;
   margin-left: 3px;
 }
+
+.label::first-letter {
+  text-transform: uppercase;
+}

@@ -18,11 +18,18 @@ const Box = ({
   isLoading,
   select,
   handleChangeSelect,
+  maxPrice,
+  availableTypes,
 }) => {
   return (
     <section className={css.box}>
       <div className={css.container}>
-        <FilterPanel params={params} select={select} />
+        <FilterPanel
+          params={params}
+          select={select}
+          maxPrice={maxPrice}
+          availableTypes={availableTypes}
+        />
         <Pagination
           products={products}
           addToCart={addToCart}
@@ -58,6 +65,8 @@ Box.propTypes = {
   isLoading: propTypes.bool,
   select: propTypes.string,
   handleChangeSelect: propTypes.func,
+  maxPrice: propTypes.number,
+  availableTypes: propTypes.array,
 };
 
 export default Box;
