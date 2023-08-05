@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Joi from 'joi';
 import { ToastContainer } from 'react-toastify';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
@@ -9,9 +10,6 @@ import { loginUser, registrationUser } from '../../redux/user/operation';
 import { getLoadingUser, getUser } from '../../redux/user/selectors';
 import 'react-toastify/dist/ReactToastify.css';
 import css from './LoginPage.module.css';
-import Joi from "joi";
-
-
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -26,55 +24,50 @@ const LoginPage = () => {
   });
   const [errors, setErrors] = useState([]);
 
+  const emailRegex = new RegExp(
+    '^([a-z0-9_-]+.)*[a-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$',
+  );
 
-  const schema = Joi.object().keys({
+  const schemaLogin = Joi.object().keys({
+    email: Joi.string().min(5).pattern(emailRegex).required(),
     password: Joi.string()
-        .min(8)
-        .max(25)
-        .pattern(new RegExp("[A-Z]{1,2}"))
-        .required(),
-    email: Joi.string()
-        .min(5)
-        .max(25)
-        .required()
+      .min(2)
+      .max(25)
+      .pattern(new RegExp('[A-Z]{1,2}'))
+      .required(),
   });
 
-  function validationField(schema, value, field) {
-    const err = JSON.parse(JSON.stringify(errors));
-    const res = schema.validate(value);
-    console.log(res)
-    let errorsList = {};
-    if (res.error) {
-      res.error.details.forEach((error) => {
-        errorsList[field] = error.message;
-        console.log(error.message);
-      });
-      setErrors({
-        ...errors,
-        ...errorsList
-      });
-    }
-    else {
-      delete err[field];
-      setErrors(err);
-    }
-  }
+  const schemaRegistration = Joi.object().keys({
+    email: Joi.string().min(5).pattern(emailRegex).required(),
+    password: Joi.string()
+      .min(2)
+      .max(25)
+      .pattern(new RegExp('[A-Z]{1,2}'))
+      .required(),
+    username: Joi.string().min(3).trim().required(),
+  });
 
-
-  function validationPayload(email, password) {
-    const payload = {
-      email,
-      password
-    };
+  const valid = useCallback((schema, payload) => {
     const res = schema.validate(payload);
     if (res.error) {
-      console.log(errors)
+      return setErrors(res.error);
     } else {
-      console.log('ok!')
+      return payload;
     }
-    return payload;
-  }
+  }, []);
 
+  const validationPayload = useCallback(
+    payload => {
+      const { email, password } = payload;
+      const login = { email, password };
+      if (value === 'login') {
+        return valid(schemaLogin, login);
+      } else {
+        return valid(schemaRegistration, payload);
+      }
+    },
+    [schemaLogin, schemaRegistration, valid, value],
+  );
 
   useEffect(() => {
     if (user.token) {
@@ -89,7 +82,6 @@ const LoginPage = () => {
       ...prevForm,
       [name]: value,
     }));
-    validationField(schema, { [name]: value }, name);
   };
 
   const submitUser = useCallback(
@@ -107,16 +99,18 @@ const LoginPage = () => {
       }
     },
     [dispatch, value],
-  )
+  );
 
   const handleSubmit = e => {
     e.preventDefault();
     submitUser(validationPayload(form));
-    setForm({
-      email: '',
-      password: '',
-      username: '',
-    });
+    if (!errors) {
+      setForm({
+        email: '',
+        password: '',
+        username: '',
+      });
+    }
   };
 
   const handleValue = e => {
@@ -136,7 +130,6 @@ const LoginPage = () => {
       {loader}
       <div className={css.box}>
         <div className={css.btnBox}>
-
           <Button
             active={css.btnActive}
             onClick={e => handleValue(e)}
