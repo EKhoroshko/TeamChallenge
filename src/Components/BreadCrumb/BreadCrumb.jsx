@@ -1,13 +1,17 @@
+import propTypes from 'prop-types';
 import { NavLink, useLocation } from 'react-router-dom';
 import { ReactComponent as Slash } from '../../assets/slash.svg';
 import { AppRoute } from '../../enum/app-route';
 import css from './BreadCrumb.module.css';
 
-const BreadCrumb = () => {
+const BreadCrumb = ({ way }) => {
   let location = useLocation();
   const pathSegments = location.pathname
     .split('/')
-    .filter(segment => segment !== '');
+    .filter(segment => segment !== '')
+    .filter(segment => segment !== way);
+
+  console.log(pathSegments);
 
   const breadcrumbs = pathSegments.map((segment, index) => {
     const url = `/${pathSegments.slice(0, index + 1).join('/')}`;
@@ -38,6 +42,10 @@ const BreadCrumb = () => {
       </div>
     </section>
   );
+};
+
+BreadCrumb.propTypes = {
+  way: propTypes.string,
 };
 
 export default BreadCrumb;

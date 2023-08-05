@@ -39,7 +39,7 @@ const Product = () => {
 
   return (
     <div>
-      <BreadCrumb />
+      <BreadCrumb way={params.itemId} />
       <Suspense fallback={<Spinner />}>
         {isLoading || product === null ? (
           <div className={css.container}>

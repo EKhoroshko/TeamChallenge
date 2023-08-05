@@ -10,8 +10,6 @@ const SimilarProduct = ({
   token,
   product,
 }) => {
-  console.log('product', product);
-
   return (
     <>
       {product.length !== 0 ? (
