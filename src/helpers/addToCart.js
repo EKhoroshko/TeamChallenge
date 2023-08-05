@@ -1,3 +1,6 @@
+import { toastAction } from '../enum/toastAction';
+import { toast } from 'react-toastify';
+
 export const addToCart = (item, quantity = 1) => {
   const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
   const cheackProduct = cartItems.find(
@@ -10,4 +13,5 @@ export const addToCart = (item, quantity = 1) => {
   }
 
   localStorage.setItem('cart', JSON.stringify(cartItems));
+  toast.success('Product add to cart', toastAction);
 };

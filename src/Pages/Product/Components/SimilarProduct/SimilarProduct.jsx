@@ -17,7 +17,6 @@ const SimilarProduct = ({
       <div className={css.container}>
         <h3 className={css.title}>SimilarProduct</h3>
         <ul className={css.list}>
-          list similar Product
           <CatalogCard
             itemId={itemId}
             category={category}

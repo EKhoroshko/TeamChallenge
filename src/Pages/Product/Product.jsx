@@ -11,6 +11,7 @@ import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb';
 import HeroSection from './Components/HeroSection/HeroSection';
 import DescriptionSection from './Components/DescriptionSection/DescriptionSection';
 import SimilarProduct from './Components/SimilarProduct/SimilarProduct';
+import css from './Product.module.css';
 
 const Product = () => {
   const params = useParams();
@@ -35,7 +36,9 @@ const Product = () => {
       <BreadCrumb />
       <Suspense fallback={<Spinner />}>
         {isLoading ? (
-          <Spinner />
+          <div className={css.container}>
+            <Spinner />
+          </div>
         ) : (
           <>
             <HeroSection
@@ -53,6 +56,7 @@ const Product = () => {
               handleDeletProduct={handleDeletProduct}
               isLoading={isLoading}
               token={token}
+              product={product}
             />
           </>
         )}
