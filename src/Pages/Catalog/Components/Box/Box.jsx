@@ -20,6 +20,8 @@ const Box = ({
   handleChangeSelect,
   maxPrice,
   availableTypes,
+  availableBrands,
+  availableSorts,
 }) => {
   return (
     <section className={css.box}>
@@ -29,6 +31,7 @@ const Box = ({
           select={select}
           maxPrice={maxPrice}
           availableTypes={availableTypes}
+          availableBrands={availableBrands}
         />
         <Pagination
           products={products}
@@ -44,6 +47,7 @@ const Box = ({
           isLoading={isLoading}
           select={select}
           handleChangeSelect={handleChangeSelect}
+          availableSorts={availableSorts}
         />
       </div>
     </section>
@@ -67,6 +71,8 @@ Box.propTypes = {
   handleChangeSelect: propTypes.func,
   maxPrice: propTypes.number,
   availableTypes: propTypes.array,
+  availableBrands: propTypes.array,
+  availableSorts: propTypes.array,
 };
 
 export default Box;

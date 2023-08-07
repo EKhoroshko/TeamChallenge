@@ -11,8 +11,6 @@ const BreadCrumb = ({ way }) => {
     .filter(segment => segment !== '')
     .filter(segment => segment !== way);
 
-  console.log(pathSegments);
-
   const breadcrumbs = pathSegments.map((segment, index) => {
     const url = `/${pathSegments.slice(0, index + 1).join('/')}`;
     return {

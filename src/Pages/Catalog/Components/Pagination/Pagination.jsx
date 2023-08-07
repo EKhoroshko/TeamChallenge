@@ -22,6 +22,7 @@ const Pagination = ({
   isLoading,
   select,
   handleChangeSelect,
+  availableSorts,
 }) => {
   const isLoadingProduct = useSelector(getIsLoadingProduct);
 
@@ -71,6 +72,7 @@ const Pagination = ({
         <FilterCategory
           select={select}
           handleChangeSelect={handleChangeSelect}
+          availableSorts={availableSorts}
         />
       </div>
       <ul className={css.list}>
@@ -103,6 +105,7 @@ CatalogCard.propTypes = {
   isLoading: propTypes.bool,
   select: propTypes.string,
   handleChangeSelect: propTypes.func,
+  availableSorts: propTypes.array,
 };
 
 export default Pagination;

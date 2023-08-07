@@ -1,7 +1,7 @@
 import propTypes from 'prop-types';
 import css from './SelectFilter.module.css';
 
-const SelectFilter = ({ select, handleChangeSelect }) => {
+const SelectFilter = ({ select, handleChangeSelect, availableSorts }) => {
   return (
     <select
       name="sorted"
@@ -10,10 +10,13 @@ const SelectFilter = ({ select, handleChangeSelect }) => {
       className={css.select}
       onChange={handleChangeSelect}
     >
-      <option value="name">By name</option>
-      <option value="desc">Сheap at first</option>
-      <option value="asc">Expensive at first</option>
-      <option value="created_at">New ones</option>
+      {availableSorts !== undefined
+        ? availableSorts.map(item => (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          ))
+        : null}
     </select>
   );
 };
@@ -21,6 +24,7 @@ const SelectFilter = ({ select, handleChangeSelect }) => {
 SelectFilter.propTypes = {
   select: propTypes.string,
   handleChangeSelect: propTypes.func,
+  availableSorts: propTypes.array,
 };
 
 export default SelectFilter;
