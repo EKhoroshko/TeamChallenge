@@ -70,6 +70,7 @@ const Catalog = () => {
   const navigateToPage = useCallback(
     updatedSearch => {
       navigate(`/${params.id}?${updatedSearch}`);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     },
     [navigate, params.id],
   );
@@ -77,6 +78,7 @@ const Catalog = () => {
   const navigateToPageSubcategory = useCallback(
     updatedSearch => {
       navigate(`/${params.id}/${params.subcategory}?${updatedSearch}`);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     },
     [navigate, params.id, params.subcategory],
   );

@@ -54,3 +54,46 @@
   font-size: 20px;
   line-height: 24px;
 }
+
+.buttonBox{
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.btn{
+  color: var(--accentCOlor);
+  background-color: transparent;
+  outline: none;
+  border: none;
+  padding: 5px 10px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.quantity{
+  color: var(--accentCOlor);
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 22px;
+}
+
+.btnBuy {
+  padding: 14px 54px;
+  outline: none;
+  border: 1px solid var(--backgroundButton);
+  border-radius: 12px;
+  background-color: var(--backgroundButton);
+  color: var(--accentCOlor);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  cursor: pointer;
+}
+
+.btnBuy:hover {
+  color: var(--accentCOlor);
+  border: 1px solid var(--accentCOlor);
+}

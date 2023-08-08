@@ -63,7 +63,7 @@ const CatalogCard = ({
 
   const handleAddToCart = e => {
     e.preventDefault();
-    addToCart({ name, price, itemId });
+    addToCart({ name, price, itemId, image });
   };
 
   const onAddToFavorite = e => {
