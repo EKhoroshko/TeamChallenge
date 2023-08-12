@@ -10,6 +10,8 @@ import { loginUser, registrationUser } from '../../redux/user/operation';
 import { getLoadingUser, getUser } from '../../redux/user/selectors';
 import 'react-toastify/dist/ReactToastify.css';
 import css from './LoginPage.module.css';
+import imgGoogle from './../../assets/loginForm/sign-in-google.svg';
+import imgFacebook from './../../assets/loginForm/sign-in-facebook.svg';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -23,21 +25,18 @@ const LoginPage = () => {
     username: '',
   });
   const [errors, setErrors] = useState({});
-  {/*const [getError, setGetError] = useState({
-    email: '',
-    password: ''
-  });*/}
 
   const emailRegex = new RegExp(
       '^([a-z0-9_-]+.)*[a-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$',
   );
 
   const schemaLogin = Joi.object().keys({
-    email: Joi.string().min(5)
+    email: Joi.string()
+        .min(5)
         .pattern(emailRegex)
         .messages({
-          'string.min': 'Довжина електронної адреси не менш ніж 5 символів',
-          'string.pattern.base': 'Електронна адреса має бути у відповідному форматі'
+          'string.min': 'Email contains min 5 characters',
+          'string.pattern.base': 'Email contains @ and 2-6 characters after dot, latin letters'
         })
         .required(),
     password: Joi.string()
@@ -45,8 +44,8 @@ const LoginPage = () => {
         .max(25)
         .pattern(new RegExp('[A-Z]{1,2}'))
         .messages({
-          'string.min': 'Довжина паролю не менш ніж 2 символи',
-          'string.pattern.base': 'Пароль має містити одну велику літеру'
+          'string.min': 'Password contains min 2 characters',
+          'string.pattern.base': 'Password contains one uppercase letter, latin'
         })
         .required(),
   });
@@ -56,8 +55,8 @@ const LoginPage = () => {
         .min(5)
         .pattern(emailRegex)
         .messages({
-          'string.min': 'Довжина електронної адреси не менш ніж 5 символів',
-          'string.pattern.base': 'Електронна адреса має бути у відповідному форматі'
+          'string.min': 'Email contains min 5 characters',
+          'string.pattern.base': 'Email contains @ and 2-6 characters after dot, latin letters'
         })
         .required(),
     password: Joi.string()
@@ -65,15 +64,15 @@ const LoginPage = () => {
         .max(25)
         .pattern(new RegExp('[A-Z]{1,2}'))
         .messages({
-          'string.min': 'Довжина паролю не менш ніж 2 символів',
-          'string.pattern.base': 'Пароль має містити одну велику літеру'
+          'string.min': 'Password contains min 2 characters',
+          'string.pattern.base': 'Password contains one uppercase letter, latin'
         })
         .required(),
     username: Joi.string()
         .min(3)
         .trim()
         .messages({
-          'string.min': 'Імя має містити не менш ніж 3 символи',
+          'string.min': 'Name contains min 3 characters',
         })
         .required(),
   });
@@ -81,14 +80,16 @@ const LoginPage = () => {
   const valid = useCallback((schema, payload) => {
     const res = schema.validate(payload)
     if (res.error) {
-      alert(res.error);
-      return setErrors(res.error);
+        {/* for (let item of res.error.details) {
+                errors[item.path[0]] = item.message;
+            } */}
+        return setErrors(res.error);
 
     } else {
       return payload;
     }
   }, []);
-  console.log(errors)
+
   const validationPayload = useCallback(
       payload => {
         const { email, password } = payload;
@@ -163,81 +164,120 @@ const LoginPage = () => {
       <div className={css.container}>
         {loader}
         <div className={css.box}>
-          <div className={css.btnBox}>
-            <Button
-                active={css.btnActive}
-                onClick={e => handleValue(e)}
-                text="Логин"
-                value="login"
-                name={value}
-            />
-            <Button
-                active={css.btnActive}
-                onClick={e => handleValue(e)}
-                text="Регистрация"
-                value="reg"
-                name={value}
-            />
-          </div>
-          {value === 'login' ? (
-              <form method="post" onSubmit={handleSubmit} className={css.form}>
-                <Input
-                    className={css.input}
-                    placeholder={'Введите email'}
-                    type={'text'}
-                    name={'email'}
-                    value={form.email}
-                    onChange={handleChange}
-                />
+            <div>
+                <div>
+                    <div className={css.btnBox}>
+                        <Button
+                            active={css.btnActive}
+                            onClick={e => handleValue(e)}
+                            text="Sign In"
+                            value="login"
+                            name={value}
+                        />
+                        <Button
+                            active={css.btnActive}
+                            onClick={e => handleValue(e)}
+                            text="Registration"
+                            value="registration"
+                            name={value}
+                        />
+                    </div>
+                    <div>
+                        {value === 'login' ? (
+                            <form method="post" onSubmit={handleSubmit} className={css.form}>
+                                <label className={css.label}>Email</label>
 
-                <Input
-                    className={css.input}
-                    placeholder={'Пароль'}
-                    type={'password'}
-                    name={'password'}
-                    value={form.password}
-                    onChange={handleChange}
-                />
+                                {errors && errors.message === 'Email contains min 5 characters' || errors && errors.message === 'Email contains @ and 2-6 characters after dot, latin letters' ? <div className={css.errorMessage}>{errors.message}</div> : null}
 
-                <button type="submit" className={css.btn}>
-                  Логин
-                </button>
-              </form>
-          ) : (
-              <form method="post" onSubmit={handleSubmit} className={css.form}>
+                                <Input
+                                    className={css.input}
+                                    placeholder={'username@gmail.com'}
+                                    type={'text'}
+                                    name={'email'}
+                                    value={form.email}
+                                    onChange={handleChange}
+                                />
 
-                <Input
-                    className={css.input}
-                    placeholder={'Введите email'}
-                    type={'text'}
-                    name={'email'}
-                    value={form.email}
-                    onChange={handleChange}
-                />
+                                <label className={css.label}>Password</label>
 
-                <Input
-                    className={css.input}
-                    placeholder={'Имя'}
-                    type={'text'}
-                    name={'username'}
-                    value={form.username}
-                    onChange={handleChange}
-                />
+                                {errors && errors.message === 'Password contains min 2 characters' || errors && errors.message === 'Password contains one uppercase letter, latin' ? <div className={css.errorMessage}>{errors.message}</div> : null}
 
-                <Input
-                    className={css.input}
-                    placeholder={'Пароль'}
-                    type={'password'}
-                    name={'password'}
-                    value={form.password}
-                    onChange={handleChange}
-                />
+                                <Input
+                                    className={`${css.input} ${css.inputPassword}`}
+                                    placeholder={'Password'}
+                                    type={'password'}
+                                    name={'password'}
+                                    value={form.password}
+                                    onChange={handleChange}
+                                />
+                                <div className={css.forgotPassword}>
+                                    <p>Forgot your password?</p>
+                                </div>
 
-                <button type="submit" className={css.btn}>
-                  Регистрация
-                </button>
-              </form>
-          )}
+                                <button type="submit" className={css.btn}>
+                                    Sign In
+                                </button>
+                            </form>
+                        ) : (
+                            <form method="post" onSubmit={handleSubmit} className={css.form}>
+
+                                <label className={css.label}>Email</label>
+
+                                {errors && errors.message === 'Email contains min 5 characters' || errors && errors.message === 'Email contains @ and 2-6 characters after dot, latin letters' ? <div className={css.errorMessage}>{errors.message}</div> : null}
+
+
+                                <Input
+                                    className={css.input}
+                                    placeholder={'username@gmail.com'}
+                                    type={'text'}
+                                    name={'email'}
+                                    value={form.email}
+                                    onChange={handleChange}
+                                />
+
+                                <label className={css.label}>Name</label>
+
+                                {errors && errors.message === 'Name contains min 3 characters' ? <div className={css.errorMessage}>{errors.message}</div> : null}
+
+                                <Input
+                                    className={css.input}
+                                    placeholder={'Name'}
+                                    type={'text'}
+                                    name={'username'}
+                                    value={form.username}
+                                    onChange={handleChange}
+                                />
+
+                                <label className={css.label}>Password</label>
+
+                                {errors && errors.message === 'Password contains min 2 characters' || errors && errors.message === 'Password contains one uppercase letter, latin' ? <div className={css.errorMessage}>{errors.message}</div> : null}
+
+                                <Input
+                                    className={`${css.input} ${css.inputPassword}`}
+                                    placeholder={'Password'}
+                                    type={'password'}
+                                    name={'password'}
+                                    value={form.password}
+                                    onChange={handleChange}
+                                />
+
+                                <button type="submit" className={css.btn}>
+                                    Registration
+                                </button>
+                            </form>
+                        )}
+                    </div>
+                </div>
+                <div>
+                    <div className={css.continueWithMedia}>
+                        <p>or continue with</p>
+                    </div>
+                    <div className={css.signSocialMediaFlex}>
+                        <div className={css.googleFacebook}><img src={imgGoogle} alt="img"/></div>
+                        <div className={css.googleFacebook}><img src={imgFacebook} alt="img"/></div>
+                    </div>
+                </div>
+            </div>
         </div>
         <ToastContainer />
       </div>
