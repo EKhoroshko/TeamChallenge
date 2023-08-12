@@ -1,13 +1,7 @@
-import { useState } from 'react';
 import propTypes from 'prop-types';
 import css from './InputRange.module.css';
 
-// eslint-disable-next-line react/prop-types
-const InputRange = ({ maxPrice }) => {
-  const [value, setValue] = useState(0);
-
-  const handleChange = e => setValue(e.target.value);
-
+const InputRange = ({ maxPrice, handleChangeRange, range }) => {
   return (
     <>
       <label className={css.label} htmlFor="price">
@@ -28,17 +22,19 @@ const InputRange = ({ maxPrice }) => {
           min="0"
           step="1"
           max={maxPrice}
-          value={value}
-          onChange={handleChange}
+          value={range}
+          onChange={handleChangeRange}
         />
       </label>
-      <p className={css.current}>Current price: {value}</p>
+      <p className={css.current}>Current price: {range}</p>
     </>
   );
 };
 
 InputRange.propTypes = {
   params: propTypes.string,
+  handleChangeRange: propTypes.func,
+  range: propTypes.string,
 };
 
 export default InputRange;

@@ -5,27 +5,40 @@ import DropDawn from '../../../../Components/DropDawn/DropDawn';
 import InputRange from '../../../../Components/InputRange/InputRange';
 import css from './FilterPanel.module.css';
 
-const FilterPanel = ({ params, maxPrice, availableTypes, availableBrands }) => {
+const FilterPanel = ({
+  params,
+  maxPrice,
+  availableTypes,
+  availableBrands,
+  handleChangeBrand,
+  handleChangeType,
+  handleChangeRange,
+  range,
+}) => {
   const filter = params.subcategory ? (
     <ul>
       <li className={css.item}>
         {availableBrands !== undefined ? (
           <DropDawn
-            sub={params.subcategory}
             title="Brand"
             available={availableBrands}
+            handleChange={handleChangeBrand}
           />
         ) : null}
       </li>
       <li className={css.itemRange}>
-        <InputRange maxPrice={maxPrice} />
+        <InputRange
+          maxPrice={maxPrice}
+          handleChangeRange={handleChangeRange}
+          range={range}
+        />
       </li>
       <li className={css.item}>
         {availableTypes !== undefined ? (
           <DropDawn
-            sub={params.subcategory}
             title="Type"
             available={availableTypes}
+            handleChange={handleChangeType}
           />
         ) : null}
       </li>
@@ -56,6 +69,9 @@ FilterPanel.propTypes = {
   maxPrice: propTypes.number,
   availableTypes: propTypes.array,
   availableBrands: propTypes.array,
+  handleChangeBrand: propTypes.func,
+  handleChangeType: propTypes.func,
+  range: propTypes.string,
 };
 
 export default FilterPanel;

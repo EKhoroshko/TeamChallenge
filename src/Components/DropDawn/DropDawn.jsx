@@ -5,7 +5,7 @@ import { ReactComponent as Down } from '../../assets/dropdownArrow/down.svg';
 import CheckBox from '../CheckBox/CheckBox';
 import css from './DropDown.module.css';
 
-const DropDawn = ({ title, available }) => {
+const DropDawn = ({ title, available, handleChange }) => {
   const [openDropDown, setOpenDropDown] = useState(true);
 
   const toggleDropDown = () => {
@@ -25,7 +25,9 @@ const DropDawn = ({ title, available }) => {
       {openDropDown ? (
         <ul>
           {available &&
-            available.map(item => <CheckBox key={item} type={item} />)}
+            available.map(item => (
+              <CheckBox key={item} type={item} handleChange={handleChange} />
+            ))}
         </ul>
       ) : null}
     </>
@@ -35,6 +37,7 @@ const DropDawn = ({ title, available }) => {
 DropDawn.propTypes = {
   title: propTypes.string,
   available: propTypes.array,
+  handleChange: propTypes.func,
 };
 
 export default DropDawn;

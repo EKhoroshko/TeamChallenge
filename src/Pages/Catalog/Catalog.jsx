@@ -21,8 +21,17 @@ const Catalog = () => {
   const [searchParams] = useSearchParams();
   const pageParam = searchParams.get('page' || 1);
   const sortParam = searchParams.get('sort');
+  const brandParam = searchParams.get('brand');
 
-  const [select, setSelect] = useState('newest');
+  const [select, setSelect] = useState(sortParam || '');
+  const [brand, setBrand] = useState([]);
+  const [type, setType] = useState([]);
+  const [range, setRange] = useState(0);
+
+  console.log('brand', brand);
+  console.log('type', type);
+  console.log('range', range);
+
   const {
     items,
     totalPages,
@@ -45,10 +54,8 @@ const Catalog = () => {
   useEffect(() => {
     if (sortParam) {
       setSelect(sortParam);
-    } else {
-      setSelect('name');
     }
-  }, [searchParams, select, sortParam]);
+  }, [sortParam]);
 
   useEffect(() => {
     if (params.id !== undefined) {
@@ -66,6 +73,24 @@ const Catalog = () => {
       fetchData();
     }
   }, [dispatch, params.id, current, select, params.subcategory]);
+
+  const handleChangeBrand = e => {
+    const value = e.target.value;
+    if (brand.includes(value)) {
+      setBrand(brand.filter(item => item !== value));
+    } else {
+      setBrand([...brand, value]);
+    }
+  };
+
+  const handleChangeType = e => {
+    const value = e.target.value;
+    if (type.includes(value)) {
+      setType(type.filter(item => item !== value));
+    } else {
+      setType([...type, value]);
+    }
+  };
 
   const navigateToPage = useCallback(
     updatedSearch => {
@@ -143,6 +168,12 @@ const Catalog = () => {
       : navigateToPage(updatedSearch);
   };
 
+  //range
+
+  const handleChangeRange = e => {
+    setRange(e.target.value);
+  };
+
   const viewedProducts = useMemo(
     () => JSON.parse(localStorage.getItem('viewedProducts')) || [],
     [],
@@ -170,6 +201,10 @@ const Catalog = () => {
         availableTypes={availableTypes}
         availableBrands={availableBrands}
         availableSorts={availableSorts}
+        handleChangeBrand={handleChangeBrand}
+        handleChangeType={handleChangeType}
+        handleChangeRange={handleChangeRange}
+        range={range}
       />
       {viewedProducts.length !== 0 ? (
         <PreviosProduct
