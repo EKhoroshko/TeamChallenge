@@ -18,16 +18,21 @@ const Catalog = () => {
   const params = useParams();
   const { handleAddFavorite, handleDeletProduct } = useFavoriteProduct();
 
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const pageParam = searchParams.get('page' || 1);
 
   const [select, setSelect] = useState(searchParams.get('sort') || '');
   const [range, setRange] = useState(searchParams.get('range') || 0);
-  const [brand, setBrand] = useState(searchParams.get('brand') || []);
-  const [type, setType] = useState([]);
+  const [brand, setBrand] = useState(initial('brand'));
+  const [type, setType] = useState(initial('type'));
 
-  console.log('brand', brand);
-  console.log('type', type);
+  function initial(type) {
+    if (searchParams.get(type)) {
+      return searchParams.get(type).split(',');
+    } else {
+      return [];
+    }
+  }
 
   const {
     items,
@@ -58,13 +63,25 @@ const Catalog = () => {
             sort: select,
             subcategory: params.subcategory,
             range: range,
+            brand: brand,
+            type: type,
           }),
         );
       };
 
       fetchData();
     }
-  }, [dispatch, params.id, current, select, params.subcategory, range]);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [
+    dispatch,
+    params.id,
+    current,
+    select,
+    params.subcategory,
+    range,
+    brand,
+    type,
+  ]);
 
   const handleChangeBrand = e => {
     const value = e.target.value;
@@ -87,7 +104,6 @@ const Catalog = () => {
   const navigateToPage = useCallback(
     updatedSearch => {
       navigate(`/${params.id}?${updatedSearch}`);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     },
     [navigate, params.id],
   );
@@ -95,7 +111,6 @@ const Catalog = () => {
   const navigateToPageSubcategory = useCallback(
     updatedSearch => {
       navigate(`/${params.id}/${params.subcategory}?${updatedSearch}`);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     },
     [navigate, params.id, params.subcategory],
   );
@@ -149,16 +164,68 @@ const Catalog = () => {
     [searchParams, subcategoryParam, navigateToPageSubcategory, navigateToPage],
   );
 
-  const handleChangeFilterSelectRange = (key, value) => {
-    searchParams.set(key, value);
-    searchParams.set('page', 1);
-    const updatedSearch = searchParams.toString();
-    navigateToPageSubcategory(updatedSearch);
-    if (key === 'sort') {
-      setSelect(value);
-    } else if (key === 'range') {
-      setRange(Number(value));
+  const handleChangeFilterSelectRange = useCallback(
+    (key, value) => {
+      searchParams.set(key, value);
+      searchParams.set('page', 1);
+      const updatedSearch = searchParams.toString();
+      subcategoryParam
+        ? navigateToPageSubcategory(updatedSearch)
+        : navigateToPage(updatedSearch);
+      if (key === 'sort') {
+        setSelect(value);
+      } else if (key === 'range') {
+        setRange(Number(value));
+      }
+    },
+    [searchParams, subcategoryParam, navigateToPageSubcategory, navigateToPage],
+  );
+
+  useEffect(() => {
+    if (brand.length !== 0) {
+      searchParams.set('brand', brand);
+      searchParams.set('page', 1);
+      setSearchParams(searchParams);
+      navigateToPageSubcategory(searchParams);
+    } else {
+      searchParams.delete('brand');
+      setSearchParams(searchParams);
     }
+  }, [
+    brand,
+    navigateToPage,
+    navigateToPageSubcategory,
+    searchParams,
+    setSearchParams,
+    subcategoryParam,
+  ]);
+
+  useEffect(() => {
+    if (type.length !== 0) {
+      searchParams.set('type', type);
+      searchParams.set('page', 1);
+      setSearchParams(searchParams);
+      navigateToPageSubcategory(searchParams);
+    } else {
+      searchParams.delete('type');
+      setSearchParams(searchParams);
+    }
+  }, [
+    type,
+    navigateToPageSubcategory,
+    searchParams,
+    setSearchParams,
+    subcategoryParam,
+  ]);
+
+  const handleResetFilter = () => {
+    setBrand([]);
+    setType([]);
+    setRange(0);
+    searchParams.delete('brand');
+    searchParams.delete('type');
+    searchParams.delete('range');
+    setSearchParams(searchParams);
   };
 
   const viewedProducts = useMemo(
@@ -168,7 +235,7 @@ const Catalog = () => {
 
   return (
     <>
-      <BreadCrumb />
+      <BreadCrumb handleResetFilter={handleResetFilter} />
       <Box
         addToCart={addToCart}
         handleAddFavorite={handleAddFavorite}
@@ -191,6 +258,7 @@ const Catalog = () => {
         handleChangeType={handleChangeType}
         handleChangeFilterSelectRange={handleChangeFilterSelectRange}
         range={range}
+        handleResetFilter={handleResetFilter}
       />
       {viewedProducts.length !== 0 ? (
         <PreviosProduct

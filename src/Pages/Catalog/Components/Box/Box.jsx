@@ -25,6 +25,7 @@ const Box = ({
   handleChangeType,
   handleChangeFilterSelectRange,
   range,
+  handleResetFilter,
 }) => {
   return (
     <section className={css.box}>
@@ -39,6 +40,7 @@ const Box = ({
           handleChangeType={handleChangeType}
           handleChangeFilterSelectRange={handleChangeFilterSelectRange}
           range={range}
+          handleResetFilter={handleResetFilter}
         />
         <Pagination
           products={products}
@@ -55,6 +57,7 @@ const Box = ({
           select={select}
           handleChangeFilterSelectRange={handleChangeFilterSelectRange}
           availableSorts={availableSorts}
+          handleResetFilter={handleResetFilter}
         />
       </div>
     </section>
@@ -83,6 +86,7 @@ Box.propTypes = {
   handleChangeType: propTypes.func,
   handleChangeFilterSelectRange: propTypes.func,
   range: propTypes.number,
+  handleResetFilter: propTypes.func,
 };
 
 export default Box;

@@ -47,10 +47,12 @@ export const getProductByID = createAsyncThunk(
 export const getSortetedCategory = createAsyncThunk(
   'product/sortCategory',
   async (
-    { category, page, subcategory = '', sort = 'newest', range = "" },
+    { category, page, subcategory = '', sort = 'newest', range = "", brand = [], type = [] },
     { rejectWithValue },
   ) => {
     console.log(range);
+    console.log(brand);
+    console.log(type);
     const options = {
       method: 'GET',
       headers: {

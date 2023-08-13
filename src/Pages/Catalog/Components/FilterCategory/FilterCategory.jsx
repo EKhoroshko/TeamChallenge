@@ -8,6 +8,7 @@ const FilterCategory = ({
   select,
   handleChangeFilterSelectRange,
   availableSorts,
+  handleResetFilter,
 }) => {
   const params = useParams();
 
@@ -20,6 +21,7 @@ const FilterCategory = ({
             const style = active ? css.link + ' ' + css.active : css.link;
             return (
               <Link
+                onClick={handleResetFilter}
                 className={style}
                 to={{
                   pathname: `/${title}`,
@@ -47,6 +49,7 @@ FilterCategory.propTypes = {
   select: propTypes.string,
   handleChangeFilterSelectRange: propTypes.func,
   availableSorts: propTypes.array,
+  handleResetFilter: propTypes.func,
 };
 
 export default FilterCategory;

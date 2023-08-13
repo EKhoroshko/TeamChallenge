@@ -23,6 +23,7 @@ const Pagination = ({
   select,
   handleChangeFilterSelectRange,
   availableSorts,
+  handleResetFilter,
 }) => {
   const isLoadingProduct = useSelector(getIsLoadingProduct);
 
@@ -73,10 +74,15 @@ const Pagination = ({
           select={select}
           handleChangeFilterSelectRange={handleChangeFilterSelectRange}
           availableSorts={availableSorts}
+          handleResetFilter={handleResetFilter}
         />
       </div>
       <ul className={css.list}>
-        {products.length === 0 ? <div>The products is out of stock</div> : load}
+        {products.length === 0 ? (
+          <div>The products are out of stock</div>
+        ) : (
+          load
+        )}
       </ul>
       {totalPages > 1 ? (
         <Paginate
@@ -106,6 +112,7 @@ CatalogCard.propTypes = {
   select: propTypes.string,
   handleChangeFilterSelectRange: propTypes.func,
   availableSorts: propTypes.array,
+  handleResetFilter: propTypes.func,
 };
 
 export default Pagination;

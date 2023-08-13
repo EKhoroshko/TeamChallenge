@@ -14,6 +14,7 @@ const FilterPanel = ({
   handleChangeType,
   handleChangeFilterSelectRange,
   range,
+  handleResetFilter,
 }) => {
   const filter = params.subcategory ? (
     <ul>
@@ -55,9 +56,15 @@ const FilterPanel = ({
     <aside className={css.aside}>
       <div className={css.boxReset}>
         <p className={css.title}>Select a category:</p>
-        <button type="button" className={css.btnReset}>
-          Reset
-        </button>
+        {params.subcategory ? (
+          <button
+            type="button"
+            onClick={handleResetFilter}
+            className={css.btnReset}
+          >
+            Reset
+          </button>
+        ) : null}
       </div>
       <ul>{filter}</ul>
     </aside>
@@ -73,6 +80,7 @@ FilterPanel.propTypes = {
   handleChangeType: propTypes.func,
   handleChangeFilterSelectRange: propTypes.func,
   range: propTypes.number,
+  handleResetFilter: propTypes.func,
 };
 
 export default FilterPanel;

@@ -4,7 +4,7 @@ import { ReactComponent as Slash } from '../../assets/slash.svg';
 import { AppRoute } from '../../enum/app-route';
 import css from './BreadCrumb.module.css';
 
-const BreadCrumb = ({ way }) => {
+const BreadCrumb = ({ way, handleResetFilter }) => {
   let location = useLocation();
   const pathSegments = location.pathname
     .split('/')
@@ -28,6 +28,7 @@ const BreadCrumb = ({ way }) => {
           </NavLink>
           {breadcrumbs.map((breadcrumb, index) => (
             <NavLink
+              onClick={handleResetFilter}
               key={index}
               to={{ pathname: breadcrumb.url, search: '?page=1' }}
               className={css.link}
@@ -44,6 +45,7 @@ const BreadCrumb = ({ way }) => {
 
 BreadCrumb.propTypes = {
   way: propTypes.string,
+  handleResetFilter: propTypes.func,
 };
 
 export default BreadCrumb;

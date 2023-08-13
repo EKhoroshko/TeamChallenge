@@ -14,21 +14,29 @@ const DropDawn = ({ title, available, handleChange }) => {
 
   return (
     <>
-      <button type="button" onClick={toggleDropDown} className={css.btn}>
-        <p className={css.title}>{title}</p>
-        {openDropDown ? (
-          <Up className={css.svg} />
-        ) : (
-          <Down className={css.svg} />
-        )}
-      </button>
-      {openDropDown ? (
-        <ul>
-          {available &&
-            available.map(item => (
-              <CheckBox key={item} type={item} handleChange={handleChange} />
-            ))}
-        </ul>
+      {available.length !== 0 ? (
+        <>
+          <button type="button" onClick={toggleDropDown} className={css.btn}>
+            <p className={css.title}>{title}</p>
+            {openDropDown ? (
+              <Up className={css.svg} />
+            ) : (
+              <Down className={css.svg} />
+            )}
+          </button>
+          {openDropDown ? (
+            <ul>
+              {available &&
+                available.map(item => (
+                  <CheckBox
+                    key={item}
+                    type={item}
+                    handleChange={handleChange}
+                  />
+                ))}
+            </ul>
+          ) : null}
+        </>
       ) : null}
     </>
   );
