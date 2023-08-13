@@ -12,7 +12,7 @@ const FilterPanel = ({
   availableBrands,
   handleChangeBrand,
   handleChangeType,
-  handleChangeRange,
+  handleChangeFilterSelectRange,
   range,
 }) => {
   const filter = params.subcategory ? (
@@ -29,7 +29,7 @@ const FilterPanel = ({
       <li className={css.itemRange}>
         <InputRange
           maxPrice={maxPrice}
-          handleChangeRange={handleChangeRange}
+          handleChangeFilterSelectRange={handleChangeFilterSelectRange}
           range={range}
         />
       </li>
@@ -71,7 +71,8 @@ FilterPanel.propTypes = {
   availableBrands: propTypes.array,
   handleChangeBrand: propTypes.func,
   handleChangeType: propTypes.func,
-  range: propTypes.string,
+  handleChangeFilterSelectRange: propTypes.func,
+  range: propTypes.number,
 };
 
 export default FilterPanel;

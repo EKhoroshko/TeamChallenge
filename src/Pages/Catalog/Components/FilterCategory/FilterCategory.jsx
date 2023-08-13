@@ -4,7 +4,11 @@ import { Categorys } from '../../../../enum/category';
 import SelectFilter from '../SelectFilter/SelectFilter';
 import css from './FilterCategory.module.css';
 
-const FilterCategory = ({ select, handleChangeSelect, availableSorts }) => {
+const FilterCategory = ({
+  select,
+  handleChangeFilterSelectRange,
+  availableSorts,
+}) => {
   const params = useParams();
 
   return (
@@ -31,7 +35,7 @@ const FilterCategory = ({ select, handleChangeSelect, availableSorts }) => {
       {params.subcategory ? (
         <SelectFilter
           select={select}
-          handleChangeSelect={handleChangeSelect}
+          handleChangeFilterSelectRange={handleChangeFilterSelectRange}
           availableSorts={availableSorts}
         />
       ) : null}
@@ -41,7 +45,7 @@ const FilterCategory = ({ select, handleChangeSelect, availableSorts }) => {
 
 FilterCategory.propTypes = {
   select: propTypes.string,
-  handleChangeSelect: propTypes.func,
+  handleChangeFilterSelectRange: propTypes.func,
   availableSorts: propTypes.array,
 };
 

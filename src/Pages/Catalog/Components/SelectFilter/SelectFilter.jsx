@@ -1,14 +1,18 @@
 import propTypes from 'prop-types';
 import css from './SelectFilter.module.css';
 
-const SelectFilter = ({ select, handleChangeSelect, availableSorts }) => {
+const SelectFilter = ({
+  select,
+  handleChangeFilterSelectRange,
+  availableSorts,
+}) => {
   return (
     <select
       name="sorted"
       id="sort"
       value={select}
       className={css.select}
-      onChange={handleChangeSelect}
+      onChange={e => handleChangeFilterSelectRange('sort', e.target.value)}
     >
       {availableSorts !== undefined
         ? availableSorts.map(item => (

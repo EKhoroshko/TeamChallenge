@@ -17,14 +17,13 @@ const Box = ({
   token,
   isLoading,
   select,
-  handleChangeSelect,
   maxPrice,
   availableTypes,
   availableBrands,
   availableSorts,
   handleChangeBrand,
   handleChangeType,
-  handleChangeRange,
+  handleChangeFilterSelectRange,
   range,
 }) => {
   return (
@@ -38,7 +37,7 @@ const Box = ({
           availableBrands={availableBrands}
           handleChangeBrand={handleChangeBrand}
           handleChangeType={handleChangeType}
-          handleChangeRange={handleChangeRange}
+          handleChangeFilterSelectRange={handleChangeFilterSelectRange}
           range={range}
         />
         <Pagination
@@ -54,7 +53,7 @@ const Box = ({
           token={token}
           isLoading={isLoading}
           select={select}
-          handleChangeSelect={handleChangeSelect}
+          handleChangeFilterSelectRange={handleChangeFilterSelectRange}
           availableSorts={availableSorts}
         />
       </div>
@@ -76,15 +75,14 @@ Box.propTypes = {
   token: propTypes.string,
   isLoading: propTypes.bool,
   select: propTypes.string,
-  handleChangeSelect: propTypes.func,
   maxPrice: propTypes.number,
   availableTypes: propTypes.array,
   availableBrands: propTypes.array,
   availableSorts: propTypes.array,
   handleChangeBrand: propTypes.func,
   handleChangeType: propTypes.func,
-  handleChangeRange: propTypes.func,
-  range: propTypes.string,
+  handleChangeFilterSelectRange: propTypes.func,
+  range: propTypes.number,
 };
 
 export default Box;

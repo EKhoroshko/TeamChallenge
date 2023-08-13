@@ -21,7 +21,7 @@ const Pagination = ({
   token,
   isLoading,
   select,
-  handleChangeSelect,
+  handleChangeFilterSelectRange,
   availableSorts,
 }) => {
   const isLoadingProduct = useSelector(getIsLoadingProduct);
@@ -71,7 +71,7 @@ const Pagination = ({
       <div className={css.buttonFilter}>
         <FilterCategory
           select={select}
-          handleChangeSelect={handleChangeSelect}
+          handleChangeFilterSelectRange={handleChangeFilterSelectRange}
           availableSorts={availableSorts}
         />
       </div>
@@ -104,7 +104,7 @@ CatalogCard.propTypes = {
   token: propTypes.string,
   isLoading: propTypes.bool,
   select: propTypes.string,
-  handleChangeSelect: propTypes.func,
+  handleChangeFilterSelectRange: propTypes.func,
   availableSorts: propTypes.array,
 };
 

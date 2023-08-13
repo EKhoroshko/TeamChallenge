@@ -1,7 +1,7 @@
 import propTypes from 'prop-types';
 import css from './InputRange.module.css';
 
-const InputRange = ({ maxPrice, handleChangeRange, range }) => {
+const InputRange = ({ maxPrice, handleChangeFilterSelectRange, range }) => {
   return (
     <>
       <label className={css.label} htmlFor="price">
@@ -23,7 +23,7 @@ const InputRange = ({ maxPrice, handleChangeRange, range }) => {
           step="1"
           max={maxPrice}
           value={range}
-          onChange={handleChangeRange}
+          onChange={e => handleChangeFilterSelectRange('range', e.target.value)}
         />
       </label>
       <p className={css.current}>Current price: {range}</p>
@@ -33,8 +33,8 @@ const InputRange = ({ maxPrice, handleChangeRange, range }) => {
 
 InputRange.propTypes = {
   params: propTypes.string,
-  handleChangeRange: propTypes.func,
-  range: propTypes.string,
+  handleChangeFilterSelectRange: propTypes.func,
+  range: propTypes.number,
 };
 
 export default InputRange;

@@ -20,17 +20,14 @@ const Catalog = () => {
 
   const [searchParams] = useSearchParams();
   const pageParam = searchParams.get('page' || 1);
-  const sortParam = searchParams.get('sort');
-  const brandParam = searchParams.get('brand');
 
-  const [select, setSelect] = useState(sortParam || '');
-  const [brand, setBrand] = useState([]);
+  const [select, setSelect] = useState(searchParams.get('sort') || '');
+  const [range, setRange] = useState(searchParams.get('range') || 0);
+  const [brand, setBrand] = useState(searchParams.get('brand') || []);
   const [type, setType] = useState([]);
-  const [range, setRange] = useState(0);
 
   console.log('brand', brand);
   console.log('type', type);
-  console.log('range', range);
 
   const {
     items,
@@ -52,12 +49,6 @@ const Catalog = () => {
   }, [pageParam]);
 
   useEffect(() => {
-    if (sortParam) {
-      setSelect(sortParam);
-    }
-  }, [sortParam]);
-
-  useEffect(() => {
     if (params.id !== undefined) {
       const fetchData = async () => {
         return await dispatch(
@@ -66,13 +57,14 @@ const Catalog = () => {
             page: current,
             sort: select,
             subcategory: params.subcategory,
+            range: range,
           }),
         );
       };
 
       fetchData();
     }
-  }, [dispatch, params.id, current, select, params.subcategory]);
+  }, [dispatch, params.id, current, select, params.subcategory, range]);
 
   const handleChangeBrand = e => {
     const value = e.target.value;
@@ -157,21 +149,16 @@ const Catalog = () => {
     [searchParams, subcategoryParam, navigateToPageSubcategory, navigateToPage],
   );
 
-  const handleChangeSelect = e => {
-    const selectedSort = e.target.value;
-    setSelect(selectedSort);
-    searchParams.set('sort', selectedSort);
+  const handleChangeFilterSelectRange = (key, value) => {
+    searchParams.set(key, value);
     searchParams.set('page', 1);
     const updatedSearch = searchParams.toString();
-    subcategoryParam
-      ? navigateToPageSubcategory(updatedSearch)
-      : navigateToPage(updatedSearch);
-  };
-
-  //range
-
-  const handleChangeRange = e => {
-    setRange(e.target.value);
+    navigateToPageSubcategory(updatedSearch);
+    if (key === 'sort') {
+      setSelect(value);
+    } else if (key === 'range') {
+      setRange(Number(value));
+    }
   };
 
   const viewedProducts = useMemo(
@@ -196,14 +183,13 @@ const Catalog = () => {
         token={token}
         isLoading={isLoading}
         select={select}
-        handleChangeSelect={handleChangeSelect}
         maxPrice={maxPrice}
         availableTypes={availableTypes}
         availableBrands={availableBrands}
         availableSorts={availableSorts}
         handleChangeBrand={handleChangeBrand}
         handleChangeType={handleChangeType}
-        handleChangeRange={handleChangeRange}
+        handleChangeFilterSelectRange={handleChangeFilterSelectRange}
         range={range}
       />
       {viewedProducts.length !== 0 ? (
