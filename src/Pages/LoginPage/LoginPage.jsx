@@ -10,8 +10,9 @@ import { loginUser, registrationUser } from '../../redux/user/operation';
 import { getLoadingUser, getUser } from '../../redux/user/selectors';
 import 'react-toastify/dist/ReactToastify.css';
 import css from './LoginPage.module.css';
-import imgGoogle from './../../assets/loginForm/sign-in-google.svg';
-import imgFacebook from './../../assets/loginForm/sign-in-facebook.svg';
+import imgGoogle from '../../assets/loginForm/sign-in-google.svg';
+import imgFacebook from '../../assets/loginForm/sign-in-facebook.svg';
+
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -169,16 +170,19 @@ const LoginPage = () => {
                     <div className={css.btnBox}>
                         <Button
                             active={css.btnActive}
+                            style={css.color}
                             onClick={e => handleValue(e)}
                             text="Sign In"
                             value="login"
                             name={value}
                         />
+
                         <Button
                             active={css.btnActive}
+                            style={css.color}
                             onClick={e => handleValue(e)}
                             text="Registration"
-                            value="registration"
+                            value="reg"
                             name={value}
                         />
                     </div>
