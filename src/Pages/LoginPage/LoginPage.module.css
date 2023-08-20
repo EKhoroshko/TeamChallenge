@@ -11,7 +11,6 @@
   position: relative;
   max-width: 320px;
   width: 100%;
-  /*z-index: 10;*/
   margin-right: 100px;
   display: flex;
   justify-content: space-between;
@@ -26,24 +25,10 @@
   padding: 0 8px;
   align-items: center;
   gap: 10px;
-  border: solid 1px #8E8E8E;
+  border: solid 1px var(--backgroundButton);
   border-radius: 12px;
 }
 
-/*.btnBox .color button {
-  width: 160px;
-  height: 32px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: solid 1px white;
-  border-radius: 12px;
-  background: white;
-  color: black;
-  font-size: 16px;
-}
-*/
 .form {
   display: flex;
   flex-direction: column;
@@ -52,7 +37,7 @@
   padding-top: 32px;
 }
 .label {
-  color: black;
+  color: var(--hoverColor);
   margin-bottom: -20px;
   font-size: 14px;
 }
@@ -60,7 +45,7 @@
   width: 330px;
   height: 44px;
   box-sizing: border-box;
-  border: solid 1px #8E8E8E;
+  border: solid 1px var(--backgroundButton);
   border-radius: 12px;
   outline: none;
   padding: 20px;
@@ -72,16 +57,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid 1px white;
+  border: solid 1px var(--mainBgColor);
   border-radius: 12px;
-  background: white;
-  color: black;
+  background: var(--mainBgColor);
+  color: var(--hoverColor);
   font-size: 16px;
 }
 .inputPassword {
-  background-image: url('../../assets/loginForm/watch-password.svg');
-  background-repeat: no-repeat;
-  background-position: 90% 50%;
+  border: none;
+}
+.password_flex {
+  width: 330px;
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+  box-sizing: border-box;
+  border: solid 1px var(--backgroundButton);
+  border-radius: 12px;
+}
+.password_flex svg:hover {
+  cursor: pointer;
 }
 .errorMessage {
   color: red;
@@ -113,13 +108,13 @@
 }
 .btn {
   outline: none;
-  border: solid 1px #8E8E8E;
+  border: solid 1px var(--backgroundButton);
   border-radius: 12px;
   line-height: 44px;
   box-sizing: border-box;
   text-align: center;
-  background: #8E8E8E;
-  color: white;
+  background: var(--backgroundButton);
+  color: var(--mainBgColor);
   margin-top: 10px;
   font-size: 16px;
 }
@@ -136,7 +131,7 @@
 .continueWithMedia p {
   margin-top: 30px;
   margin-bottom: -30px;
-  color: black;
+  color: var(--hoverColor);
   font-size: 13px;
 }
 .googleFacebook {
@@ -146,13 +141,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid 1px #8E8E8E;
+  border: solid 1px var(--backgroundButton);
   border-radius: 12px;
 }
 .googleFacebook:hover {
   cursor: pointer;
 }
 .btnActive {
- background: green;
+ background: var(--backgroundButton);
+  color: var(--mainBgColor);
 
 }
