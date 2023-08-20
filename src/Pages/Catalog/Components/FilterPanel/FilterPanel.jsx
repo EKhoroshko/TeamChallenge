@@ -5,19 +5,43 @@ import DropDawn from '../../../../Components/DropDawn/DropDawn';
 import InputRange from '../../../../Components/InputRange/InputRange';
 import css from './FilterPanel.module.css';
 
-const FilterPanel = ({ params }) => {
-  console.log(params);
-
+const FilterPanel = ({
+  params,
+  maxPrice,
+  availableTypes,
+  availableBrands,
+  handleChangeBrand,
+  handleChangeType,
+  handleChangeFilterSelectRange,
+  range,
+  handleResetFilter,
+}) => {
   const filter = params.subcategory ? (
     <ul>
       <li className={css.item}>
-        <DropDawn sub={params.subcategory} title="Brand" />
+        {availableBrands !== undefined ? (
+          <DropDawn
+            title="Brand"
+            available={availableBrands}
+            handleChange={handleChangeBrand}
+          />
+        ) : null}
       </li>
       <li className={css.itemRange}>
-        <InputRange maxPrice="5000" />
+        <InputRange
+          maxPrice={maxPrice}
+          handleChangeFilterSelectRange={handleChangeFilterSelectRange}
+          range={range}
+        />
       </li>
       <li className={css.item}>
-        <DropDawn sub={params.subcategory} title="Type" />
+        {availableTypes !== undefined ? (
+          <DropDawn
+            title="Type"
+            available={availableTypes}
+            handleChange={handleChangeType}
+          />
+        ) : null}
       </li>
     </ul>
   ) : (
@@ -32,9 +56,15 @@ const FilterPanel = ({ params }) => {
     <aside className={css.aside}>
       <div className={css.boxReset}>
         <p className={css.title}>Select a category:</p>
-        <button type="button" className={css.btnReset}>
-          Reset
-        </button>
+        {params.subcategory ? (
+          <button
+            type="button"
+            onClick={handleResetFilter}
+            className={css.btnReset}
+          >
+            Reset
+          </button>
+        ) : null}
       </div>
       <ul>{filter}</ul>
     </aside>
@@ -43,6 +73,14 @@ const FilterPanel = ({ params }) => {
 
 FilterPanel.propTypes = {
   params: propTypes.object,
+  maxPrice: propTypes.number,
+  availableTypes: propTypes.array,
+  availableBrands: propTypes.array,
+  handleChangeBrand: propTypes.func,
+  handleChangeType: propTypes.func,
+  handleChangeFilterSelectRange: propTypes.func,
+  range: propTypes.number,
+  handleResetFilter: propTypes.func,
 };
 
 export default FilterPanel;

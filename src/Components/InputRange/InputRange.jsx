@@ -2,11 +2,16 @@ import { useState } from 'react';
 import propTypes from 'prop-types';
 import css from './InputRange.module.css';
 
-// eslint-disable-next-line react/prop-types
-const InputRange = ({ maxPrice }) => {
-  const [value, setValue] = useState(0);
+const InputRange = ({ maxPrice, handleChangeFilterSelectRange, range }) => {
+  const [currentRange, setCurrentRange] = useState(range);
 
-  const handleChange = e => setValue(e.target.value);
+  const handleRangeChange = e => {
+    setCurrentRange(e.target.value);
+  };
+
+  const handleRangeMouseUp = () => {
+    handleChangeFilterSelectRange('range', currentRange);
+  };
 
   return (
     <>
@@ -28,17 +33,21 @@ const InputRange = ({ maxPrice }) => {
           min="0"
           step="1"
           max={maxPrice}
-          value={value}
-          onChange={handleChange}
+          value={currentRange || 0}
+          onChange={handleRangeChange}
+          onMouseUp={handleRangeMouseUp}
         />
       </label>
-      <p className={css.current}>Current price: {value}</p>
+      <p className={css.current}>Current price: {range}</p>
     </>
   );
 };
 
 InputRange.propTypes = {
   params: propTypes.string,
+  maxPrice: propTypes.number,
+  handleChangeFilterSelectRange: propTypes.func,
+  range: propTypes.number,
 };
 
 export default InputRange;

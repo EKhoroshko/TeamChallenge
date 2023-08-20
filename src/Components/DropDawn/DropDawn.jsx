@@ -5,31 +5,38 @@ import { ReactComponent as Down } from '../../assets/dropdownArrow/down.svg';
 import CheckBox from '../CheckBox/CheckBox';
 import css from './DropDown.module.css';
 
-const DropDawn = ({ title }) => {
+const DropDawn = ({ title, available, handleChange }) => {
   const [openDropDown, setOpenDropDown] = useState(true);
 
   const toggleDropDown = () => {
     setOpenDropDown(!openDropDown);
   };
 
-  let type = ['Pounce'];
-
   return (
     <>
-      <button type="button" onClick={toggleDropDown} className={css.btn}>
-        <p className={css.title}>{title}</p>
-        {openDropDown ? (
-          <Up className={css.svg} />
-        ) : (
-          <Down className={css.svg} />
-        )}
-      </button>
-      {openDropDown ? (
-        <ul>
-          {type.map(item => (
-            <CheckBox key={item} type={item} />
-          ))}
-        </ul>
+      {available.length !== 0 ? (
+        <>
+          <button type="button" onClick={toggleDropDown} className={css.btn}>
+            <p className={css.title}>{title}</p>
+            {openDropDown ? (
+              <Up className={css.svg} />
+            ) : (
+              <Down className={css.svg} />
+            )}
+          </button>
+          {openDropDown ? (
+            <ul>
+              {available &&
+                available.map(item => (
+                  <CheckBox
+                    key={item}
+                    type={item}
+                    handleChange={handleChange}
+                  />
+                ))}
+            </ul>
+          ) : null}
+        </>
       ) : null}
     </>
   );
@@ -37,6 +44,8 @@ const DropDawn = ({ title }) => {
 
 DropDawn.propTypes = {
   title: propTypes.string,
+  available: propTypes.array,
+  handleChange: propTypes.func,
 };
 
 export default DropDawn;

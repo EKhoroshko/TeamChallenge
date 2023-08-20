@@ -17,7 +17,7 @@ export const getAll = createAsyncThunk(
       const allproduct = await resronse.json();
       return allproduct;
     } catch (error) {
-      return rejectWithValue(error.resronse.message);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -36,8 +36,8 @@ export const getProductByID = createAsyncThunk(
         `https://us-central1-teamchalangestore.cloudfunctions.net/getItemById?itemId=${itemId}`,
         options,
       );
-      const sortCategory = await response.json();
-      return sortCategory;
+      const productInfo = await response.json();
+      return productInfo;
     } catch (error) {
       return rejectWithValue(error.response.message);
     }
@@ -46,7 +46,14 @@ export const getProductByID = createAsyncThunk(
 
 export const getSortetedCategory = createAsyncThunk(
   'product/sortCategory',
-  async ({ category, page, subcategory = '' }, { rejectWithValue }) => {
+  async (
+    { category, page, subcategory = '', sort = 'newest', range = "", brand = [], type = [] },
+    { rejectWithValue },
+  ) => {
+    if (range === 0) {
+      range = ""
+    }
+    console.log(sort);
     const options = {
       method: 'GET',
       headers: {
@@ -55,11 +62,10 @@ export const getSortetedCategory = createAsyncThunk(
     };
     try {
       const response = await fetch(
-        `https://us-central1-teamchalangestore.cloudfunctions.net/getAllItems?page=${page}&category=${category}&subcategory=${subcategory}`,
+        `https://us-central1-teamchalangestore.cloudfunctions.net/getAllItems?page=${page}&category=${category}&subcategory=${subcategory}&sort=${sort}&range=${range}&brand=${brand}&type=${type}`,
         options,
       );
-      const sortCategory = await response.json();
-      return sortCategory;
+      return await response.json();
     } catch (error) {
       return rejectWithValue(error.response.message);
     }

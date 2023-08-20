@@ -67,3 +67,8 @@
 .btnActive {
   border: 2px solid tomato;
 }
+
+.color {
+  background-color: #ddbb5d;
+  color: aliceblue;
+}

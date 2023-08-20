@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import propTypes from 'prop-types';
 import { useSelector } from 'react-redux';
@@ -23,8 +24,8 @@ const CatalogCard = ({
   handleAddFavorite,
   handleDeletProduct,
   token,
-  isLoading,
 }) => {
+  const [isCardLoading, setIsCardLoading] = useState(false);
   const params = useLocation();
   const location = params.pathname.split('/').includes('favorite');
   const favoritID = useSelector(getUserFavoritListID);
@@ -63,17 +64,21 @@ const CatalogCard = ({
 
   const handleAddToCart = e => {
     e.preventDefault();
-    addToCart({ name, price, itemId });
+    addToCart({ name, price, itemId, image });
   };
 
-  const onAddToFavorite = e => {
+  const onAddToFavorite = async e => {
     e.preventDefault();
-    handleAddFavorite(itemId);
+    setIsCardLoading(true);
+    await handleAddFavorite(itemId);
+    setIsCardLoading(false);
   };
 
-  const onDeleteFavorite = e => {
+  const onDeleteFavorite = async e => {
     e.preventDefault();
-    handleDeletProduct(itemId);
+    setIsCardLoading(true);
+    await handleDeletProduct(itemId);
+    setIsCardLoading(false);
   };
 
   const toggle = location ? (
@@ -94,7 +99,7 @@ const CatalogCard = ({
     </p>
   );
 
-  const load = isLoading ? (
+  const load = isCardLoading ? (
     <div className={css.spinerBox}>
       <Hearts
         height="24"
@@ -136,7 +141,12 @@ const CatalogCard = ({
             <p className={css.title}>{name}</p>
             <p className={css.descriptionCard}>{description}</p>
             <div className={css.buy}>
-              <p className={css.price}>${price}</p>
+              <p className={css.price}>
+                {new Intl.NumberFormat('de-DE', {
+                  style: 'currency',
+                  currency: 'USD',
+                }).format(price)}
+              </p>
               <p className={css.svg} onClick={handleAddToCart}>
                 <Basket className={css.basket} />
               </p>
@@ -161,7 +171,6 @@ CatalogCard.propTypes = {
   handleAddFavorite: propTypes.func,
   handleDeletProduct: propTypes.func,
   token: propTypes.string,
-  isLoading: propTypes.bool,
 };
 
 export default CatalogCard;

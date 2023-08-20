@@ -1,19 +1,27 @@
 import propTypes from 'prop-types';
 import css from './SelectFilter.module.css';
 
-const SelectFilter = ({ select, handleChangeSelect }) => {
+const SelectFilter = ({
+  select,
+  // eslint-disable-next-line react/prop-types
+  handleChangeFilterSelectRange,
+  availableSorts,
+}) => {
   return (
     <select
       name="sorted"
       id="sort"
       value={select}
       className={css.select}
-      onChange={handleChangeSelect}
+      onChange={e => handleChangeFilterSelectRange('sort', e.target.value)}
     >
-      <option value="name">By name</option>
-      <option value="desc">Сheap at first</option>
-      <option value="asc">Expensive at first</option>
-      <option value="created_at">New ones</option>
+      {availableSorts !== undefined
+        ? availableSorts.map(item => (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          ))
+        : null}
     </select>
   );
 };
@@ -21,6 +29,7 @@ const SelectFilter = ({ select, handleChangeSelect }) => {
 SelectFilter.propTypes = {
   select: propTypes.string,
   handleChangeSelect: propTypes.func,
+  availableSorts: propTypes.array,
 };
 
 export default SelectFilter;

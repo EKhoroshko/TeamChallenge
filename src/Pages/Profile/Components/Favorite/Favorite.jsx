@@ -1,37 +1,26 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import {
   getUserFavoriteList,
   getLoadingUser,
   getUserToken,
 } from '../../../../redux/user/selectors';
-import {
-  deleteFavoriteProduct,
-  refreshToken,
-} from '../../../../redux/user/operation';
+import { useFavoriteProduct } from '../../../../helpers/favoritproduct';
 import { addToCart } from '../../../../helpers/addToCart';
 import CatalogCard from '../../../Catalog/Components/CatalogCard/CatalogCard';
 import Spinner from '../../../../Components/Spinner/Spinner';
 import css from './Favorite.module.css';
 
 const Favorite = () => {
-  const dispatch = useDispatch();
   const favoritProducts = useSelector(getUserFavoriteList);
   const isLoading = useSelector(getLoadingUser);
   const token = useSelector(getUserToken);
   const [favoritList, setFavoritList] = useState(favoritProducts || []);
+  const { handleDeletProduct } = useFavoriteProduct();
 
   useEffect(() => {
     setFavoritList(favoritProducts || []);
   }, [favoritProducts]);
-
-  const handleDeletProduct = useCallback(
-    async id => {
-      await dispatch(deleteFavoriteProduct(id));
-      await dispatch(refreshToken());
-    },
-    [dispatch],
-  );
 
   const emptyList =
     favoritList.length !== 0 ? (

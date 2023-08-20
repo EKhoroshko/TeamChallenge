@@ -28,14 +28,16 @@ const Layout = () => {
   }, [dispatch, params.id]);
 
   return (
-    <main className={css.main}>
+    <div className={css.main}>
       <Header />
       <Suspense fallback={<Spinner />}>
-        <Outlet />
+        <main className={css.outlet}>
+          <Outlet />
+        </main>
       </Suspense>
       <ToastContainer />
       <Footer />
-    </main>
+    </div>
   );
 };
 
