@@ -30,50 +30,55 @@ const LoginPage = () => {
   const emailRegex = new RegExp(
       '^([a-z0-9_-]+.)*[a-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$',
   );
+    const passwordRegex = new RegExp('(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}');
+
+    const nameRegex = new RegExp('([0-9a-zA-Z])');
 
   const schemaLogin = Joi.object().keys({
     email: Joi.string()
-        .min(5)
         .pattern(emailRegex)
         .messages({
-          'string.min': 'Email contains min 5 characters',
-          'string.pattern.base': 'Email contains @ and 2-6 characters after dot, latin letters'
+          'string.pattern.base': 'The email address must contain alphanumeric characters (letters A-Z, numbers 0-9) and specials symbols (“-” and “_”), @ and domain extension e.g., com, org, net after dot'
         })
         .required(),
     password: Joi.string()
-        .min(2)
+        .min(8)
         .max(25)
-        .pattern(new RegExp('[A-Z]{1,2}'))
+        .pattern(passwordRegex)
         .messages({
-          'string.min': 'Password contains min 2 characters',
-          'string.pattern.base': 'Password contains one uppercase letter, latin'
+          'string.min': 'Password contains min 8 characters',
+            'string.max': 'Password contains max 25 characters',
+          'string.pattern.base': 'Passwords must include at least one uppercase letter (A-Z), one lowercase letter (a-z), one number (0-9), and one special symbol (e.g., !, @, #, $, %, ^, &, *)'
         })
         .required(),
   });
 
   const schemaRegistration = Joi.object().keys({
     email: Joi.string()
-        .min(5)
         .pattern(emailRegex)
         .messages({
-          'string.min': 'Email contains min 5 characters',
-          'string.pattern.base': 'Email contains @ and 2-6 characters after dot, latin letters'
+          'string.pattern.base': 'The email address must contain alphanumeric characters (letters A-Z, numbers 0-9) and specials symbols (“-” and “_”), @ and domain extension e.g., com, org, net after dot'
         })
         .required(),
     password: Joi.string()
-        .min(2)
+        .min(8)
         .max(25)
-        .pattern(new RegExp('[A-Z]{1,2}'))
+        .pattern(passwordRegex)
         .messages({
-          'string.min': 'Password contains min 2 characters',
-          'string.pattern.base': 'Password contains one uppercase letter, latin'
+          'string.min': 'Password contains min 8 characters',
+            'string.max': 'Password contains max 25 characters',
+          'string.pattern.base': 'Passwords must include at least one uppercase letter (A-Z), one lowercase letter (a-z), one number (0-9), and one special symbol (e.g., !, @, #, $, %, ^, &, *)'
         })
         .required(),
     username: Joi.string()
         .min(3)
-        .trim()
+        .max(12)
+        .pattern(nameRegex)
+        //.trim()
         .messages({
           'string.min': 'Name contains min 3 characters',
+            'string.max': 'Name contains max 12 characters',
+            'string.pattern.base': 'Username must include only latin letter and number'
         })
         .required(),
   });
@@ -191,7 +196,7 @@ const LoginPage = () => {
                             <form method="post" onSubmit={handleSubmit} className={css.form}>
                                 <label className={css.label}>Email</label>
 
-                                {errors && errors.message === 'Email contains min 5 characters' || errors && errors.message === 'Email contains @ and 2-6 characters after dot, latin letters' ? <div className={css.errorMessage}>{errors.message}</div> : null}
+                                {errors && errors.message === 'The email address must contain alphanumeric characters (letters A-Z, numbers 0-9) and specials symbols (“-” and “_”), @ and domain extension e.g., com, org, net after dot' ? <div className={css.errorMessage}>{errors.message}</div> : null}
 
                                 <Input
                                     className={css.input}
@@ -204,7 +209,7 @@ const LoginPage = () => {
 
                                 <label className={css.label}>Password</label>
 
-                                {errors && errors.message === 'Password contains min 2 characters' || errors && errors.message === 'Password contains one uppercase letter, latin' ? <div className={css.errorMessage}>{errors.message}</div> : null}
+                                {errors && errors.message === 'Password contains min 8 characters' || errors && errors.message === 'Password contains max 25 characters' || errors && errors.message === 'Passwords must include at least one uppercase letter (A-Z), one lowercase letter (a-z), one number (0-9), and one special symbol (e.g., !, @, #, $, %, ^, &, *)' ? <div className={css.errorMessage}>{errors.message}</div> : null}
 
                                 <Input
                                     className={`${css.input} ${css.inputPassword}`}
@@ -227,7 +232,7 @@ const LoginPage = () => {
 
                                 <label className={css.label}>Email</label>
 
-                                {errors && errors.message === 'Email contains min 5 characters' || errors && errors.message === 'Email contains @ and 2-6 characters after dot, latin letters' ? <div className={css.errorMessage}>{errors.message}</div> : null}
+                                {errors && errors.message === 'The email address must contain alphanumeric characters (letters A-Z, numbers 0-9) and specials symbols (“-” and “_”), @ and domain extension e.g., com, org, net after dot' ? <div className={css.errorMessage}>{errors.message}</div> : null}
 
 
                                 <Input
@@ -241,7 +246,7 @@ const LoginPage = () => {
 
                                 <label className={css.label}>Name</label>
 
-                                {errors && errors.message === 'Name contains min 3 characters' ? <div className={css.errorMessage}>{errors.message}</div> : null}
+                                {errors && errors.message === 'Name contains min 3 characters'|| errors && errors.message === 'Name contains max 12 characters' || errors && errors.message === 'Username must include only latin letter and number' ? <div className={css.errorMessage}>{errors.message}</div> : null}
 
                                 <Input
                                     className={css.input}
@@ -254,7 +259,7 @@ const LoginPage = () => {
 
                                 <label className={css.label}>Password</label>
 
-                                {errors && errors.message === 'Password contains min 2 characters' || errors && errors.message === 'Password contains one uppercase letter, latin' ? <div className={css.errorMessage}>{errors.message}</div> : null}
+                                {errors && errors.message === 'Password contains min 8 characters' || errors && errors.message === 'Password contains max 25 characters' || errors && errors.message === 'Passwords must include at least one uppercase letter (A-Z), one lowercase letter (a-z), one number (0-9), and one special symbol (e.g., !, @, #, $, %, ^, &, *)' ? <div className={css.errorMessage}>{errors.message}</div> : null}
 
                                 <Input
                                     className={`${css.input} ${css.inputPassword}`}
