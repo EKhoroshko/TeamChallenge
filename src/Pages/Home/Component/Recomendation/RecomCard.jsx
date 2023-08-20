@@ -95,7 +95,7 @@ const RecomCard = ({
 
 RecomCard.propTypes = {
   name: propTypes.string,
-  price: propTypes.string,
+  price: propTypes.number,
   description: propTypes.string,
   itemId: propTypes.string,
   category: propTypes.string,

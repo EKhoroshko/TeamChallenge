@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import propTypes from 'prop-types';
 import { useSelector } from 'react-redux';
@@ -23,8 +24,8 @@ const CatalogCard = ({
   handleAddFavorite,
   handleDeletProduct,
   token,
-  isLoading,
 }) => {
+  const [isCardLoading, setIsCardLoading] = useState(false);
   const params = useLocation();
   const location = params.pathname.split('/').includes('favorite');
   const favoritID = useSelector(getUserFavoritListID);
@@ -66,14 +67,18 @@ const CatalogCard = ({
     addToCart({ name, price, itemId, image });
   };
 
-  const onAddToFavorite = e => {
+  const onAddToFavorite = async e => {
     e.preventDefault();
-    handleAddFavorite(itemId);
+    setIsCardLoading(true);
+    await handleAddFavorite(itemId);
+    setIsCardLoading(false);
   };
 
-  const onDeleteFavorite = e => {
+  const onDeleteFavorite = async e => {
     e.preventDefault();
-    handleDeletProduct(itemId);
+    setIsCardLoading(true);
+    await handleDeletProduct(itemId);
+    setIsCardLoading(false);
   };
 
   const toggle = location ? (
@@ -94,7 +99,7 @@ const CatalogCard = ({
     </p>
   );
 
-  const load = isLoading ? (
+  const load = isCardLoading ? (
     <div className={css.spinerBox}>
       <Hearts
         height="24"
@@ -166,7 +171,6 @@ CatalogCard.propTypes = {
   handleAddFavorite: propTypes.func,
   handleDeletProduct: propTypes.func,
   token: propTypes.string,
-  isLoading: propTypes.bool,
 };
 
 export default CatalogCard;

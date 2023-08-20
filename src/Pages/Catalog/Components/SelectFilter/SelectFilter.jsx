@@ -3,6 +3,7 @@ import css from './SelectFilter.module.css';
 
 const SelectFilter = ({
   select,
+  // eslint-disable-next-line react/prop-types
   handleChangeFilterSelectRange,
   availableSorts,
 }) => {

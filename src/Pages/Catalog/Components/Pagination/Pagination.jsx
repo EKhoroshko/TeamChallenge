@@ -19,7 +19,6 @@ const Pagination = ({
   handleAddFavorite,
   handleDeletProduct,
   token,
-  isLoading,
   select,
   handleChangeFilterSelectRange,
   availableSorts,
@@ -59,7 +58,6 @@ const Pagination = ({
                 handleAddFavorite={handleAddFavorite}
                 handleDeletProduct={handleDeletProduct}
                 token={token}
-                isLoading={isLoading}
               />
             );
           },
@@ -108,7 +106,6 @@ CatalogCard.propTypes = {
   handleAddFavorite: propTypes.func,
   handleDeletProduct: propTypes.func,
   token: propTypes.string,
-  isLoading: propTypes.bool,
   select: propTypes.string,
   handleChangeFilterSelectRange: propTypes.func,
   availableSorts: propTypes.array,

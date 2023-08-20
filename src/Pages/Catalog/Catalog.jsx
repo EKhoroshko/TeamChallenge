@@ -5,14 +5,14 @@ import { addToCart } from '../../helpers/addToCart';
 import { useFavoriteProduct } from '../../helpers/favoritproduct.js';
 import { getAllProducts } from '../../redux/product/selector';
 import { getSortetedCategory } from '../../redux/product/operation';
-import { getUserToken, getLoadingUser } from '../../redux/user/selectors';
+import { getUserToken } from '../../redux/user/selectors';
+import { initial } from '../../helpers/initialStateToURL';
 import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb';
 import Box from './Components/Box/Box';
 import PreviosProduct from './Components/PreviosProduct/PreviosProduct';
 
 const Catalog = () => {
   const token = useSelector(getUserToken);
-  const isLoading = useSelector(getLoadingUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
@@ -21,18 +21,11 @@ const Catalog = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const pageParam = searchParams.get('page' || 1);
 
+  const [current, setCurrent] = useState(pageParam || 1);
   const [select, setSelect] = useState(searchParams.get('sort') || '');
   const [range, setRange] = useState(searchParams.get('range') || 0);
-  const [brand, setBrand] = useState(initial('brand'));
-  const [type, setType] = useState(initial('type'));
-
-  function initial(type) {
-    if (searchParams.get(type)) {
-      return searchParams.get(type).split(',');
-    } else {
-      return [];
-    }
-  }
+  const [brand, setBrand] = useState(initial(searchParams, 'brand'));
+  const [type, setType] = useState(initial(searchParams, 'type'));
 
   const {
     items,
@@ -42,7 +35,6 @@ const Catalog = () => {
     availableBrands,
     availableSorts,
   } = useSelector(getAllProducts);
-  const [current, setCurrent] = useState(pageParam || 1);
   const subcategoryParam = params.subcategory;
 
   useEffect(() => {
@@ -222,9 +214,11 @@ const Catalog = () => {
     setBrand([]);
     setType([]);
     setRange(0);
+    setSelect('');
     searchParams.delete('brand');
     searchParams.delete('type');
     searchParams.delete('range');
+    searchParams.delete('sort');
     setSearchParams(searchParams);
   };
 
@@ -248,7 +242,6 @@ const Catalog = () => {
         params={params}
         handleDeletProduct={handleDeletProduct}
         token={token}
-        isLoading={isLoading}
         select={select}
         maxPrice={maxPrice}
         availableTypes={availableTypes}
@@ -267,7 +260,6 @@ const Catalog = () => {
           handleAddFavorite={handleAddFavorite}
           handleDeletProduct={handleDeletProduct}
           token={token}
-          isLoading={isLoading}
         />
       ) : null}
     </>

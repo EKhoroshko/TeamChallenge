@@ -15,7 +15,6 @@ const Box = ({
   handleAddFavorite,
   params,
   token,
-  isLoading,
   select,
   maxPrice,
   availableTypes,
@@ -53,7 +52,6 @@ const Box = ({
           handleAddFavorite={handleAddFavorite}
           handleDeletProduct={handleDeletProduct}
           token={token}
-          isLoading={isLoading}
           select={select}
           handleChangeFilterSelectRange={handleChangeFilterSelectRange}
           availableSorts={availableSorts}
@@ -76,7 +74,6 @@ Box.propTypes = {
   handleAddFavorite: propTypes.func,
   params: propTypes.object,
   token: propTypes.string,
-  isLoading: propTypes.bool,
   select: propTypes.string,
   maxPrice: propTypes.number,
   availableTypes: propTypes.array,
