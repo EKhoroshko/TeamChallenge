@@ -4,9 +4,6 @@ import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb';
 import Spinner from '../../Components/Spinner/Spinner';
 
 const Basket = () => {
-  const cart = JSON.parse(localStorage.getItem('cart'));
-
-  console.log(cart);
   return (
     <>
       <BreadCrumb />

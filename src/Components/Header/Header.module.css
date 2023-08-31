@@ -120,8 +120,8 @@
   color: var(--accentCOlor);
 }
 
-input:hover,
-input:focus {
+.input:hover,
+.input:focus {
   border: 2px solid yellow;
 }
 
