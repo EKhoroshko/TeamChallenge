@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 import css from './InputRange.module.css';
 
 const InputRange = ({ maxPrice, handleChangeFilterSelectRange, range }) => {
   const [currentRange, setCurrentRange] = useState(range);
+
+  useEffect(() => {
+    setCurrentRange(range);
+  }, [range]);
 
   const handleRangeChange = e => {
     setCurrentRange(e.target.value);
