@@ -2,7 +2,7 @@ import propTypes from 'prop-types';
 import Card from '../Card/Card';
 import css from './List.module.css';
 
-const List = ({ data, deleteProductCart }) => {
+const List = ({ data, deleteProductCart, setData }) => {
   return (
     <ul className={css.list}>
       <p className={css.title}>Your order</p>
@@ -18,6 +18,8 @@ const List = ({ data, deleteProductCart }) => {
               itemId={itemId}
               counter={counter}
               deleteProductCart={deleteProductCart}
+              setData={setData}
+              allPrice={price * counter}
             />
           );
         })
@@ -31,6 +33,7 @@ const List = ({ data, deleteProductCart }) => {
 List.propTypes = {
   data: propTypes.array,
   deleteProductCart: propTypes.func,
+  setData: propTypes.func,
 };
 
 export default List;

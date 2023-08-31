@@ -23,16 +23,20 @@
 
 .cardInfo{
     display: flex;
+    justify-content: space-around;
     position: relative;
     width: 100%;
 }
 
-.leftBox,
-.rightBox {
-    flex: 1; 
-    width: 50%; 
-    box-sizing: border-box; 
-}
+.leftBox2 {
+    flex: 3;
+    padding: 10px;
+  }
+
+.leftBox1 {
+    flex: 1;
+    padding: 10px;
+  }
 
 .nameProduct{
     margin-bottom: 10px;

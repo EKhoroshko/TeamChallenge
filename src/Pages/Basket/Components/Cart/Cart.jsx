@@ -9,8 +9,6 @@ const Cart = () => {
   const [data, setData] = useState(cartProduct);
   const [value, setValue] = useState('');
 
-  console.log('data', cartProduct);
-
   const deleteProductCart = id => {
     const filterData = data.filter(item => item.itemId !== id);
     localStorage.setItem('cart', JSON.stringify(filterData));
@@ -18,9 +16,12 @@ const Cart = () => {
     return filterData;
   };
 
-  console.log(value);
+  const totalPrice = data.reduce((acc, item) => {
+    const itemTotal = item.price * item.counter;
+    return acc + itemTotal;
+  }, 0);
 
-  let totalPrice = 1000;
+  console.log(value);
 
   const handleChangeDiscont = e => {
     setValue(e.target.value);
@@ -29,7 +30,11 @@ const Cart = () => {
   return (
     <section className={css.section}>
       <div className={css.container}>
-        <List data={data} deleteProductCart={deleteProductCart} />
+        <List
+          data={data}
+          deleteProductCart={deleteProductCart}
+          setData={setData}
+        />
         <Total
           value={value}
           onChange={handleChangeDiscont}
