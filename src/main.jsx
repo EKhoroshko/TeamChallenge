@@ -18,6 +18,8 @@ import Product from './Pages/Product/Product';
 import Favorite from './Pages/Profile/Components/Favorite/Favorite';
 import User from './Pages/Profile/Components/User/User';
 import History from './Pages/Profile/Components/History/History';
+import Cart from './Pages/Basket/Components/Cart/Cart';
+import Prising from './Pages/Basket/Components/Prising/Prising';
 import store from './redux/store';
 import './index.css';
 
@@ -64,6 +66,16 @@ const router = createBrowserRouter([
       {
         path: AppRoute.BASKET,
         element: <Basket />,
+        children: [
+          {
+            index: true,
+            element: <Cart />,
+          },
+          {
+            path: AppRoute.PRISING,
+            element: <Prising />,
+          },
+        ],
       },
       {
         path: AppRoute.DELIVERY,
