@@ -1,0 +1,36 @@
+.buttonBox{
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+  }
+  
+  .btn{
+    color: var(--accentCOlor);
+    background-color: transparent;
+    outline: none;
+    border: none;
+    padding: 5px 10px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    cursor: pointer;
+  }
+
+  .btn:disabled{
+    color: var(--accentBgCOlor);
+  }
+  
+  .quantity{
+    color: var(--accentCOlor);
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+  }
+
+  .all{
+    color: tomato;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+    margin-top: 10px;
+  }

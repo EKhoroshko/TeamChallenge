@@ -1,24 +1,15 @@
 import { useState } from 'react';
+import CounterFragment from '../../../../Components/CounterFragment/CounterFragment';
 import propTypes from 'prop-types';
 import css from './HeroSection.module.css';
 
 const HeroSection = ({ product, itemId, addToCart }) => {
-  const [quantity, setQuantity] = useState(1);
-  const { name, price, image, description } = product;
-
-  const handleIncrement = () => {
-    setQuantity(prevState => prevState + 1);
-  };
-
-  const handleDicrement = () => {
-    if (quantity > 1) {
-      setQuantity(prevState => prevState - 1);
-    }
-  };
+  const [counter, setCounter] = useState(1);
+  const { name, price, image, description, quantity } = product;
 
   const handleAddToCart = e => {
     e.preventDefault();
-    addToCart({ name, price, itemId, image }, quantity);
+    addToCart({ name, price, itemId, image, quantity }, counter);
   };
 
   return (
@@ -38,15 +29,11 @@ const HeroSection = ({ product, itemId, addToCart }) => {
                 currency: 'USD',
               }).format(price)}
             </p>
-            <div className={css.buttonBox}>
-              <button className={css.btn} onClick={handleDicrement}>
-                -
-              </button>
-              <p className={css.quantity}>{quantity}</p>
-              <button className={css.btn} onClick={handleIncrement}>
-                +
-              </button>
-            </div>
+            <CounterFragment
+              product={product}
+              counter={counter}
+              setCounter={setCounter}
+            />
             <button
               className={css.btnBuy}
               onClick={handleAddToCart}

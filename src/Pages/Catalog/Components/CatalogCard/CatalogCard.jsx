@@ -24,6 +24,7 @@ const CatalogCard = ({
   handleAddFavorite,
   handleDeletProduct,
   token,
+  quantity,
 }) => {
   const [isCardLoading, setIsCardLoading] = useState(false);
   const params = useLocation();
@@ -64,7 +65,7 @@ const CatalogCard = ({
 
   const handleAddToCart = e => {
     e.preventDefault();
-    addToCart({ name, price, itemId, image });
+    addToCart({ name, price, itemId, image, quantity });
   };
 
   const onAddToFavorite = async e => {
@@ -171,6 +172,7 @@ CatalogCard.propTypes = {
   handleAddFavorite: propTypes.func,
   handleDeletProduct: propTypes.func,
   token: propTypes.string,
+  quantity: propTypes.number,
 };
 
 export default CatalogCard;
