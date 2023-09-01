@@ -16,7 +16,7 @@ const CounterFragment = ({ product, counter, setCounter, addToCart }) => {
   };
 
   const handleDicrement = () => {
-    if (quantity > 1) {
+    if (counter > 1) {
       setCounter(prevState => prevState - 1);
       if (addToCart) {
         return addToCart({ name, price, itemId, image, quantity }, -1);

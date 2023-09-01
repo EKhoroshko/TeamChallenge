@@ -9,6 +9,7 @@ import {
 import { getLoadingUser } from '../../redux/user/selectors';
 import { addToCart } from '../../helpers/addToCart';
 import { useFavoriteProduct } from '../../helpers/favoritproduct';
+import { loadCart } from '../../helpers/loadCart';
 import { getUserToken } from '../../redux/user/selectors';
 import Spinner from '../../Components/Spinner/Spinner';
 import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb';
@@ -25,7 +26,34 @@ const Product = () => {
   const token = useSelector(getUserToken);
   const data = useSelector(getProductById);
   const { handleAddFavorite, handleDeletProduct } = useFavoriteProduct();
+  const [addList, setAddList] = useState([]);
   const [product, setProduct] = useState(data);
+  const [counter, setCounter] = useState(1);
+  const [fail, setFail] = useState(false);
+
+  useEffect(() => {
+    const updateData = loadCart();
+    setAddList(updateData);
+  }, []);
+
+  useEffect(() => {
+    const prod = addList.find(item => item.itemId === params.itemId);
+    if (prod !== undefined) {
+      setCounter(prod.counter);
+    }
+  }, [addList, params.itemId]);
+
+  useEffect(() => {
+    const prod = addList.find(item => item.itemId === params.itemId);
+    if (prod !== undefined) {
+      if (prod.counter >= prod.quantity) {
+        setFail(true);
+      }
+    }
+    return () => {
+      setFail(false);
+    };
+  }, [addList, params.itemId]);
 
   useEffect(() => {
     if (params.itemId !== undefined) {
@@ -36,6 +64,11 @@ const Product = () => {
       getData();
     }
   }, [dispatch, params.itemId]);
+
+  const handleCart = ({ name, price, itemId, image, quantity }, counter) => {
+    addToCart({ name, price, itemId, image, quantity }, counter);
+    setAddList(loadCart());
+  };
 
   return (
     <div>
@@ -50,7 +83,10 @@ const Product = () => {
             <HeroSection
               product={product.item}
               itemId={params.itemId}
-              addToCart={addToCart}
+              addToCart={handleCart}
+              counter={counter}
+              setCounter={setCounter}
+              fail={fail}
             />
             <DescriptionSection product={product.item} />
             <SimilarProduct

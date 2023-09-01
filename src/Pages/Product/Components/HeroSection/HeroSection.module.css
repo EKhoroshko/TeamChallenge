@@ -69,6 +69,11 @@
   cursor: pointer;
 }
 
+.btnBuy:disabled{
+  background-color: aliceblue;
+  color: tomato;
+}
+
 .btnBuy:hover {
   color: var(--accentCOlor);
   border: 1px solid var(--accentCOlor);

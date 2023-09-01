@@ -1,10 +1,15 @@
-import { useState } from 'react';
 import CounterFragment from '../../../../Components/CounterFragment/CounterFragment';
 import propTypes from 'prop-types';
 import css from './HeroSection.module.css';
 
-const HeroSection = ({ product, itemId, addToCart }) => {
-  const [counter, setCounter] = useState(1);
+const HeroSection = ({
+  product,
+  itemId,
+  addToCart,
+  counter,
+  setCounter,
+  fail,
+}) => {
   const { name, price, image, description, quantity } = product;
 
   const handleAddToCart = e => {
@@ -34,13 +39,24 @@ const HeroSection = ({ product, itemId, addToCart }) => {
               counter={counter}
               setCounter={setCounter}
             />
-            <button
-              className={css.btnBuy}
-              onClick={handleAddToCart}
-              type="button"
-            >
-              To cart
-            </button>
+            {fail ? (
+              <button
+                className={css.btnBuy}
+                onClick={handleAddToCart}
+                type="button"
+                disabled
+              >
+                To cart
+              </button>
+            ) : (
+              <button
+                className={css.btnBuy}
+                onClick={handleAddToCart}
+                type="button"
+              >
+                To cart
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -52,6 +68,9 @@ HeroSection.propTypes = {
   product: propTypes.object,
   itemId: propTypes.string,
   addToCart: propTypes.func,
+  setCounter: propTypes.func,
+  counter: propTypes.number,
+  fail: propTypes.bool,
 };
 
 export default HeroSection;
