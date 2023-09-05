@@ -1,92 +1,48 @@
-.totalBox{
-    box-sizing: border-box;
-    padding: 20px;
-    max-width: 260px;
-    height: 290px;
-    border-radius: 12px;
-    border: 1px solid var(--accentBgCOlor);
+.totalBox {
+  box-sizing: border-box;
+  padding: 20px;
+  width: 260px;
+  height: 220px;
+  border-radius: 12px;
+  border: 1px solid var(--accentBgCOlor);
 }
 
-.title{
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--accentBgCOlor);
+.title {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--accentBgCOlor);
 }
 
-.label{
-    display: flex;
-    flex-direction: column;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    margin-top: 20px;
+.priceLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0px;
+  border-bottom: 1px solid var(--accentBgCOlor);
 }
 
-.inputDiscount{
-    outline: none;
-    box-sizing: border-box;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    padding: 5px 12px;
-    color: var(--accentCOlor);
-    line-height: 19px;
-    border: 1px solid var(--accentCOlor);
-    cursor: pointer;
-}
-
-.inputDiscount:hover,
-.inputDiscount:focus{
-    border: 1px solid var(--accentBgCOlor);
-}
-
-.inputUse{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 10px;
-    text-decoration: underline;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 14px;
-    cursor: pointer;
-    border-bottom: 1px solid var(--accentBgCOlor);
-}
-
-.priceLine{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 0px;
-    border-bottom: 1px solid var(--accentBgCOlor);
-}
-
-.button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    margin-top: 17px;
-    padding: 10px 16px;
-    color: var(--accentCOlor);
-    font-weight: 400;
-    line-height: 14px;
-    font-size: 12px;
-    outline: none;
-    border-radius:2px ;
-    border: 1px solid transparent;
-    background-color: var(--accentBgCOlor);
-    cursor: pointer;
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 17px;
+  padding: 10px 16px;
+  color: var(--accentCOlor);
+  font-weight: 400;
+  line-height: 14px;
+  font-size: 12px;
+  outline: none;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  background-color: var(--accentBgCOlor);
+  cursor: pointer;
 }
 
 .button:hover,
-.button:focus{
-    border: 1px solid var(--accentCOlor);
-    color: var(--hoverColor);
+.button:focus {
+  border: 1px solid var(--accentCOlor);
+  color: var(--hoverColor);
 }

@@ -7,7 +7,6 @@ import css from './Cart.module.css';
 const Cart = () => {
   const cartProduct = useLoaderData();
   const [data, setData] = useState(cartProduct);
-  const [value, setValue] = useState('');
 
   const deleteProductCart = id => {
     const filterData = data.filter(item => item.itemId !== id);
@@ -21,12 +20,6 @@ const Cart = () => {
     return acc + itemTotal;
   }, 0);
 
-  console.log(value);
-
-  const handleChangeDiscont = e => {
-    setValue(e.target.value);
-  };
-
   return (
     <section className={css.section}>
       <div className={css.container}>
@@ -35,12 +28,7 @@ const Cart = () => {
           deleteProductCart={deleteProductCart}
           setData={setData}
         />
-        <Total
-          value={value}
-          onChange={handleChangeDiscont}
-          totalPrice={totalPrice}
-          data={data}
-        />
+        <Total totalPrice={totalPrice} data={data} />
       </div>
     </section>
   );

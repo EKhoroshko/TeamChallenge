@@ -1,0 +1,61 @@
+.prisePromoBox {
+  width: 350px;
+}
+
+.box {
+  position: relative;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+  padding: 20px;
+  padding-right: 50px;
+  border-radius: 12px;
+  border: 1px solid var(--accentCOlor);
+  color: var(--accentCOlor);
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 400;
+}
+
+.inputAdd {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  padding: 20px;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 400;
+  color: var(--accentCOlor);
+  cursor: pointer;
+}
+
+.inputAdd:hover,
+.inputAdd:focus {
+  color: var(--hoverColor);
+}
+
+.discountBox {
+  border-radius: 12px;
+  border: 1px solid var(--accentCOlor);
+  padding: 20px;
+}
+
+.text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  margin-bottom: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
