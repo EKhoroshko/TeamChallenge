@@ -1,8 +1,10 @@
 import propTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../../../../../enum/app-route';
 import Input from '../../../../../../Components/Input/Input';
 import css from './Total.module.css';
 
-const Total = ({ value, onChange, totalPrice }) => {
+const Total = ({ value, onChange, totalPrice, data }) => {
   return (
     <div className={css.totalBox}>
       <p className={css.title}>In total</p>
@@ -26,9 +28,13 @@ const Total = ({ value, onChange, totalPrice }) => {
           }).format(totalPrice)}
         </span>
       </p>
-      <button type="button" className={css.button}>
+      <Link
+        to={AppRoute.PRISING}
+        state={{ paramName: { data, totalPrice } }}
+        className={css.button}
+      >
         To order
-      </button>
+      </Link>
     </div>
   );
 };
@@ -37,6 +43,7 @@ Total.propTypes = {
   value: propTypes.string,
   onChange: propTypes.func,
   totalPrice: propTypes.number,
+  data: propTypes.array,
 };
 
 export default Total;

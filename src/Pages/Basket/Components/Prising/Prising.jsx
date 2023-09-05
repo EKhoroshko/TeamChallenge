@@ -1,9 +1,20 @@
-import propTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
+import css from './Prising.module.css';
 
 const Prising = () => {
-  return <div>Prising</div>;
-};
+  const { data } = useLocation().state.paramName;
 
-Prising.propTypes = {};
+  const transformData = data.map(item => ({
+    itemId: item.itemId,
+    quantity: item.quantity,
+  }));
+
+  console.log(transformData);
+  return (
+    <section className={css.section}>
+      <div className={css.container}>Prising</div>
+    </section>
+  );
+};
 
 export default Prising;

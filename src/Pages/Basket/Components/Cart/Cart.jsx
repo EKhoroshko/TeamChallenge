@@ -39,6 +39,7 @@ const Cart = () => {
           value={value}
           onChange={handleChangeDiscont}
           totalPrice={totalPrice}
+          data={data}
         />
       </div>
     </section>

@@ -7,7 +7,7 @@ import {
   getProductById,
 } from '../../redux/product/selector';
 import { getLoadingUser } from '../../redux/user/selectors';
-import { addToCart } from '../../helpers/addToCart';
+import { addToCartProductPage, addToCart } from '../../helpers/addToCart';
 import { useFavoriteProduct } from '../../helpers/favoritproduct';
 import { loadCart } from '../../helpers/loadCart';
 import { getUserToken } from '../../redux/user/selectors';
@@ -66,7 +66,7 @@ const Product = () => {
   }, [dispatch, params.itemId]);
 
   const handleCart = ({ name, price, itemId, image, quantity }, counter) => {
-    addToCart({ name, price, itemId, image, quantity }, counter);
+    addToCartProductPage({ name, price, itemId, image, quantity }, counter);
     setAddList(loadCart());
   };
 

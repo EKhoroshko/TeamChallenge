@@ -30,7 +30,7 @@ const CatalogCard = ({
   const params = useLocation();
   const location = params.pathname.split('/').includes('favorite');
   const favoritID = useSelector(getUserFavoritListID);
-  const isFavorite = favoritID.includes(itemId);
+  let isFavorite = token ? favoritID.includes(itemId) : null;
 
   const handleViewProduct = (
     name,
