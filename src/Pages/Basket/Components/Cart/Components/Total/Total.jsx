@@ -16,13 +16,15 @@ const Total = ({ totalPrice, data }) => {
           }).format(totalPrice)}
         </span>
       </p>
-      <Link
-        to={AppRoute.PRISING}
-        state={{ paramName: { data, totalPrice } }}
-        className={css.button}
-      >
-        To order
-      </Link>
+      {data.length !== 0 ? (
+        <Link
+          to={AppRoute.PRISING}
+          state={{ paramName: { data, totalPrice } }}
+          className={css.button}
+        >
+          To order
+        </Link>
+      ) : null}
     </div>
   );
 };

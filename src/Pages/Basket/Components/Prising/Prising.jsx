@@ -25,6 +25,7 @@ const Prising = () => {
   const [cheackbox, setCheackbox] = useState('');
   const [cheachPayment, setCheachPayment] = useState('');
   const [errors, setErrors] = useState({});
+  const [comment, setComment] = useState('');
   const [deliveryForm, setDeliveryForm] = useState({
     city: '',
     post: '',
@@ -43,8 +44,12 @@ const Prising = () => {
     setDiscountCode(e.target.value);
   };
 
+  const handleComment = e => {
+    setComment(e.target.value);
+  };
+
   const handleCheackDiscount = () => {
-    console.log('Click'); // делаем запрос на бек
+    console.log('Click', discountCode); // делаем запрос на бек
     setDiscountCode('');
   };
 
@@ -91,6 +96,7 @@ const Prising = () => {
       deliveryForm,
       cheachPayment,
       order: transformData,
+      comment,
       totalPrice,
     };
     console.log(form);
@@ -121,6 +127,7 @@ const Prising = () => {
           discountCode={discountCode}
           handleDiscount={handleDiscount}
           handleCheackDiscount={handleCheackDiscount}
+          handleComment={handleComment}
         />
       </div>
     </section>

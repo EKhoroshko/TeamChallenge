@@ -7,9 +7,19 @@ const Prise = ({
   discountCode,
   handleDiscount,
   handleCheackDiscount,
+  handleComment,
 }) => {
   return (
     <div className={css.prisePromoBox}>
+      <textarea
+        className={css.comment}
+        name="comment"
+        id="comment"
+        cols="30"
+        rows="8"
+        placeholder="Order comment"
+        onChange={handleComment}
+      ></textarea>
       <div className={css.box}>
         <Input
           type="text"
@@ -42,6 +52,7 @@ Prise.propTypes = {
   discountCode: propTypes.string,
   handleDiscount: propTypes.func,
   handleCheackDiscount: propTypes.func,
+  handleComment: propTypes.func,
 };
 
 export default Prise;

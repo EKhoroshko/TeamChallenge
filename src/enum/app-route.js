@@ -11,7 +11,7 @@ const AppRoute = {
   PRODUCT: '/:category/:subcategory/:itemId',
   FAVORITE: '/user/favorite',
   HISTORY: '/user/history',
-  PRISING: '/cart/prising'
+  PRISING: '/cart/placing',
 };
 
 export { AppRoute };

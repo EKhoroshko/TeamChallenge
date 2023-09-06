@@ -9,6 +9,39 @@
   width: 100%;
 }
 
+.comment {
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--accentCOlor);
+  color: var(--accentCOlor);
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 400;
+  resize: none;
+}
+
+.comment::placeholder {
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--accentCOlor);
+}
+
+.comment::-webkit-scrollbar {
+  width: 7px;
+}
+
+.comment::-webkit-scrollbar-thumb {
+  background: var(--accentCOlor);
+  border-radius: 5px;
+}
+
+.comment::-webkit-scrollbar-thumb:hover {
+  background: var(--accentCOlor);
+}
+
 .input {
   box-sizing: border-box;
   width: 100%;
@@ -21,6 +54,10 @@
   font-size: 16px;
   line-height: 19px;
   font-weight: 400;
+}
+
+.input::placeholder {
+  color: var(--accentCOlor);
 }
 
 .inputAdd {
