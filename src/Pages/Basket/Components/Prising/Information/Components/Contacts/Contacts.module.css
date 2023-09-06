@@ -64,3 +64,11 @@
   color: var(--hoverColor);
   border: 1px solid var(--backgroundButton);
 }
+
+.error {
+  margin-top: 5px;
+  color: var(--errorColor);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}

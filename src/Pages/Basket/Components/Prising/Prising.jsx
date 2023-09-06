@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import { schema } from '../../../../helpers/JoiSchemaCart';
 import { getUser } from '../../../../redux/user/selectors';
 import Information from './Information/Information';
 import Prise from './Prise/Prise';
@@ -18,11 +19,12 @@ const Prising = () => {
   const [contactsForm, setContactsForm] = useState({
     surname: surname || '',
     name: name || '',
-    phone: phone || '',
+    phone: phone || '+380',
     email: email || '',
   });
   const [cheackbox, setCheackbox] = useState('');
   const [cheachPayment, setCheachPayment] = useState('');
+  const [errors, setErrors] = useState({});
   const [deliveryForm, setDeliveryForm] = useState({
     city: '',
     post: '',
@@ -56,6 +58,19 @@ const Prising = () => {
 
   const handleSaveContact = e => {
     e.preventDefault();
+    const result = schema.validate({
+      surname: contactsForm.surname,
+      name: contactsForm.name,
+      phone: contactsForm.phone,
+      email: contactsForm.email,
+    });
+    if (result.error) {
+      setErrors(result.error.details[0]);
+    } else {
+      setErrors({});
+    }
+
+    console.log(result);
     //тут сабмитим форму на бек
     console.log('Click');
   };
@@ -69,7 +84,18 @@ const Prising = () => {
     quantity: item.quantity,
   }));
 
-  console.log(transformData);
+  const handleSubmitOrder = e => {
+    e.preventDefault();
+    let form = {
+      contactsForm,
+      deliveryForm,
+      cheachPayment,
+      order: transformData,
+      totalPrice,
+    };
+    console.log(form);
+  };
+
   return (
     <section className={css.section}>
       <div className={css.container}>
@@ -87,6 +113,8 @@ const Prising = () => {
           payment={payment}
           cheachPayment={cheachPayment}
           setCheachPayment={setCheachPayment}
+          handleSubmitOrder={handleSubmitOrder}
+          errors={errors}
         />
         <Prise
           totalPrice={totalPrice}

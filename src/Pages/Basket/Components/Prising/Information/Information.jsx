@@ -18,6 +18,8 @@ const Information = ({
   payment,
   cheachPayment,
   setCheachPayment,
+  handleSubmitOrder,
+  errors,
 }) => {
   return (
     <div className={css.box}>
@@ -26,6 +28,7 @@ const Information = ({
         setContactsForm={setContactsForm}
         handleChange={handleChange}
         handleSaveContact={handleSaveContact}
+        errors={errors}
       />
       <Delivery
         delivery={delivery}
@@ -42,7 +45,7 @@ const Information = ({
         cheachPayment={cheachPayment}
         setCheachPayment={setCheachPayment}
       />
-      <button type="submit" className={css.button}>
+      <button type="submit" className={css.button} onClick={handleSubmitOrder}>
         To order
       </button>
     </div>
@@ -63,6 +66,8 @@ Information.propTypes = {
   payment: propTypes.array,
   cheachPayment: propTypes.string,
   setCheachPayment: propTypes.func,
+  handleSubmitOrder: propTypes.func,
+  errors: propTypes.object,
 };
 
 export default Information;

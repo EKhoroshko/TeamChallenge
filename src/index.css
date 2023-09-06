@@ -9,6 +9,7 @@
   --accentCOlor: #d2691e;
   --hoverColor: #000;
   --backgroundButton: #777777;
+  --errorColor: rgb(245, 42, 42);
   color: var(--accentCOlor);
   background-color: var(--mainBgColor);
 }

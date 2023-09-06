@@ -7,7 +7,9 @@ const Contacts = ({
   setContactsForm,
   handleChange,
   handleSaveContact,
+  errors,
 }) => {
+  const { message, path } = errors;
   const { email, name, phone, surname } = contactsForm;
   return (
     <section className={css.contacts}>
@@ -23,6 +25,9 @@ const Contacts = ({
               value={surname}
               onChange={e => handleChange(e, setContactsForm)}
             />
+            {errors && String(path) === 'surname' ? (
+              <p className={css.error}>{message}</p>
+            ) : null}
           </label>
           <label className={css.label}>
             Name
@@ -33,6 +38,9 @@ const Contacts = ({
               value={name}
               onChange={e => handleChange(e, setContactsForm)}
             />
+            {errors && String(path) === 'name' ? (
+              <p className={css.error}>{message}</p>
+            ) : null}
           </label>
           <label className={css.label}>
             Phone
@@ -44,6 +52,9 @@ const Contacts = ({
               value={phone}
               onChange={e => handleChange(e, setContactsForm)}
             />
+            {errors && String(path) === 'phone' ? (
+              <p className={css.error}>{message}</p>
+            ) : null}
           </label>
           <label className={css.label}>
             Email
@@ -54,6 +65,9 @@ const Contacts = ({
               value={email}
               onChange={e => handleChange(e, setContactsForm)}
             />
+            {errors && String(path) === 'email' ? (
+              <p className={css.error}>{message}</p>
+            ) : null}
           </label>
         </div>
         <button type="submit" className={css.button}>
@@ -69,6 +83,7 @@ Contacts.propTypes = {
   setContactsForm: propTypes.func,
   handleChange: propTypes.func,
   handleSaveContact: propTypes.func,
+  errors: propTypes.object,
 };
 
 export default Contacts;
