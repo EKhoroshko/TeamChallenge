@@ -8,6 +8,10 @@ import css from './Prising.module.css';
 
 const Prising = () => {
   const delivery = ['pickup', 'delivery from the store', 'new post'];
+  const payment = [
+    'Payment upon receipt of goods',
+    'Payment by card Visa/ MasterCard',
+  ];
   const { data, totalPrice } = useLocation().state.paramName;
   const [discountCode, setDiscountCode] = useState('');
   const { email, surname, name, phone } = useSelector(getUser);
@@ -18,6 +22,7 @@ const Prising = () => {
     email: email || '',
   });
   const [cheackbox, setCheackbox] = useState('');
+  const [cheachPayment, setCheachPayment] = useState('');
   const [deliveryForm, setDeliveryForm] = useState({
     city: '',
     post: '',
@@ -55,8 +60,8 @@ const Prising = () => {
     console.log('Click');
   };
 
-  const handleCheacked = e => {
-    setCheackbox(e.target.value);
+  const handleCheacked = (e, setBox) => {
+    setBox(e.target.value);
   };
 
   const transformData = data.map(item => ({
@@ -78,6 +83,10 @@ const Prising = () => {
           cheackbox={cheackbox}
           deliveryForm={deliveryForm}
           setDeliveryForm={setDeliveryForm}
+          setCheackbox={setCheackbox}
+          payment={payment}
+          cheachPayment={cheachPayment}
+          setCheachPayment={setCheachPayment}
         />
         <Prise
           totalPrice={totalPrice}

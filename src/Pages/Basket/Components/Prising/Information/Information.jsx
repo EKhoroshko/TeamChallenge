@@ -14,6 +14,10 @@ const Information = ({
   cheackbox,
   deliveryForm,
   setDeliveryForm,
+  setCheackbox,
+  payment,
+  cheachPayment,
+  setCheachPayment,
 }) => {
   return (
     <div className={css.box}>
@@ -30,8 +34,17 @@ const Information = ({
         deliveryForm={deliveryForm}
         setDeliveryForm={setDeliveryForm}
         handleChange={handleChange}
+        setCheackbox={setCheackbox}
       />
-      <Payment />
+      <Payment
+        payment={payment}
+        handleCheacked={handleCheacked}
+        cheachPayment={cheachPayment}
+        setCheachPayment={setCheachPayment}
+      />
+      <button type="submit" className={css.button}>
+        To order
+      </button>
     </div>
   );
 };
@@ -46,6 +59,10 @@ Information.propTypes = {
   deliveryForm: propTypes.object,
   setContactsForm: propTypes.func,
   setDeliveryForm: propTypes.func,
+  setCheackbox: propTypes.func,
+  payment: propTypes.array,
+  cheachPayment: propTypes.string,
+  setCheachPayment: propTypes.func,
 };
 
 export default Information;

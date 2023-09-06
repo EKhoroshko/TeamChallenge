@@ -1,3 +1,25 @@
 .box {
   margin-right: 60px;
 }
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  background-color: var(--accentCOlor);
+  color: var(--accentBgCOlor);
+  border: 1px solid var(--accentCOlor);
+  border-radius: 12px;
+  padding: 13px 20px;
+  width: 170px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--backgroundButton);
+  color: var(--hoverColor);
+  border: 1px solid var(--backgroundButton);
+}

@@ -9,6 +9,7 @@ const Delivery = ({
   deliveryForm,
   setDeliveryForm,
   handleChange,
+  setCheackbox,
 }) => {
   const { city, post } = deliveryForm;
 
@@ -56,7 +57,7 @@ const Delivery = ({
               className="checkbox"
               id={item}
               value={item}
-              onChange={handleCheacked}
+              onChange={e => handleCheacked(e, setCheackbox)}
               checked={cheackbox === item}
             />
             <label className={css.label} htmlFor={item}>
@@ -78,6 +79,7 @@ Delivery.propTypes = {
   deliveryForm: propTypes.object,
   setDeliveryForm: propTypes.func,
   handleChange: propTypes.func,
+  setCheackbox: propTypes.func,
 };
 
 export default Delivery;
