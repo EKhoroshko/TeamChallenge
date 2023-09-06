@@ -2,7 +2,7 @@ const AppRoute = {
   ROOT: '/',
   LOGIN: '/login',
   PROFILE: '/user',
-  BASKET: '/basket',
+  BASKET: '/cart',
   BLOG: '/blog',
   DELIVERY: '/delivery',
   RETURN: '/exchange',
@@ -11,6 +11,7 @@ const AppRoute = {
   PRODUCT: '/:category/:subcategory/:itemId',
   FAVORITE: '/user/favorite',
   HISTORY: '/user/history',
+  PRISING: '/cart/prising'
 };
 
 export { AppRoute };

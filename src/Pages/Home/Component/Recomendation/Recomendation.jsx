@@ -30,6 +30,7 @@ const Recomendation = ({ product = [] }) => {
             category,
             image,
             subcategory,
+            quantity,
           }) => (
             <RecomCard
               itemId={itemId}
@@ -42,6 +43,7 @@ const Recomendation = ({ product = [] }) => {
               subcategory={subcategory}
               margin={css.margin}
               addToCart={addToCart}
+              quantity={quantity}
             />
           ),
         )}

@@ -24,12 +24,13 @@ const CatalogCard = ({
   handleAddFavorite,
   handleDeletProduct,
   token,
+  quantity,
 }) => {
   const [isCardLoading, setIsCardLoading] = useState(false);
   const params = useLocation();
   const location = params.pathname.split('/').includes('favorite');
   const favoritID = useSelector(getUserFavoritListID);
-  const isFavorite = favoritID.includes(itemId);
+  let isFavorite = token ? favoritID.includes(itemId) : null;
 
   const handleViewProduct = (
     name,
@@ -64,7 +65,7 @@ const CatalogCard = ({
 
   const handleAddToCart = e => {
     e.preventDefault();
-    addToCart({ name, price, itemId, image });
+    addToCart({ name, price, itemId, image, quantity });
   };
 
   const onAddToFavorite = async e => {
@@ -171,6 +172,7 @@ CatalogCard.propTypes = {
   handleAddFavorite: propTypes.func,
   handleDeletProduct: propTypes.func,
   token: propTypes.string,
+  quantity: propTypes.number,
 };
 
 export default CatalogCard;

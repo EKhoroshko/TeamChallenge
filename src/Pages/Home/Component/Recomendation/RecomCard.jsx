@@ -14,6 +14,7 @@ const RecomCard = ({
   image = Canin,
   margin,
   addToCart,
+  quantity,
 }) => {
   const handleViewProduct = (
     name,
@@ -24,6 +25,7 @@ const RecomCard = ({
     category,
     subcategory,
     image,
+    quantity,
   ) => {
     let product = {
       name,
@@ -33,7 +35,9 @@ const RecomCard = ({
       category,
       subcategory,
       image,
+      quantity,
     };
+
     const viewedProducts =
       JSON.parse(localStorage.getItem('viewedProducts')) || [];
     if (!viewedProducts.find(item => item.itemId === product.itemId)) {
@@ -47,7 +51,7 @@ const RecomCard = ({
 
   const handleAddToCart = event => {
     event.preventDefault();
-    addToCart({ name, price, itemId });
+    addToCart({ name, price, itemId, image, quantity });
   };
 
   return (
@@ -63,6 +67,7 @@ const RecomCard = ({
           category,
           subcategory,
           image,
+          quantity,
         )
       }
     >

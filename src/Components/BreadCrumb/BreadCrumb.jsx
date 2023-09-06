@@ -4,6 +4,8 @@ import { ReactComponent as Slash } from '../../assets/slash.svg';
 import { AppRoute } from '../../enum/app-route';
 import css from './BreadCrumb.module.css';
 
+const valuesWithoutPageQueryParam = ['cart', 'Placing an order'];
+
 const BreadCrumb = ({ way, handleResetFilter }) => {
   let location = useLocation();
   const pathSegments = location.pathname
@@ -19,6 +21,32 @@ const BreadCrumb = ({ way, handleResetFilter }) => {
     };
   });
 
+  const links = breadcrumbs.map((breadcrumb, index) => {
+    const navLink = valuesWithoutPageQueryParam.includes(breadcrumb.label) ? (
+      <NavLink
+        onClick={handleResetFilter}
+        key={index}
+        to={{ pathname: breadcrumb.url }}
+        className={css.link}
+      >
+        <Slash className={css.svg} />
+        <p className={css.label}>{breadcrumb.label}</p>
+      </NavLink>
+    ) : (
+      <NavLink
+        onClick={handleResetFilter}
+        key={index}
+        to={{ pathname: breadcrumb.url, search: '?page=1' }}
+        className={css.link}
+      >
+        <Slash className={css.svg} />
+        <p className={css.label}>{breadcrumb.label}</p>
+      </NavLink>
+    );
+
+    return navLink;
+  });
+
   return (
     <section className={css.section}>
       <div className={css.container}>
@@ -26,17 +54,7 @@ const BreadCrumb = ({ way, handleResetFilter }) => {
           <NavLink to={AppRoute.ROOT} className={css.link}>
             <p className={css.label}>home</p>
           </NavLink>
-          {breadcrumbs.map((breadcrumb, index) => (
-            <NavLink
-              onClick={handleResetFilter}
-              key={index}
-              to={{ pathname: breadcrumb.url, search: '?page=1' }}
-              className={css.link}
-            >
-              <Slash className={css.svg} />
-              <p className={css.label}>{breadcrumb.label}</p>
-            </NavLink>
-          ))}
+          {links}
         </nav>
       </div>
     </section>

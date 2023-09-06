@@ -42,6 +42,7 @@ const Pagination = ({
             category,
             image,
             subcategory,
+            quantity,
           }) => {
             return (
               <CatalogCard
@@ -58,6 +59,7 @@ const Pagination = ({
                 handleAddFavorite={handleAddFavorite}
                 handleDeletProduct={handleDeletProduct}
                 token={token}
+                quantity={quantity}
               />
             );
           },

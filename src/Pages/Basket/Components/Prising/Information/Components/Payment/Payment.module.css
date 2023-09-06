@@ -1,7 +1,21 @@
+.section {
+  padding-bottom: 30px;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--accentCOlor);
+  margin-bottom: 20px;
+}
+
 .item {
-  display: flex;
-  align-items: center;
-  padding: 10px 0px;
+  margin-bottom: 10px;
+}
+
+.item:last-child {
+  margin-bottom: 0px;
 }
 
 .label {
@@ -44,7 +58,7 @@
 }
 
 .cheackbox:checked + .customCheckbox {
-  background-image: url('../../assets/checkbox.svg');
+  background-image: url('../../../../../../../assets//checkbox.svg');
   background-size: 14px;
   background-origin: border-box;
   background-repeat: no-repeat;
