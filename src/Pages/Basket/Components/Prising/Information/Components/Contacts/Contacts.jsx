@@ -2,10 +2,15 @@ import Input from '../../../../../../../Components/Input/Input';
 import propTypes from 'prop-types';
 import css from './Contacts.module.css';
 
-const Contacts = ({ contactsForm, handleChange, handleSaveContact }) => {
+const Contacts = ({
+  contactsForm,
+  setContactsForm,
+  handleChange,
+  handleSaveContact,
+}) => {
   const { email, name, phone, surname } = contactsForm;
   return (
-    <div className={css.contacts}>
+    <section className={css.contacts}>
       <h3 className={css.title}>1. Contacts</h3>
       <form method="POST" onSubmit={handleSaveContact} className={css.form}>
         <div className={css.inputBox}>
@@ -16,7 +21,7 @@ const Contacts = ({ contactsForm, handleChange, handleSaveContact }) => {
               type="text"
               name="surname"
               value={surname}
-              onChange={handleChange}
+              onChange={e => handleChange(e, setContactsForm)}
             />
           </label>
           <label className={css.label}>
@@ -26,7 +31,7 @@ const Contacts = ({ contactsForm, handleChange, handleSaveContact }) => {
               type="text"
               name="name"
               value={name}
-              onChange={handleChange}
+              onChange={e => handleChange(e, setContactsForm)}
             />
           </label>
           <label className={css.label}>
@@ -37,7 +42,7 @@ const Contacts = ({ contactsForm, handleChange, handleSaveContact }) => {
               type="tel"
               name="phone"
               value={phone}
-              onChange={handleChange}
+              onChange={e => handleChange(e, setContactsForm)}
             />
           </label>
           <label className={css.label}>
@@ -47,7 +52,7 @@ const Contacts = ({ contactsForm, handleChange, handleSaveContact }) => {
               type="text"
               name="email"
               value={email}
-              onChange={handleChange}
+              onChange={e => handleChange(e, setContactsForm)}
             />
           </label>
         </div>
@@ -55,12 +60,13 @@ const Contacts = ({ contactsForm, handleChange, handleSaveContact }) => {
           Save
         </button>
       </form>
-    </div>
+    </section>
   );
 };
 
 Contacts.propTypes = {
   contactsForm: propTypes.object,
+  setContactsForm: propTypes.func,
   handleChange: propTypes.func,
   handleSaveContact: propTypes.func,
 };

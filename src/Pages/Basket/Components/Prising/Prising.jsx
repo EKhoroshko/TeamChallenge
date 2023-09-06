@@ -7,6 +7,7 @@ import Prise from './Prise/Prise';
 import css from './Prising.module.css';
 
 const Prising = () => {
+  const delivery = ['pickup', 'delivery from the store', 'new post'];
   const { data, totalPrice } = useLocation().state.paramName;
   const [discountCode, setDiscountCode] = useState('');
   const { email, surname, name, phone } = useSelector(getUser);
@@ -15,6 +16,11 @@ const Prising = () => {
     name: name || '',
     phone: phone || '',
     email: email || '',
+  });
+  const [cheackbox, setCheackbox] = useState('');
+  const [deliveryForm, setDeliveryForm] = useState({
+    city: '',
+    post: '',
   });
 
   useEffect(() => {
@@ -26,8 +32,6 @@ const Prising = () => {
     }
   }, [email]);
 
-  console.log(contactsForm);
-
   const handleDiscount = e => {
     setDiscountCode(e.target.value);
   };
@@ -37,9 +41,9 @@ const Prising = () => {
     setDiscountCode('');
   };
 
-  const handleChange = e => {
+  const handleChange = (e, setForm) => {
     const { name, value } = e.target;
-    setContactsForm(prevForm => ({
+    setForm(prevForm => ({
       ...prevForm,
       [name]: value,
     }));
@@ -49,6 +53,10 @@ const Prising = () => {
     e.preventDefault();
     //тут сабмитим форму на бек
     console.log('Click');
+  };
+
+  const handleCheacked = e => {
+    setCheackbox(e.target.value);
   };
 
   const transformData = data.map(item => ({
@@ -62,8 +70,14 @@ const Prising = () => {
       <div className={css.container}>
         <Information
           contactsForm={contactsForm}
+          setContactsForm={setContactsForm}
           handleChange={handleChange}
           handleSaveContact={handleSaveContact}
+          delivery={delivery}
+          handleCheacked={handleCheacked}
+          cheackbox={cheackbox}
+          deliveryForm={deliveryForm}
+          setDeliveryForm={setDeliveryForm}
         />
         <Prise
           totalPrice={totalPrice}
