@@ -13,16 +13,17 @@ const Payment = ({
       <ul>
         {payment.map(item => (
           <li className={css.item} key={item}>
-            <input
-              type="checkbox"
-              className="checkbox"
-              id={item}
-              value={item}
-              onChange={e => handleCheacked(e, setCheachPayment)}
-              checked={cheachPayment === item}
-            />
             <label className={css.label} htmlFor={item}>
-              {item}
+              <input
+                type="checkbox"
+                className={css.cheackbox}
+                id={item}
+                checked={cheachPayment === item}
+                value={item}
+                onChange={e => handleCheacked(e, setCheachPayment)}
+              />
+              <span className={css.customCheckbox}></span>
+              <span className={css.text}>{item}</span>
             </label>
           </li>
         ))}

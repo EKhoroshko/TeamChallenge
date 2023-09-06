@@ -34,17 +34,18 @@ const CheckBox = ({ type, handleChange }) => {
 
   return (
     <li className={css.item}>
-      <input
-        type="checkbox"
-        className="checkbox"
-        id="checkbox"
-        checked={checked}
-        value={type}
-        onChange={handleChange}
-        onClick={handleChecked}
-      />
-      <label className={css.label} htmlFor="checbox">
-        {type}
+      <label className={css.label} htmlFor={type}>
+        <input
+          type="checkbox"
+          className={css.cheackbox}
+          id={type}
+          checked={checked}
+          value={type}
+          onChange={handleChange}
+          onClick={handleChecked}
+        />
+        <span className={css.customCheckbox}></span>
+        <span className={css.text}>{type}</span>
       </label>
     </li>
   );
