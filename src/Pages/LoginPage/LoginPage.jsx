@@ -25,6 +25,7 @@ const LoginPage = () => {
     password: '',
     username: '',
   });
+
   const [errors, setErrors] = useState({});
   const [type, setType] = useState('password')
 
