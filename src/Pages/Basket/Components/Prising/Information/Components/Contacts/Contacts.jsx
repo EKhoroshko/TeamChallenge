@@ -8,6 +8,7 @@ const Contacts = ({
   handleChange,
   handleSaveContact,
   errors,
+  token,
 }) => {
   const { message, path } = errors;
   const { email, name, phone, surname } = contactsForm;
@@ -70,9 +71,11 @@ const Contacts = ({
             ) : null}
           </label>
         </div>
-        <button type="submit" className={css.button}>
-          Save
-        </button>
+        {token ? (
+          <button type="submit" className={css.button}>
+            Save
+          </button>
+        ) : null}
       </form>
     </section>
   );
@@ -84,6 +87,7 @@ Contacts.propTypes = {
   handleChange: propTypes.func,
   handleSaveContact: propTypes.func,
   errors: propTypes.object,
+  token: propTypes.string,
 };
 
 export default Contacts;

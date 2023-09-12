@@ -8,7 +8,13 @@ const Prise = ({
   handleDiscount,
   handleCheackDiscount,
   handleComment,
+  discountMessage,
+  discount,
 }) => {
+  let error = discountMessage ? (
+    <p className={css.error}>{discountMessage}</p>
+  ) : null;
+
   return (
     <div className={css.prisePromoBox}>
       <textarea
@@ -21,26 +27,45 @@ const Prise = ({
         onChange={handleComment}
       ></textarea>
       <div className={css.box}>
-        <Input
-          type="text"
-          name="discount"
-          placeholder="Promo code"
-          className={css.input}
-          value={discountCode}
-          onChange={handleDiscount}
-        />
-        <input
-          type="button"
-          name="add"
-          value="add"
-          className={css.inputAdd}
-          onClick={handleCheackDiscount}
-        />
+        <div className={css.box}>
+          <Input
+            type="text"
+            name="discount"
+            placeholder="Promo code"
+            className={css.input}
+            value={discountCode}
+            onChange={handleDiscount}
+          />
+          <input
+            type="button"
+            name="add"
+            value="add"
+            className={css.inputAdd}
+            onClick={handleCheackDiscount}
+          />
+        </div>
+        {error}
       </div>
       <div className={css.discountBox}>
-        <p className={css.text}>Discount:</p>
         <p className={css.text}>
-          In total: <span className={css.prise}>{totalPrice}</span>
+          Discount:
+          {totalPrice ? (
+            <span>
+              {new Intl.NumberFormat('de-DE', {
+                style: 'currency',
+                currency: 'USD',
+              }).format(discount)}
+            </span>
+          ) : null}
+        </p>
+        <p className={css.text}>
+          In total:
+          <span className={css.prise}>
+            {new Intl.NumberFormat('de-DE', {
+              style: 'currency',
+              currency: 'USD',
+            }).format(totalPrice)}
+          </span>
         </p>
       </div>
     </div>
@@ -53,6 +78,8 @@ Prise.propTypes = {
   handleDiscount: propTypes.func,
   handleCheackDiscount: propTypes.func,
   handleComment: propTypes.func,
+  discountMessage: propTypes.string,
+  discount: propTypes.number,
 };
 
 export default Prise;

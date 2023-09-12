@@ -6,7 +6,7 @@ import CheckBox from '../CheckBox/CheckBox';
 import css from './DropDown.module.css';
 
 const DropDawn = ({ title, available, handleChange }) => {
-  const [openDropDown, setOpenDropDown] = useState(true);
+  const [openDropDown, setOpenDropDown] = useState(false);
 
   const toggleDropDown = () => {
     setOpenDropDown(!openDropDown);

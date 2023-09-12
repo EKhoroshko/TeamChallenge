@@ -20,6 +20,7 @@ const Information = ({
   setCheachPayment,
   handleSubmitOrder,
   errors,
+  token,
 }) => {
   return (
     <div className={css.box}>
@@ -29,6 +30,7 @@ const Information = ({
         handleChange={handleChange}
         handleSaveContact={handleSaveContact}
         errors={errors}
+        token={token}
       />
       <Delivery
         delivery={delivery}
@@ -68,6 +70,7 @@ Information.propTypes = {
   setCheachPayment: propTypes.func,
   handleSubmitOrder: propTypes.func,
   errors: propTypes.object,
+  token: propTypes.string,
 };
 
 export default Information;

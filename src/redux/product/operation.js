@@ -47,13 +47,20 @@ export const getProductByID = createAsyncThunk(
 export const getSortetedCategory = createAsyncThunk(
   'product/sortCategory',
   async (
-    { category, page, subcategory = '', sort = 'newest', range = "", brand = [], type = [] },
+    {
+      category,
+      page,
+      subcategory = '',
+      sort = 'newest',
+      range = '',
+      brand = [],
+      type = [],
+    },
     { rejectWithValue },
   ) => {
     if (range === 0) {
-      range = ""
+      range = '';
     }
-    console.log(sort);
     const options = {
       method: 'GET',
       headers: {
@@ -68,6 +75,28 @@ export const getSortetedCategory = createAsyncThunk(
       return await response.json();
     } catch (error) {
       return rejectWithValue(error.response.message);
+    }
+  },
+);
+
+export const getPromo = createAsyncThunk(
+  'product/promo',
+  async (promo, { rejectWithValue }) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ discountCode: promo }),
+    };
+    try {
+      const response = await fetch(
+        'https://us-central1-teamchalangestore.cloudfunctions.net/checkPromo',
+        options,
+      );
+      return await response.json();
+    } catch (error) {
+      return rejectWithValue(error);
     }
   },
 );

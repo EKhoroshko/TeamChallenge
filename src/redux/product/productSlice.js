@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAll, getSortetedCategory, getProductByID } from './operation';
+import {
+  getAll,
+  getSortetedCategory,
+  getProductByID,
+  getPromo,
+} from './operation';
 
 const productSlice = createSlice({
   name: 'product',
@@ -8,6 +13,7 @@ const productSlice = createSlice({
     productById: null,
     error: null,
     isloading: false,
+    promo: {},
   },
   reducers: {},
   extraReducers(builder) {
@@ -53,6 +59,20 @@ const productSlice = createSlice({
         ...state,
         error: payload,
         isloading: false,
+      }))
+      .addCase(getPromo.pending, state => ({
+        ...state,
+        isloading: true,
+      }))
+      .addCase(getPromo.fulfilled, (state, { payload }) => ({
+        ...state,
+        isloading: false,
+        promo: payload,
+      }))
+      .addCase(getPromo.rejected, (state, { payload }) => ({
+        ...state,
+        isloading: false,
+        error: payload,
       }));
   },
 });

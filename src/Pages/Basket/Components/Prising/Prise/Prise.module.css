@@ -76,6 +76,10 @@
   cursor: pointer;
 }
 
+.error {
+  color: var(--errorColor);
+}
+
 .inputAdd:hover,
 .inputAdd:focus {
   color: var(--hoverColor);
