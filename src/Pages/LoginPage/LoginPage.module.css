@@ -75,6 +75,7 @@
   border: solid 1px var(--backgroundButton);
   border-radius: 12px;
 }
+
 .password_flex svg:hover {
   cursor: pointer;
 }
