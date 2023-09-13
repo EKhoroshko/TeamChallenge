@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { schema } from '../../../../helpers/JoiSchemaCart';
 import { getUser } from '../../../../redux/user/selectors';
+import { getIsLoadingProduct } from '../../../../redux/product/selector';
 import { getPromo } from '../../../../redux/product/operation';
 import Information from './Information/Information';
 import Prise from './Prise/Prise';
@@ -17,6 +18,7 @@ const Prising = () => {
   const { data, totalPrice } = useLocation().state.paramName;
   const [discountCode, setDiscountCode] = useState('');
   const { email, surname, name, phone, token } = useSelector(getUser);
+  const loadingPromo = useSelector(getIsLoadingProduct);
   const [contactsForm, setContactsForm] = useState({
     email: email || '',
     surname: surname || '',
@@ -107,7 +109,7 @@ const Prising = () => {
 
   const transformData = data.map(item => ({
     itemId: item.itemId,
-    quantity: item.quantity,
+    quantity: item.counter,
   }));
 
   let discount =
@@ -128,12 +130,12 @@ const Prising = () => {
       setErrors({});
       let form = {
         contactsForm,
-        deliveryForm,
+        deliveryForm: { method: cheackbox, deliveryForm },
         cheachPayment,
         order: transformData,
         comment,
         totalPrice: fullDiscount,
-        promo,
+        discountCode: promo,
       };
       console.log(form);
     }
@@ -169,6 +171,7 @@ const Prising = () => {
           handleComment={handleComment}
           discountMessage={discountMessage}
           discountPersent={discountPersent}
+          loadingPromo={loadingPromo}
         />
       </div>
     </section>

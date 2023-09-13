@@ -10,10 +10,13 @@ const Prise = ({
   handleComment,
   discountMessage,
   discount,
+  loadingPromo,
 }) => {
   let error = discountMessage ? (
     <p className={css.error}>{discountMessage}</p>
   ) : null;
+
+  console.log(loadingPromo);
 
   return (
     <div className={css.prisePromoBox}>
@@ -80,6 +83,7 @@ Prise.propTypes = {
   handleComment: propTypes.func,
   discountMessage: propTypes.string,
   discount: propTypes.number,
+  loadingPromo: propTypes.bool,
 };
 
 export default Prise;
