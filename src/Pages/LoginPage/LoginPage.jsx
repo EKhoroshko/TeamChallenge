@@ -93,7 +93,7 @@ const LoginPage = () => {
     const handleSubmit = e => {
         e.preventDefault();
         submitUser(validationPayload(form));
-        if (!errors) {
+        if (errors.message === '') {
             setForm({
                     email: '',
                     password: '',
@@ -105,6 +105,14 @@ const LoginPage = () => {
 
     const handleValue = e => {
         setValue(e.target.value);
+        if(value !== ''){
+            setErrors('');
+            setForm({
+                email: '',
+                password: '',
+                username: '',
+            })
+        }
     };
 
     const loader = isLoading ? (
