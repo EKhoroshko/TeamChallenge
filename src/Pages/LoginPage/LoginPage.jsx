@@ -27,10 +27,12 @@ const LoginPage = () => {
   const [errors, setErrors] = useState({});
   const [type, setType] = useState('password');
 
+  console.log(errors);
+
   const valid = useCallback((schema, payload) => {
     const res = schema.validate(payload);
     if (res.error) {
-      return setErrors(res.error);
+      return setErrors(res.error.details[0]);
     } else {
       return payload;
     }
@@ -156,9 +158,7 @@ const LoginPage = () => {
                 >
                   <label className={css.label}>Email</label>
 
-                  {errors &&
-                  errors.message ===
-                    'The email address must contain alphanumeric characters (letters A-Z, numbers 0-9) and specials symbols (“-” and “_”), @ and domain extension e.g., com, org, net after dot' ? (
+                  {errors && String(errors.path) === 'email' ? (
                     <div className={css.errorMessage}>{errors.message}</div>
                   ) : null}
 
@@ -173,13 +173,7 @@ const LoginPage = () => {
 
                   <label className={css.label}>Password</label>
 
-                  {(errors &&
-                    errors.message === 'Password contains min 8 characters') ||
-                  (errors &&
-                    errors.message === 'Password contains max 25 characters') ||
-                  (errors &&
-                    errors.message ===
-                      'Passwords must include at least one uppercase letter (A-Z), one lowercase letter (a-z), one number (0-9), and one special symbol (e.g., !, @, #, $, %, ^, &, *)') ? (
+                  {errors && String(errors.path) === 'password' ? (
                     <div className={css.errorMessage}>{errors.message}</div>
                   ) : null}
 
@@ -233,9 +227,7 @@ const LoginPage = () => {
                 >
                   <label className={css.label}>Email</label>
 
-                  {errors &&
-                  errors.message ===
-                    'The email address must contain alphanumeric characters (letters A-Z, numbers 0-9) and specials symbols (“-” and “_”), @ and domain extension e.g., com, org, net after dot' ? (
+                  {errors && String(errors.path) === 'email' ? (
                     <div className={css.errorMessage}>{errors.message}</div>
                   ) : null}
 
@@ -250,13 +242,7 @@ const LoginPage = () => {
 
                   <label className={css.label}>Name</label>
 
-                  {(errors &&
-                    errors.message === 'Name contains min 3 characters') ||
-                  (errors &&
-                    errors.message === 'Name contains max 12 characters') ||
-                  (errors &&
-                    errors.message ===
-                      'Username must include only latin letter and number') ? (
+                  {errors && String(errors.path) === 'username' ? (
                     <div className={css.errorMessage}>{errors.message}</div>
                   ) : null}
 
@@ -271,13 +257,7 @@ const LoginPage = () => {
 
                   <label className={css.label}>Password</label>
 
-                  {(errors &&
-                    errors.message === 'Password contains min 8 characters') ||
-                  (errors &&
-                    errors.message === 'Password contains max 25 characters') ||
-                  (errors &&
-                    errors.message ===
-                      'Passwords must include at least one uppercase letter (A-Z), one lowercase letter (a-z), one number (0-9), and one special symbol (e.g., !, @, #, $, %, ^, &, *)') ? (
+                  {errors && String(errors.path) === 'password' ? (
                     <div className={css.errorMessage}>{errors.message}</div>
                   ) : null}
 
