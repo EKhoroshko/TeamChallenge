@@ -12,15 +12,18 @@ import css from './Layout.module.css';
 const Layout = () => {
   const dispatch = useDispatch();
   const params = useParams();
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    dispatch(refreshToken());
-  }, [dispatch]);
+    if (token) {
+      dispatch(refreshToken());
+    }
+  }, [dispatch, token]);
 
   useEffect(() => {
     if (params.id === undefined) {
       const fetchData = async () => {
-        await dispatch(getAll(1));
+        await dispatch(getAll({ page: 1 }));
       };
 
       fetchData();
@@ -28,14 +31,16 @@ const Layout = () => {
   }, [dispatch, params.id]);
 
   return (
-    <main className={css.main}>
+    <div className={css.main}>
       <Header />
       <Suspense fallback={<Spinner />}>
-        <Outlet />
+        <main className={css.outlet}>
+          <Outlet />
+        </main>
       </Suspense>
       <ToastContainer />
       <Footer />
-    </main>
+    </div>
   );
 };
 

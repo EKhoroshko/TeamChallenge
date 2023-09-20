@@ -19,7 +19,10 @@ const Pagination = ({
   handleAddFavorite,
   handleDeletProduct,
   token,
-  isLoading,
+  select,
+  handleChangeFilterSelectRange,
+  availableSorts,
+  handleResetFilter,
 }) => {
   const isLoadingProduct = useSelector(getIsLoadingProduct);
 
@@ -39,6 +42,7 @@ const Pagination = ({
             category,
             image,
             subcategory,
+            quantity,
           }) => {
             return (
               <CatalogCard
@@ -55,7 +59,7 @@ const Pagination = ({
                 handleAddFavorite={handleAddFavorite}
                 handleDeletProduct={handleDeletProduct}
                 token={token}
-                isLoading={isLoading}
+                quantity={quantity}
               />
             );
           },
@@ -66,10 +70,19 @@ const Pagination = ({
   return (
     <div className={css.container}>
       <div className={css.buttonFilter}>
-        <FilterCategory />
+        <FilterCategory
+          select={select}
+          handleChangeFilterSelectRange={handleChangeFilterSelectRange}
+          availableSorts={availableSorts}
+          handleResetFilter={handleResetFilter}
+        />
       </div>
       <ul className={css.list}>
-        {products.length === 0 ? <div>The products is out of stock</div> : load}
+        {products.length === 0 ? (
+          <div>The products are out of stock</div>
+        ) : (
+          load
+        )}
       </ul>
       {totalPages > 1 ? (
         <Paginate
@@ -95,7 +108,10 @@ CatalogCard.propTypes = {
   handleAddFavorite: propTypes.func,
   handleDeletProduct: propTypes.func,
   token: propTypes.string,
-  isLoading: propTypes.bool,
+  select: propTypes.string,
+  handleChangeFilterSelectRange: propTypes.func,
+  availableSorts: propTypes.array,
+  handleResetFilter: propTypes.func,
 };
 
 export default Pagination;

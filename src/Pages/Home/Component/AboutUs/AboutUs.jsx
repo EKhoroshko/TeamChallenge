@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-scroll';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppRoute } from '../../../../enum/app-route';
 import { subscribeUser } from '../../../../redux/user/operation';
 import { getUserSubscribe } from '../../../../redux/user/selectors';
 import Input from '../../../../Components/Input/Input';
@@ -44,9 +43,14 @@ const AboutUs = () => {
               houses, ensuring that every furry companion has their private
               space to call their own.
             </p>
-            <NavLink className={css.link} to={AppRoute.CATALOG}>
+            <Link
+              className={css.link}
+              to="catalog"
+              smooth={true}
+              duration={500}
+            >
               Shop now
-            </NavLink>
+            </Link>
           </div>
         </div>
         {!subscribe ? (

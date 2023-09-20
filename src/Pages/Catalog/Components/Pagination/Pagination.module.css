@@ -4,15 +4,14 @@
 
 .buttonFilter {
   display: flex;
-  flex-direction: row;
-  align-items: center;
   margin-bottom: 40px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
   gap: 25px;
 }
 
@@ -22,6 +21,10 @@
 
 .margin {
   flex: 0 0 calc(33.333% - 25px);
+}
+
+.margin:nth-child(3n) {
+  margin-right: 0px;
 }
 
 .paginationContainer {

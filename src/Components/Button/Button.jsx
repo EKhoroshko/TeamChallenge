@@ -6,7 +6,12 @@ const Button = ({ type, text, value, onClick, active, name, style }) => {
   const clazz = activeBtn ? css.button + ' ' + active : css.button;
 
   return (
-    <button className={`${clazz} + '' + ${style}`} type={type} value={value} onClick={onClick}>
+    <button
+      className={`${clazz} + '' + ${style}`}
+      type={type}
+      value={value}
+      onClick={onClick}
+    >
       {text}
     </button>
   );

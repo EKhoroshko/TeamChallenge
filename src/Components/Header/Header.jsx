@@ -69,9 +69,6 @@ const Header = () => {
               </NavLink>
             </li>
             <li className={css.boxSearch}>
-              <NavLink className={css.link + ' ' + css.catalog}>
-                Catalog
-              </NavLink>
               <Input
                 className={css.input}
                 type="search"

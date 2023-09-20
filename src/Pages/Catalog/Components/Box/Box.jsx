@@ -15,12 +15,32 @@ const Box = ({
   handleAddFavorite,
   params,
   token,
-  isLoading,
+  select,
+  maxPrice,
+  availableTypes,
+  availableBrands,
+  availableSorts,
+  handleChangeBrand,
+  handleChangeType,
+  handleChangeFilterSelectRange,
+  range,
+  handleResetFilter,
 }) => {
   return (
     <section className={css.box}>
       <div className={css.container}>
-        <FilterPanel params={params} />
+        <FilterPanel
+          params={params}
+          select={select}
+          maxPrice={maxPrice}
+          availableTypes={availableTypes}
+          availableBrands={availableBrands}
+          handleChangeBrand={handleChangeBrand}
+          handleChangeType={handleChangeType}
+          handleChangeFilterSelectRange={handleChangeFilterSelectRange}
+          range={range}
+          handleResetFilter={handleResetFilter}
+        />
         <Pagination
           products={products}
           addToCart={addToCart}
@@ -32,7 +52,10 @@ const Box = ({
           handleAddFavorite={handleAddFavorite}
           handleDeletProduct={handleDeletProduct}
           token={token}
-          isLoading={isLoading}
+          select={select}
+          handleChangeFilterSelectRange={handleChangeFilterSelectRange}
+          availableSorts={availableSorts}
+          handleResetFilter={handleResetFilter}
         />
       </div>
     </section>
@@ -51,7 +74,16 @@ Box.propTypes = {
   handleAddFavorite: propTypes.func,
   params: propTypes.object,
   token: propTypes.string,
-  isLoading: propTypes.bool,
+  select: propTypes.string,
+  maxPrice: propTypes.number,
+  availableTypes: propTypes.array,
+  availableBrands: propTypes.array,
+  availableSorts: propTypes.array,
+  handleChangeBrand: propTypes.func,
+  handleChangeType: propTypes.func,
+  handleChangeFilterSelectRange: propTypes.func,
+  range: propTypes.number,
+  handleResetFilter: propTypes.func,
 };
 
 export default Box;

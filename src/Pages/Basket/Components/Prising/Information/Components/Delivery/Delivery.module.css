@@ -1,0 +1,102 @@
+.section {
+  padding-bottom: 50px;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--accentCOlor);
+  margin-bottom: 20px;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+
+.item:last-child {
+  margin-right: 0px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  user-select: none;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  margin-left: 3px;
+}
+
+.text::first-letter {
+  text-transform: uppercase;
+}
+
+.cheackbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+  cursor: pointer;
+}
+
+.customCheckbox {
+  padding: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  border: 1px solid var(--accentCOlor);
+  margin-right: 10px;
+  background-color: transparent;
+  transition: background-image 0.3s ease;
+  cursor: pointer;
+}
+
+.cheackbox:checked + .customCheckbox {
+  background-image: url('../../../../../../../assets//checkbox.svg');
+  background-size: 14px;
+  background-origin: border-box;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.form {
+  margin-top: 20px;
+  display: flex;
+}
+
+.labelPost {
+  flex-basis: calc(50% - 50px);
+  flex-grow: 1;
+  margin-right: 50px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.labelPost:nth-child(2) {
+  margin-right: 0px;
+}
+
+.inputPost {
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+  border: 1px solid var(--accentCOlor);
+  border-radius: 12px;
+  padding: 10px;
+  margin-top: 5px;
+}

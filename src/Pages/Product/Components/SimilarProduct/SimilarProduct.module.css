@@ -1,0 +1,35 @@
+.section {
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 45px;
+}
+
+.container {
+  max-width: 1440px;
+  padding: 0px 150px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--accentCOlor);
+  margin-bottom: 20px;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.margin {
+  flex-basis: 25%;
+  margin-right: 25px;
+}
+
+.margin:last-child {
+  margin-right: 0px;
+}
