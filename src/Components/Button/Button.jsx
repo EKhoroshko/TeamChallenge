@@ -4,6 +4,7 @@ import css from './Button.module.css';
 const Button = ({ type, text, value, onClick, active, name, style }) => {
   const activeBtn = value === name;
   const clazz = activeBtn ? css.button + ' ' + active : css.button;
+
   return (
     <button
       className={`${clazz} + '' + ${style}`}
