@@ -8,6 +8,7 @@ import {
   addToFavoriteProduct,
   getFavoriteProduct,
   deleteFavoriteProduct,
+  updateInfoUser,
 } from './operation';
 
 const authSlice = createSlice({
@@ -17,6 +18,7 @@ const authSlice = createSlice({
     username: '',
     email: '',
     isLoading: false,
+    isLoadingUpdate: false,
     history: [],
     error: null,
     token: null,
@@ -169,6 +171,23 @@ const authSlice = createSlice({
       .addCase(deleteFavoriteProduct.rejected, (state, action) => ({
         ...state,
         isLoading: false,
+        error: action.error.message,
+      }))
+      .addCase(updateInfoUser.pending, state => ({
+        ...state,
+        isLoadingUpdate: true,
+      }))
+      .addCase(updateInfoUser.fulfilled, (state, { payload }) => ({
+        ...state,
+        isLoadingUpdate: false,
+        phone: payload.phone,
+        surname: payload.surname,
+        name: payload.name,
+        email: payload.email,
+      }))
+      .addCase(updateInfoUser.rejected, (state, action) => ({
+        ...state,
+        isLoadingUpdate: false,
         error: action.error.message,
       }));
   },

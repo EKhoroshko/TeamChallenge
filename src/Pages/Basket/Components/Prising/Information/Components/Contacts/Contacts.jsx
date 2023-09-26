@@ -1,4 +1,5 @@
 import Input from '../../../../../../../Components/Input/Input';
+import SmallSpiner from '../../.../../../../../../../Components/SmallSpiner/SmallSpiner';
 import propTypes from 'prop-types';
 import css from './Contacts.module.css';
 
@@ -9,9 +10,25 @@ const Contacts = ({
   handleSaveContact,
   errors,
   token,
+  loadingUpdateDataUser,
 }) => {
   const { message, path } = errors;
   const { email, name, phone, surname } = contactsForm;
+
+  const btnSave = token ? (
+    <button type="submit" className={css.button}>
+      Save
+    </button>
+  ) : null;
+
+  const loadSave = loadingUpdateDataUser ? (
+    <p className={css.load}>
+      <SmallSpiner />
+    </p>
+  ) : (
+    btnSave
+  );
+
   return (
     <section className={css.contacts}>
       <h3 className={css.title}>1. Contacts</h3>
@@ -71,11 +88,7 @@ const Contacts = ({
             ) : null}
           </label>
         </div>
-        {token ? (
-          <button type="submit" className={css.button}>
-            Save
-          </button>
-        ) : null}
+        {loadSave}
       </form>
     </section>
   );
@@ -88,6 +101,7 @@ Contacts.propTypes = {
   handleSaveContact: propTypes.func,
   errors: propTypes.object,
   token: propTypes.string,
+  loadingUpdateDataUser: propTypes.bool,
 };
 
 export default Contacts;

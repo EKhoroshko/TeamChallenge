@@ -220,3 +220,29 @@ export const deleteFavoriteProduct = createAsyncThunk(
     }
   },
 );
+
+export const updateInfoUser = createAsyncThunk(
+  'user/updateInfo',
+  async (value, { rejectWithValue }) => {
+    const options = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(value),
+    };
+    try {
+      const response = await fetch(
+        'https://us-central1-teamchalangestore.cloudfunctions.net/createOrder',
+        options,
+      );
+      const update = await response.json();
+      if (update) {
+        toast.success(`${update.message}`, toastAction);
+      }
+      return update;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);

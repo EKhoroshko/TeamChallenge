@@ -42,7 +42,7 @@ const Prise = ({
           <input
             type="button"
             name="add"
-            value="add"
+            value="Add"
             className={css.inputAdd}
             onClick={handleCheackDiscount}
           />

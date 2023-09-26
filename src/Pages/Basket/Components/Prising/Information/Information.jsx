@@ -21,6 +21,7 @@ const Information = ({
   handleSubmitOrder,
   errors,
   token,
+  loadingUpdateDataUser,
 }) => {
   return (
     <div className={css.box}>
@@ -31,6 +32,7 @@ const Information = ({
         handleSaveContact={handleSaveContact}
         errors={errors}
         token={token}
+        loadingUpdateDataUser={loadingUpdateDataUser}
       />
       <Delivery
         delivery={delivery}
@@ -71,6 +73,7 @@ Information.propTypes = {
   handleSubmitOrder: propTypes.func,
   errors: propTypes.object,
   token: propTypes.string,
+  loadingUpdateDataUser: propTypes.bool,
 };
 
 export default Information;

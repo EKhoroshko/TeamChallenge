@@ -2,9 +2,13 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { schema } from '../../../../helpers/JoiSchemaCart';
-import { getUser } from '../../../../redux/user/selectors';
+import {
+  getUser,
+  getLoadingUserUpdate,
+} from '../../../../redux/user/selectors';
 import { getIsLoadingProduct } from '../../../../redux/product/selector';
 import { getPromo } from '../../../../redux/product/operation';
+import { updateInfoUser } from '../../../../redux/user/operation';
 import Information from './Information/Information';
 import Prise from './Prise/Prise';
 import css from './Prising.module.css';
@@ -19,6 +23,7 @@ const Prising = () => {
   const [discountCode, setDiscountCode] = useState('');
   const { email, surname, name, phone, token } = useSelector(getUser);
   const loadingPromo = useSelector(getIsLoadingProduct);
+  const loadingUpdateDataUser = useSelector(getLoadingUserUpdate);
   const [contactsForm, setContactsForm] = useState({
     email: email || '',
     surname: surname || '',
@@ -96,11 +101,8 @@ const Prising = () => {
       return setErrors(result.error.details[0]);
     } else {
       setErrors({});
+      dispatch(updateInfoUser(result.value));
     }
-
-    console.log(result);
-    //тут сабмитим форму на бек
-    console.log('Click');
   };
 
   const handleCheacked = (e, setBox) => {
@@ -161,6 +163,7 @@ const Prising = () => {
           handleSubmitOrder={handleSubmitOrder}
           errors={errors}
           token={token}
+          loadingUpdateDataUser={loadingUpdateDataUser}
         />
         <Prise
           totalPrice={fullDiscount}
