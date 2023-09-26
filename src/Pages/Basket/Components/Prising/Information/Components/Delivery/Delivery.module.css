@@ -100,3 +100,9 @@
   padding: 10px;
   margin-top: 5px;
 }
+
+.inputPost::placeholder {
+  color: var(--accentCOlor);
+  font-size: 14px;
+  line-height: 34px;
+}

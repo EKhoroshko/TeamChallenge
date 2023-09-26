@@ -100,3 +100,13 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.loadPromo {
+  position: absolute;
+  top: 45%;
+  right: 56px;
+  transform: translateY(-45%);
+  width: 30px;
+  display: flex;
+  align-items: center;
+}

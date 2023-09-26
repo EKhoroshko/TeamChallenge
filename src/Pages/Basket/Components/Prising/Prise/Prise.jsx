@@ -1,4 +1,5 @@
 import Input from '../../../../../Components/Input/Input';
+import SmallSpiner from '../.../../../../../../Components/SmallSpiner/SmallSpiner';
 import propTypes from 'prop-types';
 import css from './Prise.module.css';
 
@@ -16,7 +17,19 @@ const Prise = ({
     <p className={css.error}>{discountMessage}</p>
   ) : null;
 
-  console.log(loadingPromo);
+  const btnAdd = !loadingPromo ? (
+    <input
+      type="button"
+      name="add"
+      value="Add"
+      className={css.inputAdd}
+      onClick={handleCheackDiscount}
+    />
+  ) : (
+    <div className={css.loadPromo}>
+      <SmallSpiner />
+    </div>
+  );
 
   return (
     <div className={css.prisePromoBox}>
@@ -39,13 +52,7 @@ const Prise = ({
             value={discountCode}
             onChange={handleDiscount}
           />
-          <input
-            type="button"
-            name="add"
-            value="Add"
-            className={css.inputAdd}
-            onClick={handleCheackDiscount}
-          />
+          {btnAdd}
         </div>
         {error}
       </div>

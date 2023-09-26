@@ -22,9 +22,9 @@ const Contacts = ({
   ) : null;
 
   const loadSave = loadingUpdateDataUser ? (
-    <p className={css.load}>
+    <div className={css.load}>
       <SmallSpiner />
-    </p>
+    </div>
   ) : (
     btnSave
   );

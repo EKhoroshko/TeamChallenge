@@ -107,6 +107,10 @@ const Prising = () => {
 
   const handleCheacked = (e, setBox) => {
     setBox(e.target.value);
+    setDeliveryForm({
+      city: '',
+      post: '',
+    });
   };
 
   const transformData = data.map(item => ({
