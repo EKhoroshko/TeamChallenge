@@ -6,7 +6,7 @@ const List = ({ data, deleteProductCart, setData }) => {
   return (
     <ul className={css.list}>
       <p className={css.title}>Your order</p>
-      {data !== null ? (
+      {data.length !== 0 ? (
         data.map(({ image, itemId, name, price, counter, quantity }) => {
           return (
             <Card

@@ -41,6 +41,7 @@ const CatalogCard = ({
     category,
     subcategory,
     image,
+    quantity,
   ) => {
     let product = {
       name,
@@ -50,6 +51,7 @@ const CatalogCard = ({
       category,
       subcategory,
       image,
+      quantity,
     };
 
     const viewedProducts =
@@ -127,6 +129,7 @@ const CatalogCard = ({
           category,
           subcategory,
           image,
+          quantity,
         )
       }
     >

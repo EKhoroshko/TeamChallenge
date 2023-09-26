@@ -37,17 +37,21 @@ const Product = () => {
   }, []);
 
   useEffect(() => {
-    const prod = addList.find(item => item.itemId === params.itemId);
-    if (prod !== undefined) {
-      setCounter(prod.counter);
+    if (addList !== null) {
+      const prod = addList.find(item => item.itemId === params.itemId);
+      if (prod !== undefined) {
+        setCounter(prod.counter);
+      }
     }
   }, [addList, params.itemId]);
 
   useEffect(() => {
-    const prod = addList.find(item => item.itemId === params.itemId);
-    if (prod !== undefined) {
-      if (prod.counter >= prod.quantity) {
-        setFail(true);
+    if (addList !== null) {
+      const prod = addList.find(item => item.itemId === params.itemId);
+      if (prod !== undefined) {
+        if (prod.counter >= prod.quantity) {
+          setFail(true);
+        }
       }
     }
     return () => {

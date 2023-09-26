@@ -6,7 +6,7 @@ import css from './Cart.module.css';
 
 const Cart = () => {
   const cartProduct = useLoaderData();
-  const [data, setData] = useState(cartProduct);
+  const [data, setData] = useState(cartProduct || []);
 
   const deleteProductCart = id => {
     const filterData = data.filter(item => item.itemId !== id);

@@ -8,6 +8,7 @@ import {
   addToFavoriteProduct,
   getFavoriteProduct,
   deleteFavoriteProduct,
+  updateInfoUser,
 } from './operation';
 
 const authSlice = createSlice({
@@ -17,9 +18,13 @@ const authSlice = createSlice({
     username: '',
     email: '',
     isLoading: false,
+    isLoadingUpdate: false,
     history: [],
     error: null,
     token: null,
+    phone: '',
+    surname: '',
+    name: '',
     subscription: false,
     favorite: [],
     favorites: [],
@@ -38,8 +43,11 @@ const authSlice = createSlice({
         isLoading: false,
         username: payload.username,
         email: payload.email,
-        history: payload.history,
+        history: payload.orderHistory,
         token: payload.token,
+        phone: payload.phone || '',
+        surname: payload.surname || '',
+        name: payload.name || '',
         subscription: payload.subscription,
         favorite: payload.favorite,
         favorites: payload.favorites,
@@ -77,6 +85,10 @@ const authSlice = createSlice({
         isLoading: false,
         data: payload,
         username: payload.username,
+        history: payload.orderHistory,
+        phone: payload.phone || '',
+        surname: payload.surname || '',
+        name: payload.name || '',
         email: payload.email,
         token: payload.token,
         subscription: payload.subscription,
@@ -159,6 +171,23 @@ const authSlice = createSlice({
       .addCase(deleteFavoriteProduct.rejected, (state, action) => ({
         ...state,
         isLoading: false,
+        error: action.error.message,
+      }))
+      .addCase(updateInfoUser.pending, state => ({
+        ...state,
+        isLoadingUpdate: true,
+      }))
+      .addCase(updateInfoUser.fulfilled, (state, { payload }) => ({
+        ...state,
+        isLoadingUpdate: false,
+        phone: payload.phone,
+        surname: payload.surname,
+        name: payload.name,
+        email: payload.email,
+      }))
+      .addCase(updateInfoUser.rejected, (state, action) => ({
+        ...state,
+        isLoadingUpdate: false,
         error: action.error.message,
       }));
   },

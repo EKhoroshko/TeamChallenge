@@ -1,4 +1,5 @@
 import Input from '../../../../../Components/Input/Input';
+import SmallSpiner from '../.../../../../../../Components/SmallSpiner/SmallSpiner';
 import propTypes from 'prop-types';
 import css from './Prise.module.css';
 
@@ -7,30 +8,74 @@ const Prise = ({
   discountCode,
   handleDiscount,
   handleCheackDiscount,
+  handleComment,
+  discountMessage,
+  discount,
+  loadingPromo,
 }) => {
+  let error = discountMessage ? (
+    <p className={css.error}>{discountMessage}</p>
+  ) : null;
+
+  const btnAdd = !loadingPromo ? (
+    <input
+      type="button"
+      name="add"
+      value="Add"
+      className={css.inputAdd}
+      onClick={handleCheackDiscount}
+    />
+  ) : (
+    <div className={css.loadPromo}>
+      <SmallSpiner />
+    </div>
+  );
+
   return (
     <div className={css.prisePromoBox}>
+      <textarea
+        className={css.comment}
+        name="comment"
+        id="comment"
+        cols="30"
+        rows="8"
+        placeholder="Order comment"
+        onChange={handleComment}
+      ></textarea>
       <div className={css.box}>
-        <Input
-          type="text"
-          name="discount"
-          placeholder="Promo code"
-          className={css.input}
-          value={discountCode}
-          onChange={handleDiscount}
-        />
-        <input
-          type="button"
-          name="add"
-          value="add"
-          className={css.inputAdd}
-          onClick={handleCheackDiscount}
-        />
+        <div className={css.box}>
+          <Input
+            type="text"
+            name="discount"
+            placeholder="Promo code"
+            className={css.input}
+            value={discountCode}
+            onChange={handleDiscount}
+          />
+          {btnAdd}
+        </div>
+        {error}
       </div>
       <div className={css.discountBox}>
-        <p className={css.text}>Discount:</p>
         <p className={css.text}>
-          In total: <span className={css.prise}>{totalPrice}</span>
+          Discount:
+          {totalPrice ? (
+            <span>
+              {new Intl.NumberFormat('de-DE', {
+                style: 'currency',
+                currency: 'USD',
+              }).format(discount)}
+            </span>
+          ) : null}
+        </p>
+        <p className={css.text}>
+          In total:
+          <span className={css.prise}>
+            {new Intl.NumberFormat('de-DE', {
+              style: 'currency',
+              currency: 'USD',
+            }).format(totalPrice)}
+          </span>
         </p>
       </div>
     </div>
@@ -42,6 +87,10 @@ Prise.propTypes = {
   discountCode: propTypes.string,
   handleDiscount: propTypes.func,
   handleCheackDiscount: propTypes.func,
+  handleComment: propTypes.func,
+  discountMessage: propTypes.string,
+  discount: propTypes.number,
+  loadingPromo: propTypes.bool,
 };
 
 export default Prise;

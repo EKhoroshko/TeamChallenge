@@ -4,6 +4,8 @@ export const getUserEmail = store => store.user.email;
 
 export const getLoadingUser = store => store.user.isLoading;
 
+export const getLoadingUserUpdate = store => store.user.isLoadingUpdate;
+
 export const getUserToken = store => store.user.token;
 
 export const getUserSubscribe = store => store.user.subscription;

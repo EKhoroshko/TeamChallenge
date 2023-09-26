@@ -27,8 +27,6 @@ const LoginPage = () => {
   const [errors, setErrors] = useState({});
   const [type, setType] = useState('password');
 
-  console.log(errors);
-
   const valid = useCallback((schema, payload) => {
     const res = schema.validate(payload);
     if (res.error) {

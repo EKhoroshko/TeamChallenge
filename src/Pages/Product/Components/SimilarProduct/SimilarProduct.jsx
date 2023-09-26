@@ -28,6 +28,7 @@ const SimilarProduct = ({
                     category,
                     image,
                     subcategory,
+                    quantity,
                   }) => (
                     <CatalogCard
                       itemId={itemId}
@@ -44,6 +45,7 @@ const SimilarProduct = ({
                       handleDeletProduct={handleDeletProduct}
                       token={token}
                       isLoading={isLoading}
+                      quantity={quantity}
                     />
                   ),
                 )}

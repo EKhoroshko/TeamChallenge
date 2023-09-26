@@ -13,12 +13,40 @@ const Delivery = ({
 }) => {
   const { city, post } = deliveryForm;
 
+  let date = new Date().toISOString().split('T')[0];
+
   const store =
     cheackbox === 'delivery from the store' ? (
-      <p>
-        Now we have a problem with couriers and we can not deliver your order.
-        Choose another type of delivery
-      </p>
+      <form>
+        <Input
+          className={css.inputPost}
+          type="text"
+          name="city"
+          value={city}
+          onChange={e => handleChange(e, setDeliveryForm)}
+          placeholder="Delivery address"
+        />
+        <div>
+          <input
+            className={css.inputPost}
+            type="date"
+            name="date"
+            min={date}
+            value={date}
+          />
+          <label>
+            Time
+            <select name="time" id="time">
+              <option value="Nearest" disabled>
+                Nearest
+              </option>
+              <option value="morning">9:00 - 12:00</option>
+              <option value="day">12:00-16:00</option>
+              <option value="evening">16:00-21:00</option>
+            </select>
+          </label>
+        </div>
+      </form>
     ) : null;
 
   const newPost =
@@ -32,6 +60,7 @@ const Delivery = ({
             name="city"
             value={city}
             onChange={e => handleChange(e, setDeliveryForm)}
+            placeholder="Enter your city"
           />
         </label>
         <label className={css.labelPost}>
@@ -42,6 +71,7 @@ const Delivery = ({
             name="post"
             value={post}
             onChange={e => handleChange(e, setDeliveryForm)}
+            placeholder="Enter warehouse number"
           />
         </label>
       </form>

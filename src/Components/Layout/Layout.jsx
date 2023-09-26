@@ -7,6 +7,7 @@ import { getAll } from '../../redux/product/operation';
 import Spinner from '../Spinner/Spinner';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import RenderErrorBoundary from '../RenderErrorBoundary/RenderErrorBoundary';
 import css from './Layout.module.css';
 
 const Layout = () => {
@@ -35,7 +36,9 @@ const Layout = () => {
       <Header />
       <Suspense fallback={<Spinner />}>
         <main className={css.outlet}>
-          <Outlet />
+          <RenderErrorBoundary>
+            <Outlet />
+          </RenderErrorBoundary>
         </main>
       </Suspense>
       <ToastContainer />

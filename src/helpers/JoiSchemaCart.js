@@ -37,5 +37,6 @@ export const schema = Joi.object({
       minDomainSegments: 1,
       tlds: { allow: ['com', 'net', 'ua', 'de'] },
     })
-    .rule({ message: 'Invalid format mail' }),
+    .rule({ message: 'Invalid format mail' })
+    .required(),
 });

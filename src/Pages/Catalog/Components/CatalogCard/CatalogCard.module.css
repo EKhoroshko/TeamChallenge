@@ -64,13 +64,18 @@
   line-height: 17px;
   color: var(--accentCOlor);
   margin-bottom: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .descriptionCard {
+  height: 30px;
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
   color: var(--accentCOlor);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .buy {
