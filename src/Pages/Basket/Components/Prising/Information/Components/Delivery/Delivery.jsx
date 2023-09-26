@@ -17,7 +17,7 @@ const Delivery = ({
 
   const store =
     cheackbox === 'delivery from the store' ? (
-      <form>
+      <form className={css.formStore}>
         <Input
           className={css.inputPost}
           type="text"
@@ -26,20 +26,20 @@ const Delivery = ({
           onChange={e => handleChange(e, setDeliveryForm)}
           placeholder="Delivery address"
         />
-        <div>
-          <input
-            className={css.inputPost}
-            type="date"
-            name="date"
-            min={date}
-            value={date}
-          />
-          <label>
+        <div className={css.flex}>
+          <label className={css.labelSelect}>
+            Date
+            <input
+              className={css.inputDate}
+              type="date"
+              name="date"
+              min={date}
+              // value={date}
+            />
+          </label>
+          <label className={css.labelSelect}>
             Time
-            <select name="time" id="time">
-              <option value="Nearest" disabled>
-                Nearest
-              </option>
+            <select name="time" id="time" className={css.select}>
               <option value="morning">9:00 - 12:00</option>
               <option value="day">12:00-16:00</option>
               <option value="evening">16:00-21:00</option>
