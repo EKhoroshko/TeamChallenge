@@ -49,16 +49,45 @@ const Header = () => {
                 </NavLink>
               </li>
             </ul>
-            <ul className={css.rightsideIcons}>
-              <li>
-                <NavLink>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
-                    <path stroke="#111" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16ZM21 21l-4.35-4.35" />
-                  </svg>
-                </NavLink>
-              </li>
-              <li>
+            <a className={css.link} href="tel:+380500000000">
+              <Call className={css.call} />
+              +38 (050) 000 00 00
+            </a>
+          </div>
+        </div>
+
+        <ul className={css.navBox2}>
+          <div className={css.container}>
+            <li>
+              <NavLink to={AppRoute.ROOT}>
+                <img src={Logo} alt="logo" />
+              </NavLink>
+            </li>
+            <li className={css.boxSearch}>
+              <NavLink className={css.link + ' ' + css.catalog}>
+                Catalog
+              </NavLink>
+              <Input
+                className={css.input}
+                type="search"
+                name="search"
+                value={qwery}
+                onChange={handleChangeQwerty}
+              />
+              <span className={css.textField}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+              </span>
+            </li>
+            <li className={css.boxCall}>
+              <div className={css.boxCall}>
                 {token ? (
                   <>
                     <NavLink to={AppRoute.PROFILE}>

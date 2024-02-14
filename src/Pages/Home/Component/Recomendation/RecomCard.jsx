@@ -14,6 +14,7 @@ const RecomCard = ({
   image = Canin,
   margin,
   addToCart,
+  quantity,
 }) => {
   const handleViewProduct = (
     name,
@@ -24,6 +25,7 @@ const RecomCard = ({
     category,
     subcategory,
     image,
+    quantity,
   ) => {
     let product = {
       name,
@@ -33,7 +35,9 @@ const RecomCard = ({
       category,
       subcategory,
       image,
+      quantity,
     };
+
     const viewedProducts =
       JSON.parse(localStorage.getItem('viewedProducts')) || [];
     if (!viewedProducts.find(item => item.itemId === product.itemId)) {
@@ -47,7 +51,7 @@ const RecomCard = ({
 
   const handleAddToCart = event => {
     event.preventDefault();
-    addToCart({ name, price, itemId });
+    addToCart({ name, price, itemId, image, quantity });
   };
 
   return (
@@ -63,6 +67,7 @@ const RecomCard = ({
           category,
           subcategory,
           image,
+          quantity,
         )
       }
     >
@@ -76,7 +81,13 @@ const RecomCard = ({
           <div className={css.descrBox}>
             <p className={css.title}>{name}</p>
             <p className={css.descriptionCard}>{description}</p>
-            <p className={css.price}>${price}</p>
+            <p className={css.price}>
+              {' '}
+              {new Intl.NumberFormat('de-DE', {
+                style: 'currency',
+                currency: 'USD',
+              }).format(price)}
+            </p>
             <button className={css.btnBuy} onClick={handleAddToCart}>
               Add to cart
             </button>
@@ -89,7 +100,7 @@ const RecomCard = ({
 
 RecomCard.propTypes = {
   name: propTypes.string,
-  price: propTypes.string,
+  price: propTypes.number,
   description: propTypes.string,
   itemId: propTypes.string,
   category: propTypes.string,

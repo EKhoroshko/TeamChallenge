@@ -10,7 +10,6 @@ const PreviosProduct = ({
   handleAddFavorite,
   handleDeletProduct,
   token,
-  isLoading,
 }) => {
   const [products] = useState(viewedProducts);
 
@@ -43,7 +42,6 @@ const PreviosProduct = ({
                 handleAddFavorite={handleAddFavorite}
                 handleDeletProduct={handleDeletProduct}
                 token={token}
-                isLoading={isLoading}
               />
             ),
           )}
@@ -59,7 +57,6 @@ PreviosProduct.propTypes = {
   handleAddFavorite: propTypes.func,
   handleDeletProduct: propTypes.func,
   token: propTypes.string,
-  isLoading: propTypes.bool,
 };
 
 export default PreviosProduct;

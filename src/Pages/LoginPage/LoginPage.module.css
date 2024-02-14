@@ -50,6 +50,15 @@
   outline: none;
   padding: 20px;
 }
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
 .color {
   width: 160px;
   height: 32px;
@@ -63,6 +72,7 @@
   color: var(--hoverColor);
   font-size: 16px;
 }
+
 .inputPassword {
   border: none;
 }
@@ -85,7 +95,7 @@
 }
 .forgotPassword {
   margin-top: -20px;
-  color: #1877F2;
+  color: #1877f2;
   font-size: 12px;
 }
 .forgotPassword:hover {
@@ -149,6 +159,6 @@
   cursor: pointer;
 }
 .btnActive {
- background: var(--backgroundButton);
+  background: var(--backgroundButton);
   color: var(--mainBgColor);
 }

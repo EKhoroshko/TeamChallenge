@@ -3,9 +3,6 @@
   margin-right: 12px;
   border-radius: 12px;
   border: 1px solid var(--accentCOlor);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
 }
 
 .link::first-letter {
@@ -22,4 +19,9 @@
 .link:focus {
   border: 1px solid var(--hoverColor);
   color: var(--hoverColor);
+}
+
+.box {
+  display: flex;
+  flex-wrap: wrap;
 }

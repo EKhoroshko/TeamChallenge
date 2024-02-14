@@ -1,0 +1,74 @@
+.item{
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid var(--accentBgCOlor);
+    border-bottom: 1px solid var(--accentBgCOlor);
+}
+
+.imageBox{
+    width: 130px;
+    height: 150px;
+    margin-right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.cardInfo{
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    width: 100%;
+}
+
+.leftBox2 {
+    flex: 3;
+    padding: 10px;
+  }
+
+.leftBox1 {
+    flex: 1;
+    padding: 10px;
+  }
+
+.nameProduct{
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 500;
+}
+
+.vendor{
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 400; 
+}
+
+.price{
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 500;
+}
+
+.svg{
+    position: absolute;
+    right: 0;
+    top: -15px;
+    width: 15px;
+    height: 15px;
+    padding: 12px;
+    fill: var(--accentCOlor);
+    cursor: pointer;
+}
+
+.svg:hover .cross * {
+    fill: var(--hoverColor);
+}
+

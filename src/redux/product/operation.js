@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const getAll = createAsyncThunk(
   'product/getAll',
-  async (page = 1, { rejectWithValue }) => {
+  async ({ page }, { rejectWithValue }) => {
     const options = {
       method: 'GET',
       headers: {
@@ -17,14 +17,14 @@ export const getAll = createAsyncThunk(
       const allproduct = await resronse.json();
       return allproduct;
     } catch (error) {
-      return rejectWithValue(error.resronse.message);
+      return rejectWithValue(error.message);
     }
   },
 );
 
-export const getSortetedCategory = createAsyncThunk(
-  'product/sortCategory',
-  async ({ category, page }, { rejectWithValue }) => {
+export const getProductByID = createAsyncThunk(
+  'product/getByID',
+  async (itemId, { rejectWithValue }) => {
     const options = {
       method: 'GET',
       headers: {
@@ -33,11 +33,39 @@ export const getSortetedCategory = createAsyncThunk(
     };
     try {
       const response = await fetch(
-        `https://us-central1-teamchalangestore.cloudfunctions.net/getAllItems?category=${category}&page=${page}`,
+        `https://us-central1-teamchalangestore.cloudfunctions.net/getItemById?itemId=${itemId}`,
         options,
       );
-      const sortCategory = await response.json();
-      return sortCategory;
+      const productInfo = await response.json();
+      return productInfo;
+    } catch (error) {
+      return rejectWithValue(error.response.message);
+    }
+  },
+);
+
+export const getSortetedCategory = createAsyncThunk(
+  'product/sortCategory',
+  async (
+    { category, page, subcategory = '', sort = 'newest', range = "", brand = [], type = [] },
+    { rejectWithValue },
+  ) => {
+    if (range === 0) {
+      range = ""
+    }
+    console.log(sort);
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    try {
+      const response = await fetch(
+        `https://us-central1-teamchalangestore.cloudfunctions.net/getAllItems?page=${page}&category=${category}&subcategory=${subcategory}&sort=${sort}&range=${range}&brand=${brand}&type=${type}`,
+        options,
+      );
+      return await response.json();
     } catch (error) {
       return rejectWithValue(error.response.message);
     }

@@ -1,0 +1,24 @@
+.section {
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 70px;
+}
+
+.container {
+  max-width: 1440px;
+  padding: 0px 150px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.setting {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  background-color: transparent;
+}
+
+.btnActive {
+  font-weight: 700;
+  color: var(--accentCOlor);
+}

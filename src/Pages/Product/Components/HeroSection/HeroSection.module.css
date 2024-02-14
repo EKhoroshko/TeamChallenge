@@ -1,0 +1,80 @@
+.section {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1440px;
+  padding: 0px 150px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.flex {
+  display: flex;
+}
+
+.img {
+  max-width: 496px;
+  max-height: 470px;
+  margin-right: 80px;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--accentCOlor);
+}
+
+.vendor {
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--accentCOlor);
+}
+
+.id {
+  margin-left: 10px;
+}
+
+.description {
+  margin-bottom: 30px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--accentCOlor);
+}
+
+.price {
+  margin-bottom: 30px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.btnBuy {
+  margin-top: 20px;
+  padding: 14px 54px;
+  outline: none;
+  border: 1px solid var(--backgroundButton);
+  border-radius: 12px;
+  background-color: var(--backgroundButton);
+  color: var(--accentCOlor);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  cursor: pointer;
+}
+
+.btnBuy:disabled{
+  background-color: aliceblue;
+  color: tomato;
+}
+
+.btnBuy:hover {
+  color: var(--accentCOlor);
+  border: 1px solid var(--accentCOlor);
+}
