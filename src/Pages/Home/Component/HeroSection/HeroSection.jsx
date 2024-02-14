@@ -1,7 +1,14 @@
 import { Link } from 'react-scroll';
 import css from './HeroSection.module.css';
+import Input from './../../../../Components/Input/Input';
 
 const HeroSection = () => {
+ //const [qwery, setQwery] = useState('');
+
+ /* const handleChangeQwerty = e => {
+    setQwery(e.target.value);
+  };*/
+
   return (
     <section className={css.heroSection}>
       <div className={css.container}>
@@ -11,11 +18,13 @@ const HeroSection = () => {
             Online store for the sale of products for pets with delivery
             throughout Ukraine!
           </p>
-          <Link className={css.link} to="catalog" smooth={true} duration={500}>
+          <NavLink className={css.link} to={AppRoute.CATALOG}>
             Shop now
-          </Link>
+          </NavLink>
         </div>
       </div>
+      </div>
+      <div className={css.hamster}></div>
     </section>
   );
 };

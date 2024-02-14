@@ -1,68 +1,120 @@
 .heroSection {
   width: 100%;
-  padding-top: 190px;
-  padding-bottom: 210px;
   box-sizing: border-box;
-  background-color: var(--accentBgCOlor);
-  background-image: linear-gradient(
-      5deg,
-      rgba(114, 114, 114, 0.5) 0%,
-      rgba(61, 54, 54, 0.5) 35%,
-      rgba(110, 74, 49, 0.5) 100%
-    ),
-    url('../../../../assets/ham.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  height: 852px;
 }
 
 .container {
-  padding-left: 150px;
+  padding: 0 150px;
   max-width: 1440px;
   margin: 0 auto;
   box-sizing: border-box;
 }
 
+.generalSection {
+  width: 100%;
+  background-color: #8DC8FF;
+  height: 696px;
+}
+
 .box {
-  max-width: 550px;
+  position: relative;
+  height: 600px;
+  margin: 0 0 75px 0;
+  background-color: rgb(255, 253, 250);
+  border-radius: 40px;
 }
 
-.title {
-  font-weight: 600;
-  font-size: 36px;
-  line-height: 44px;
-  margin-bottom: 20px;
-  color: var(--accentCOlor);
-}
-
-.description {
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-  margin-bottom: 20px;
-  color: var(--accentCOlor);
-}
-
-.link {
-  max-width: 185px;
-  padding: 14px 54px;
+.blockSearch {
+  height: 120px;
+  background: #FFF275;
+  border-top-right-radius: 40px;
+  border-top-left-radius: 40px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  text-decoration: none;
-  color: var(--accentCOlor);
-  background-color: var(--backgroundButton);
-  border: 2px solid var(--backgroundButton);
-  border-radius: 12px;
-  outline: none;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 19px;
+  align-items: center;
+}
+
+.input {
+  width: 480px;
+  height: 48px;
+  border-radius: 40px;
+  border: none;
+}
+
+.textField {
+  position: absolute;
+  top: 50px;
+  right: 30%;
   cursor: pointer;
 }
 
-.link:hover,
-.link:focus {
-  color: var(--hoverColor);
-  border: 2px solid var(--accentCOlor);
+.parrot {
+  position: absolute;
+  top: -7%;
+  left: -7%;
+  width: 100%;
+  height: 100%;
+  background: url('./../../../../assets/newDesign/size1440/heroSection/parrot-macaw.png');
+  background-repeat: no-repeat;
+  background-size: 440px 520px;
 }
+
+.dog {
+  position: absolute;
+  top: 40%;
+  left: 63%;
+  width: 100%;
+  height: 100%;
+  background: url('./../../../../assets/newDesign/size1440/heroSection/dog.png');
+  background-repeat: no-repeat;
+  background-size: 408px 568px;
+}
+
+.hamster {
+  position: absolute;
+  top: bottom;
+  left: 30%;
+  width: 100%;
+  height: 100%;
+  background: url('./../../../../assets/newDesign/size1440/heroSection/hamster.png');
+  background-repeat: no-repeat;
+  background-size: 306px 154px;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 64px;
+  color: #262730;;
+}
+
+.title {
+  padding: 60px 0 0 0;
+}
+
+.food {
+  margin: 30px 0 0 0;
+  position: absolute;
+  top: bottom;
+  left: 40%;
+  width: 100%;
+  height: 100%;
+  background: url('./../../../../assets/newDesign/size1440/heroSection/food.png');
+  background-repeat: no-repeat;
+  background-size: 141px 143px;
+}
+
+.mainButton {
+  position: absolute;
+  top: 90%;
+  left: 45%;
+  width: 100%;
+  height: 100%;
+  background: url('./../../../../assets/newDesign/size1440/heroSection/main-button.png');
+  background-repeat: no-repeat;
+  background-size: 172px 85px;
+}
+
