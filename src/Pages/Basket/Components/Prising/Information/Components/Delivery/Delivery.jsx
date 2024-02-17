@@ -34,15 +34,15 @@ const Delivery = ({
               type="date"
               name="date"
               min={date}
-              // value={date}
+              value={date}
             />
           </label>
           <label className={css.labelSelect}>
             Time
             <select name="time" id="time" className={css.select}>
               <option value="morning">9:00 - 12:00</option>
-              <option value="day">12:00-16:00</option>
-              <option value="evening">16:00-21:00</option>
+              <option value="day">12:00 - 16:00</option>
+              <option value="evening">16:00 - 21:00</option>
             </select>
           </label>
         </div>
